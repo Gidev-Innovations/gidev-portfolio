@@ -4,9 +4,10 @@ function App() {
 
 
   return (
-    <div>
-        <p className="text-blue-500">Gidev Portfolio</p>
-    </div>
+    <>
+      {/* Import all components here and render them */}
+        <p className="text-blue-500">Only rednder components here.</p>
+    </>
   )
 }
 
