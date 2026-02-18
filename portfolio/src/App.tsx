@@ -1,16 +1,13 @@
-// import './App.css'
+import { Routes, Route } from "react-router-dom"
 import Projects from "./projects/Projects"
+import ProjectDetails from "./projects/ProjectDetails"
 
 function App() {
-
-
   return (
-    <>
-      {/* Import all components here and render them */
-      <Projects/>
-      }
-        {/* <p className="text-blue-500">Only rednder components here.</p> */}
-    </>
+    <Routes>
+      <Route path="/" element={<Projects />} />
+      <Route path="/projects/:id" element={<ProjectDetails />} />
+    </Routes>
   )
 }
 
