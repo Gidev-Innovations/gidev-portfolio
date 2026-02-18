@@ -66,6 +66,14 @@
     transform: scale(1.05);
   }
 
+  .project-card {
+    transition: transform 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: scale(1.03);
+  }
+
 
   @media (max-width: 768px) {
     .projects-grid {
