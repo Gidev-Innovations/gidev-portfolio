@@ -28,9 +28,31 @@ function ProjectDetails() {
           className="details-image"
         />
 
-        <p className="details-description">
-          {project.description}
+        {/* Tagline */}
+        <h2 className="section-title">Tagline</h2>
+        <p className="details-tagline">
+          {project.tagline}
         </p>
+
+        {/* Work Overview */}
+        <h2 className="section-title">Work Overview</h2>
+        <p className="details-text">
+          {project.overview}
+        </p>
+
+        {/* Mission */}
+        <h2 className="section-title">Mission</h2>
+        <p className="details-text">
+          {project.mission}
+        </p>
+
+        {/* Technologies */}
+        <h2 className="section-title">Technologies Used</h2>
+        <ul className="tech-list">
+          {project.technologies.map((tech, index) => (
+            <li key={index}>{tech}</li>
+          ))}
+        </ul>
 
         <Link to="/" className="back-button">
           ← Back to Projects

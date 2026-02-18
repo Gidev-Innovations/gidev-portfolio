@@ -8,7 +8,9 @@ export type Project = {
     title: string
     year: string
     image: string
-    description: string
+    tagline: string
+    overview: string
+    mission: string
     technologies: string[]
   }
   
@@ -19,7 +21,11 @@ export type Project = {
       title: "Financial App",
       year: "2023",
       image: m3,
-      description: "A modern responsive portfolio website built with React and TypeScript.",
+      tagline: "A modern digital identity built for impact.",
+      overview:
+        "This project is a fully responsive portfolio website built using React and TypeScript. It focuses on clean UI, performance, and scalability.",
+      mission:
+        "The mission was to create a fast, elegant, and developer-friendly portfolio that showcases skills and projects professionally.",
       technologies: ["React", "TypeScript", "Vite", "CSS"]
     },
     {
@@ -27,23 +33,35 @@ export type Project = {
       title: "Agricultural Innovations",
       year: "2022",
       image: m2,
-      description: "An online store with cart functionality and payment integration.",
-      technologies: ["React", "Redux", "Node.js"]
+      tagline: "A modern digital identity built for impact.",
+      overview:
+        "This project is a fully responsive portfolio website built using React and TypeScript. It focuses on clean UI, performance, and scalability.",
+      mission:
+        "The mission was to create a fast, elegant, and developer-friendly portfolio that showcases skills and projects professionally.",
+      technologies: ["React", "TypeScript", "Vite", "CSS"]
     },
     {
       id: 3,
       title: "Neural Interface",
       year: "2023",
       image: m1,
-      description: "An online store with cart functionality and payment integration.",
-      technologies: ["React", "Redux", "Node.js"]
+      tagline: "A modern digital identity built for impact.",
+      overview:
+        "This project is a fully responsive portfolio website built using React and TypeScript. It focuses on clean UI, performance, and scalability.",
+      mission:
+        "The mission was to create a fast, elegant, and developer-friendly portfolio that showcases skills and projects professionally.",
+      technologies: ["React", "TypeScript", "Vite", "CSS"]
     },
     {
       id: 4,
       title: "Custom Technology",
       year: "2024",
       image: m4,
-      description: "An online store with cart functionality and payment integration.",
-      technologies: ["React", "Redux", "Node.js"]
+      tagline: "A modern digital identity built for impact.",
+      overview:
+        "This project is a fully responsive portfolio website built using React and TypeScript. It focuses on clean UI, performance, and scalability.",
+      mission:
+        "The mission was to create a fast, elegant, and developer-friendly portfolio that showcases skills and projects professionally.",
+      technologies: ["React", "TypeScript", "Vite", "CSS"]
     },
   ]
