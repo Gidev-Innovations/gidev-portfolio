@@ -79,7 +79,7 @@ export default function NotFound() {
         {/* Tap hint */}
         <motion.p
           variants={itemVariants}
-          className="text-[10px] uppercase tracking-widest text-[#2EC4C7]/50 font-semibold mb-7"
+          className="text-[10px] uppercase tracking-widest text-[#2EC4C7]/75 font-bold mb-7"
         >
           tap the numbers
         </motion.p>
