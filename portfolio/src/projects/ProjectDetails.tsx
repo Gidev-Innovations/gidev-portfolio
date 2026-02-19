@@ -10,81 +10,79 @@ function ProjectDetails() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h2 className="text-2xl font-semibold">
-          Project not found
-        </h2>
-      </div>
+      <h2 className="text-center mt-20 text-2xl font-semibold">
+        Project not found
+      </h2>
     )
   }
 
   return (
-    <section className="min-h-screen bg-gray-50 py-20 px-6 flex justify-center">
-      <div className="max-w-4xl w-full">
+    <section className="px-6 md:px-20 py-16 bg-white">
+      <div className="max-w-6xl mx-auto">
 
         {/* Title */}
-        <h1 className="text-4xl md:text-5xl font-semibold mb-2">
+        <h1 className="text-4xl font-bold mb-10 text-center">
           {project.title}
         </h1>
 
-        {/* Meta */}
-        <p className="text-gray-500 text-sm tracking-wide mb-8">
-          {project.year} • {project.technologies.join(" • ")}
-        </p>
-
         {/* Image */}
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full rounded-xl mb-12 shadow-sm"
-        />
+        <div className="mb-16">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-[450px] object-cover rounded-2xl shadow-lg"
+          />
+        </div>
 
-        {/* Tagline */}
-        <h2 className="text-xl font-semibold border-l-4 border-black pl-3 mb-3">
-          Tagline
-        </h2>
-        <p className="italic text-gray-600 text-lg mb-10">
-          {project.tagline}
-        </p>
+        {/* Content Grid */}
+        <div className="grid md:grid-cols-2 gap-16">
 
-        {/* Work Overview */}
-        <h2 className="text-xl font-semibold border-l-4 border-black pl-3 mb-3">
-          Work Overview
-        </h2>
-        <p className="text-gray-700 leading-relaxed mb-10">
-          {project.overview}
-        </p>
+          {/* Left Column */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">
+              Work Overview
+            </h2>
 
-        {/* Mission */}
-        <h2 className="text-xl font-semibold border-l-4 border-black pl-3 mb-3">
-          Mission
-        </h2>
-        <p className="text-gray-700 leading-relaxed mb-12">
-          {project.mission}
-        </p>
+            <p className="text-gray-600 leading-relaxed">
+              {project.overview}
+            </p>
+          </div>
 
-        {/* Technologies */}
-        <h2 className="text-xl font-semibold border-l-4 border-black pl-3 mb-4">
-          Technologies Used
-        </h2>
-        <div className="flex flex-wrap gap-3 mb-12">
-          {project.technologies.map((tech, index) => (
-            <span
-              key={index}
-              className="px-4 py-2 bg-black text-white rounded-full text-sm"
-            >
-              {tech}
-            </span>
-          ))}
+          {/* Right Column */}
+          <div className="space-y-10">
+
+            <div>
+              <h2 className="text-2xl font-semibold mb-4">
+                Mission
+              </h2>
+
+              <p className="text-gray-600 leading-relaxed">
+                {project.mission}
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold mb-4">
+                Tagline
+              </h2>
+
+              <p className="text-gray-600 leading-relaxed">
+                {project.tagline}
+              </p>
+            </div>
+
+          </div>
         </div>
 
         {/* Back Button */}
-        <Link
-          to="/"
-          className="inline-block px-8 py-3 bg-black text-white rounded-full transition-all duration-300 hover:text-cyan-400 hover:-translate-y-1"
-        >
-          ← Back to Projects
-        </Link>
+        <div className="mt-16">
+          <Link
+            to="/"
+            className="inline-block px-6 py-3 rounded-full bg-black text-white hover:text-cyan-400 transition"
+          >
+            ← Back to Projects
+          </Link>
+        </div>
 
       </div>
     </section>
