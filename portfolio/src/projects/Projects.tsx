@@ -1,23 +1,32 @@
-import "./projects.css"
-import ProjectCard from "./ProjectCard"
 import { projects } from "./projects.data"
+import ProjectCard from "./ProjectCard"
 
 function Projects() {
   return (
-    <section className="projects-section">
-      <div className="projects-header">
-        <h2>Our Projects</h2>
-        <p>
-          Discover how our projects showcase innovation and real-world impact.
-        </p>
-      </div>
+<section className="min-h-screen py-20 px-6 bg-white">
+  <div className="max-w-6xl mx-auto text-center">
 
-      <div className="projects-grid">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-    </section>
+    <h1 className="text-4xl md:text-5xl font-semibold mb-4 opacity-0 animate-[fadeIn_0.8s_ease-in_forwards]">
+      Projects
+    </h1>
+
+    <p className="text-gray-600 max-w-2xl mx-auto mb-12 opacity-0 animate-[fadeIn_1.2s_ease-in_forwards]">
+      Explore a collection of our recent work, showcasing innovative solutions,
+      modern design systems, and scalable applications built with performance
+      and user experience in mind.
+    </p>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
+      {projects.map((project) => (
+        <ProjectCard
+          key={project.id}
+          project={project}
+        />
+      ))}
+    </div>
+
+  </div>
+</section>
   )
 }
 
