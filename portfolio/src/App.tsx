@@ -8,6 +8,7 @@ import Projects from "./projects/Projects";
 import Blog from "./blog/Blog";
 import BlogPost from "./blog/Blogpost";
 import ProjectDetails from "./projects/ProjectDetails";
+import NotFound from "./not-found/NotFound";
 
 function App() {
   return (
