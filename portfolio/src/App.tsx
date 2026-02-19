@@ -7,6 +7,7 @@ import About from "./about/About";
 import Projects from "./projects/Projects";
 import Blog from "./blog/Blog";
 import BlogPost from "./blog/Blogpost";
+import ProjectDetails from "./projects/ProjectDetails";
 
 function App() {
   return (
