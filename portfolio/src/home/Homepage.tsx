@@ -373,7 +373,7 @@ export default function Homepage() {
         </div>
       </section>
 
-      Testimonials Section
+      {/* Testimonials Section */}
       <section className="py-32 px-6 bg-gray-50 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5">
