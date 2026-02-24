@@ -1,12 +1,10 @@
 import './App.css'
+import Homepage from './home/Homepage'
 
 function App() {
-
-
   return (
     <>
-      {/* Import all components here and render them */}
-        <p className="text-blue-500">Only rednder components here.</p>
+      <Homepage />
     </>
   )
 }
