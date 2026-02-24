@@ -1,15 +1,51 @@
 @import "tailwindcss";
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
+
+/*custom colors*/
+@theme {
+    --color-gidev-50: #f0fdfc;
+    --color-gidev-100: #cdfaf7;
+    --color-gidev-200: #9cf3ef;
+    --color-gidev-300: #62e6e4;
+    --color-gidev-400: #2ec4c7;
+    --color-gidev-500: #18aeb4;
+    --color-gidev-600: #118990;
+    --color-gidev-700: #126c73;
+    --color-gidev-800: #13565c;
+    --color-gidev-900: #15474c;
+    --color-gidev-950: #05292e;
+
+
+    --color-spring-wood-50: #f8f6f1;
+    --color-spring-wood-100: #f1ede3;
+    --color-spring-wood-200: #e2d9c6;
+    --color-spring-wood-300: #cfc0a2;
+    --color-spring-wood-400: #bba27c;
+    --color-spring-wood-500: #ad8d62;
+    --color-spring-wood-600: #a07b56;
+    --color-spring-wood-700: #856449;
+    --color-spring-wood-800: #6d523f;
+    --color-spring-wood-900: #594435;
+    --color-spring-wood-950: #2f221b;
+
+
+
+
+}
+
 * {
   scroll-behavior: smooth;
 }
+

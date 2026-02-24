@@ -16,19 +16,19 @@ function App() {
     <>
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:id" element={<ProjectDetails />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="/about" element={<About />} />
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:id" element={<ProjectDetails />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/about" element={<About />} />
 
-        <Route path="/404" element={<NotFound />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+                <Route path="/404" element={<NotFound />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+
 
       <Footer />
     </>
