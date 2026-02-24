@@ -9,6 +9,7 @@ import Blog from "./blog/Blog";
 import BlogPost from "./blog/Blogpost";
 import ProjectDetails from "./projects/ProjectDetails";
 import NotFound from "./not-found/NotFound";
+import Contact from "./contact/Contact";
 
 function App() {
   return (
