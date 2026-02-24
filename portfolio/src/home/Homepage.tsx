@@ -442,41 +442,6 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-32 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 font-syne mb-6">
-              Essential FAQs
-            </h2>
-            <p className="text-xl text-gray-600">
-              Customer Testimonials Speak Volumes
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              { q: 'How fast can Twist deliver business designs?', a: 'We typically deliver initial designs within 1-2 weeks, with revisions following our agile sprint methodology.' },
-              { q: 'Are revisions available for provided designs?', a: 'Yes, unlimited revisions are included in our comprehensive packages until you are completely satisfied.' },
-              { q: 'What factors influence pixelta pricing strategy?', a: 'Our pricing depends on project scope, complexity, timeline, and the level of involvement required.' },
-              { q: 'Can Pixelta assist with ongoing design requirements?', a: 'Absolutely! We offer retainer packages for ongoing support and continuous improvement.' },
-            ].map((faq, idx) => (
-              <details key={idx} className="group bg-gray-50 rounded-xl border border-gray-200 hover:border-blue-400 hover:bg-blue-50/20 cursor-pointer shadow-sm hover:shadow-md transition-all duration-300">
-                <summary className="font-bold text-lg flex items-center justify-between p-6 select-none text-gray-900 font-syne hover:text-blue-600 transition-colors">
-                  <span>{faq.q}</span>
-                  <span className="text-blue-500 group-open:rotate-180 transition-transform duration-300 text-2xl">
-                    ▼
-                  </span>
-                </summary>
-                <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-200 pt-6 bg-white/50">
-                  {faq.a}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-32 px-6 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto">
