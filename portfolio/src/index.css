@@ -1,5 +1,208 @@
 @import "tailwindcss";
 
+
+@font-face {
+    font-family: 'Changa One Italic';
+
+    src: url('@/assets/fonts/CHANGAONEITALIC.woff');
+
+    font-weight: 400;
+
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Changa One Regular';
+
+    src: url('@/assets/fonts/CHANGAONEREGULAR.woff');
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Outfit Bold';
+
+    src: url('@/assets/fonts/OUTFITBOLD.woff');
+
+    font-weight: 700;
+
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Outfit Extra Bold';
+
+    src: url('@/assets/fonts/OUTFITEXTRABOLD.woff');
+
+    font-weight: 800;
+
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Outfit Extra Light';
+
+    src: url('@/assets/fonts/OUTFITEXTRALIGHT.woff');
+
+    font-weight: 200;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Outfit Light';
+
+    src: url('@/assets/fonts/OUTFITLIGHT.woff');
+
+    font-weight: 300;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Outfit Medium';
+
+    src: url('@/assets/fonts/OUTFITMEDIUM.woff');
+
+    font-weight: 500;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Outfit Regular';
+
+    src: url('@/assets/fonts/OUTFITREGULAR.woff');
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Outfit Semi Bold';
+
+    src: url('@/assets/fonts/OUTFITSEMIBOLD.woff');
+
+    font-weight: 600;
+]
+font-style: normal;
+}
+
+@font-face {
+    font-family: 'Outfit Black';
+
+    src: url('@/assets/fonts/OUTFITBLACK.woff');
+
+    font-weight: 900;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT SANS Bold';
+
+    src: url('@/assets/fonts/PTSANSBOLD.woff');
+
+    font-weight: 700;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT SANS Bold Italic';
+
+    src: url('@/assets/fonts/PTSANSBOLDITALIC.woff');
+
+    font-weight: 700;
+
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PT SANS  Caption Bold';
+
+    src: url('@/assets/fonts/PTSANSCAPTIONBOLD.woff');
+
+    font-weight: 700;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT SANS Caption Regular';
+
+    src: url('@/assets/fonts/PTSANSCAPTION.woff');
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT SANS Italic';
+
+    src: url('@/assets/fonts/PTSANSITALIC.woff');
+
+    font-weight: 400;
+
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PT SANS Narrow Bold';
+
+    src: url('@/assets/fonts/PTSANSNARROWBOLD.woff');
+
+    font-weight: 700;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT SANS Narrow Regular';
+
+    src: url('@/assets/fonts/PTSANSNARROW.woff');
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT SANS Regular';
+
+    src: url('@/assets/fonts/PTSANS.woff');
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Urbanist';
+
+    src: url('@/assets/fonts/URBANISTREGULAR.woff');
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Urbanist Italic';
+
+    src: url('@/assets/fonts/URBANISTITALIC.woff');
+
+    font-weight: 400;
+
+    font-style: italic;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -27,7 +230,7 @@
     --color-gidev-950: #05292e;
 
 
-    --color-spring-wood-50: #f8f6f1;
+--color-spring-wood-50: #f8f6f1;
     --color-spring-wood-100: #f1ede3;
     --color-spring-wood-200: #e2d9c6;
     --color-spring-wood-300: #cfc0a2;
