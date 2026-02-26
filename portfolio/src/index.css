@@ -242,6 +242,20 @@ font-style: normal;
 }
 
 
+@theme {
+    --text-heading-1: 90px;
+    --text-heading-2: 64px;
+    --text-heading-3: 48px;
+    --text-heading-4: 40px;
+    --text-heading-5: 32px;
+    --text-heading-6: 22px;
+    --text-regular-20: 20px;
+    --text-medium-16: 16px;
+    --text-regular-16: 16px;
+    --text-regular-18: 18px;
+}
+
+
 /*custom colors*/
 @theme {
 
