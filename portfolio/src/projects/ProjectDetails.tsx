@@ -30,6 +30,7 @@ function ProjectDetails() {
           <img
             src={project.image}
             alt={project.title}
+            loading="lazy"
             className="w-full h-[450px] object-cover rounded-2xl shadow-lg"
           />
         </div>
