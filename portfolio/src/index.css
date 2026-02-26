@@ -215,6 +215,32 @@ font-style: normal;
 }
 
 
+/*custom fonts*/
+
+@theme {
+    --font-ChangaOneItalic: 'Changa One Italic';
+    --font-ChangaOneRegular: 'Changa One Regular';
+    --font-OutfitBold: 'Outfit Bold';
+    --font-OutfitExtraBold: 'Outfit Extra Bold';
+    --font-OutfitExtraLight: 'Outfit Extra Light';
+    --font-OutfitLight: 'Outfit Light';
+    --font-OutfitMedium: 'Outfit Medium';
+    --font-OutfitRegular: 'Outfit Regular';
+    --font-OutfitSemiBold: 'Outfit Semi Bold';
+    --font-OutfitBlack: 'Outfit Black';
+    --font-PTSANSBold: 'PT SANS Bold';
+    --font-PTSANSBoldItalic: 'PT SANS Bold Italic';
+    --font-PTSANSCaptionBold: 'PT SANS  Caption Bold';
+    --font-PTANSCaptionRegular: 'PT SANS Caption Regular';
+    --font-PTSANSItalic: 'PT SANS Italic';
+    --font-PTSANSNarrowBold: 'PT SANS Narrow Bold';
+    --font-PTSANSNarrowRegular: 'PT SANS Narrow Regular';
+    --font-PTSANSRegular: 'PT SANS Regular';
+    --font-Urbanist: 'Urbanist';
+    --font-UrbanistItalic: 'Urbanist Italic'
+}
+
+
 /*custom colors*/
 @theme {
     --color-gidev-50: #f0fdfc;
