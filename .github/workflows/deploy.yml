@@ -1,0 +1,55 @@
+name: Build and Deploy to R2/S3
+
+on:
+  push:
+    branches:
+      - main  # or your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      # 1) Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Use Node.js for build
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"   # or your required version
+
+      # 3) Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4) Build your static project
+      - name: Build project
+        run: npm run build     # adjust if your build script differs
+
+      # 5) Download and install MinIO client
+      - name: Install MinIO Client
+        run: |
+          curl -fsSL https://dl.min.io/client/mc/release/linux-amd64/mc -o mc
+          chmod +x mc
+          sudo mv mc /usr/local/bin/
+
+      # 6) Configure MinIO/R2 alias (S3 endpoint)
+      - name: Configure mc alias
+        env:
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}          # e.g. https://xxxx.r2.cloudflarestorage.com
+          R2_ACCESS_KEY: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          mc alias set myr2 "${R2_ENDPOINT}" "${R2_ACCESS_KEY}" "${R2_SECRET_KEY}"
+
+      # 7) Sync built files to the bucket
+      - name: Deploy to Bucket
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}              # your bucket name
+        run: |
+          # mirror built output (e.g., dist, build, public)
+          mc mirror ./build "myr2/${R2_BUCKET}/" --overwrite --remove
+
+      # (Todo) add cache headers, etc.
