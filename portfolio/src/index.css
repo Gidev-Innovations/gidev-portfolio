@@ -1,309 +1,301 @@
 @import "tailwindcss";
 
-
 @font-face {
-    font-family: 'Changa One Italic';
+  font-family: "Changa One Italic";
 
-    src: url('@/assets/fonts/CHANGAONEITALIC.woff');
+  src: url("@/assets/fonts/CHANGAONEITALIC.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: italic;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Changa One Regular';
+  font-family: "Changa One Regular";
 
-    src: url('@/assets/fonts/CHANGAONEREGULAR.woff');
+  src: url("@/assets/fonts/CHANGAONEREGULAR.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Bold';
+  font-family: "Outfit Bold";
 
-    src: url('@/assets/fonts/OUTFITBOLD.woff');
+  src: url("@/assets/fonts/OUTFITBOLD.woff");
 
-    font-weight: 700;
+  font-weight: 700;
 
-    font-style: normal;
-
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Extra Bold';
+  font-family: "Outfit Extra Bold";
 
-    src: url('@/assets/fonts/OUTFITEXTRABOLD.woff');
+  src: url("@/assets/fonts/OUTFITEXTRABOLD.woff");
 
-    font-weight: 800;
+  font-weight: 800;
 
-    font-style: normal;
-
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Extra Light';
+  font-family: "Outfit Extra Light";
 
-    src: url('@/assets/fonts/OUTFITEXTRALIGHT.woff');
+  src: url("@/assets/fonts/OUTFITEXTRALIGHT.woff");
 
-    font-weight: 200;
+  font-weight: 200;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Light';
+  font-family: "Outfit Light";
 
-    src: url('@/assets/fonts/OUTFITLIGHT.woff');
+  src: url("@/assets/fonts/OUTFITLIGHT.woff");
 
-    font-weight: 300;
+  font-weight: 300;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Medium';
+  font-family: "Outfit Medium";
 
-    src: url('@/assets/fonts/OUTFITMEDIUM.woff');
+  src: url("@/assets/fonts/OUTFITMEDIUM.woff");
 
-    font-weight: 500;
+  font-weight: 500;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Regular';
+  font-family: "Outfit Regular";
 
-    src: url('@/assets/fonts/OUTFITREGULAR.woff');
+  src: url("@/assets/fonts/OUTFITREGULAR.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Semi Bold';
+  font-family: "Outfit Semi Bold";
 
-    src: url('@/assets/fonts/OUTFITSEMIBOLD.woff');
+  src: url("@/assets/fonts/OUTFITSEMIBOLD.woff");
 
-    font-weight: 600;
-]
-font-style: normal;
+  font-weight: 600;
+
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Outfit Black';
+  font-family: "Outfit Black";
 
-    src: url('@/assets/fonts/OUTFITBLACK.woff');
+  src: url("@/assets/fonts/OUTFITBLACK.woff");
 
-    font-weight: 900;
+  font-weight: 900;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PT SANS Bold';
+  font-family: "PT SANS Bold";
 
-    src: url('@/assets/fonts/PTSANSBOLD.woff');
+  src: url("@/assets/fonts/PTSANSBOLD.woff");
 
-    font-weight: 700;
+  font-weight: 700;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PT SANS Bold Italic';
+  font-family: "PT SANS Bold Italic";
 
-    src: url('@/assets/fonts/PTSANSBOLDITALIC.woff');
+  src: url("@/assets/fonts/PTSANSBOLDITALIC.woff");
 
-    font-weight: 700;
+  font-weight: 700;
 
-    font-style: italic;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'PT SANS  Caption Bold';
+  font-family: "PT SANS  Caption Bold";
 
-    src: url('@/assets/fonts/PTSANSCAPTIONBOLD.woff');
+  src: url("@/assets/fonts/PTSANSCAPTIONBOLD.woff");
 
-    font-weight: 700;
+  font-weight: 700;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PT SANS Caption Regular';
+  font-family: "PT SANS Caption Regular";
 
-    src: url('@/assets/fonts/PTSANSCAPTION.woff');
+  src: url("@/assets/fonts/PTSANSCAPTION.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PT SANS Italic';
+  font-family: "PT SANS Italic";
 
-    src: url('@/assets/fonts/PTSANSITALIC.woff');
+  src: url("@/assets/fonts/PTSANSITALIC.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: italic;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'PT SANS Narrow Bold';
+  font-family: "PT SANS Narrow Bold";
 
-    src: url('@/assets/fonts/PTSANSNARROWBOLD.woff');
+  src: url("@/assets/fonts/PTSANSNARROWBOLD.woff");
 
-    font-weight: 700;
+  font-weight: 700;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PT SANS Narrow Regular';
+  font-family: "PT SANS Narrow Regular";
 
-    src: url('@/assets/fonts/PTSANSNARROW.woff');
+  src: url("@/assets/fonts/PTSANSNARROW.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PT SANS Regular';
+  font-family: "PT SANS Regular";
 
-    src: url('@/assets/fonts/PTSANS.woff');
+  src: url("@/assets/fonts/PTSANS.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Urbanist';
+  font-family: "Urbanist";
 
-    src: url('@/assets/fonts/URBANISTREGULAR.woff');
+  src: url("@/assets/fonts/URBANISTREGULAR.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Urbanist Italic';
+  font-family: "Urbanist Italic";
 
-    src: url('@/assets/fonts/URBANISTITALIC.woff');
+  src: url("@/assets/fonts/URBANISTITALIC.woff");
 
-    font-weight: 400;
+  font-weight: 400;
 
-    font-style: italic;
+  font-style: italic;
 }
 
 @keyframes fadeIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
 
 /*custom fonts*/
 
 @theme {
-    --font-ChangaOneItalic: 'Changa One Italic';
-    --font-ChangaOneRegular: 'Changa One Regular';
-    --font-OutfitBold: 'Outfit Bold';
-    --font-OutfitExtraBold: 'Outfit Extra Bold';
-    --font-OutfitExtraLight: 'Outfit Extra Light';
-    --font-OutfitLight: 'Outfit Light';
-    --font-OutfitMedium: 'Outfit Medium';
-    --font-OutfitRegular: 'Outfit Regular';
-    --font-OutfitSemiBold: 'Outfit Semi Bold';
-    --font-OutfitBlack: 'Outfit Black';
-    --font-PTSANSBold: 'PT SANS Bold';
-    --font-PTSANSBoldItalic: 'PT SANS Bold Italic';
-    --font-PTSANSCaptionBold: 'PT SANS  Caption Bold';
-    --font-PTANSCaptionRegular: 'PT SANS Caption Regular';
-    --font-PTSANSItalic: 'PT SANS Italic';
-    --font-PTSANSNarrowBold: 'PT SANS Narrow Bold';
-    --font-PTSANSNarrowRegular: 'PT SANS Narrow Regular';
-    --font-PTSANSRegular: 'PT SANS Regular';
-    --font-Urbanist: 'Urbanist';
-    --font-UrbanistItalic: 'Urbanist Italic'
+  --font-ChangaOneItalic: "Changa One Italic";
+  --font-ChangaOneRegular: "Changa One Regular";
+  --font-OutfitBold: "Outfit Bold";
+  --font-OutfitExtraBold: "Outfit Extra Bold";
+  --font-OutfitExtraLight: "Outfit Extra Light";
+  --font-OutfitLight: "Outfit Light";
+  --font-OutfitMedium: "Outfit Medium";
+  --font-OutfitRegular: "Outfit Regular";
+  --font-OutfitSemiBold: "Outfit Semi Bold";
+  --font-OutfitBlack: "Outfit Black";
+  --font-PTSANSBold: "PT SANS Bold";
+  --font-PTSANSBoldItalic: "PT SANS Bold Italic";
+  --font-PTSANSCaptionBold: "PT SANS  Caption Bold";
+  --font-PTANSCaptionRegular: "PT SANS Caption Regular";
+  --font-PTSANSItalic: "PT SANS Italic";
+  --font-PTSANSNarrowBold: "PT SANS Narrow Bold";
+  --font-PTSANSNarrowRegular: "PT SANS Narrow Regular";
+  --font-PTSANSRegular: "PT SANS Regular";
+  --font-Urbanist: "Urbanist";
+  --font-UrbanistItalic: "Urbanist Italic";
 }
-
 
 @theme {
-    --text-heading-1: 90px;
-    --text-heading-2: 64px;
-    --text-heading-3: 48px;
-    --text-heading-4: 40px;
-    --text-heading-5: 32px;
-    --text-heading-6: 22px;
-    --text-regular-20: 20px;
-    --text-medium-16: 16px;
-    --text-regular-16: 16px;
-    --text-regular-18: 18px;
+  --text-heading-1: 90px;
+  --text-heading-1--line-height: 0.9;
+  --text-heading-1-semibold: 90px;
+  --text-heading-1-semibold--line-height: 1.2;
+  --text-heading-2: 64px;
+  --text-heading-2--line-height: 1.1;
+  --text-heading-3: 48px;
+  --text-heading-3--line-height: 1.1;
+  --text-heading-4: 40px;
+  --text-heading-4--line-height: 1.2;
+  --text-heading-5: 32px;
+  --text-heading-5--line-height: 1.2;
+  --text-heading-6: 22px;
+  --text-heading-6--line-height: 1.5;
+  --text-regular-20: 20px;
+  --text-regular-20--line-height: 1.5;
+  --text-regular-18: 18px;
+  --text-regular-18--line-height: 1.5;
+  --text-regular-16: 16px;
+  --text-regular-16--line-height: 1.8;
+  --text-medium-16: 16px;
+  --text-medium-16--line-height: 1.1;
 }
-
 
 /*custom colors*/
 @theme {
+  --color-primary-50: #f0fdfc;
+  --color-primary-100: #cdfaf7;
+  --color-primary-200: #9cf3ef;
+  --color-primary-300: #62e6e4;
+  --color-primary-400: #2ec4c7;
+  --color-primary-500: #18aeb4;
+  --color-primary-600: #118990;
+  --color-primary-700: #126c73;
+  --color-primary-800: #13565c;
+  --color-primary-900: #15474c;
+  --color-primary-950: #05292e;
 
-    --color-primary-50: #f0fdfc;
-    --color-primary-100: #cdfaf7;
-    --color-primary-200: #9cf3ef;
-    --color-primary-300: #62e6e4;
-    --color-primary-400: #2ec4c7;
-    --color-primary-500: #18aeb4;
-    --color-primary-600: #118990;
-    --color-primary-700: #126c73;
-    --color-primary-800: #13565c;
-    --color-primary-900: #15474c;
-    --color-primary-950: #05292e;
+  --color-secondary-50: #f3f7fc;
+  --color-secondary-100: #e7eff7;
+  --color-secondary-200: #c9ddee;
+  --color-secondary-300: #99c2e0;
+  --color-secondary-400: #62a2ce;
+  --color-secondary-500: #3d86ba;
+  --color-secondary-600: #2d6b9c;
+  --color-secondary-700: #25567f;
+  --color-secondary-800: #224a6a;
+  --color-secondary-900: #213e59;
+  --color-secondary-950: #0c1620;
 
-
-
-    --color-secondary-50: #f3f7fc;
-    --color-secondary-100: #e7eff7;
-    --color-secondary-200: #c9ddee;
-    --color-secondary-300: #99c2e0;
-    --color-secondary-400: #62a2ce;
-    --color-secondary-500: #3d86ba;
-    --color-secondary-600: #2d6b9c;
-    --color-secondary-700: #25567f;
-    --color-secondary-800: #224a6a;
-    --color-secondary-900: #213e59;
-    --color-secondary-950: #0c1620;
-
-
---color-spring-wood-50: #f8f6f1;
-    --color-spring-wood-100: #f1ede3;
-    --color-spring-wood-200: #e2d9c6;
-    --color-spring-wood-300: #cfc0a2;
-    --color-spring-wood-400: #bba27c;
-    --color-spring-wood-500: #ad8d62;
-    --color-spring-wood-600: #a07b56;
-    --color-spring-wood-700: #856449;
-    --color-spring-wood-800: #6d523f;
-    --color-spring-wood-900: #594435;
-    --color-spring-wood-950: #2f221b;
-
-
-
-
+  --color-spring-wood-50: #f8f6f1;
+  --color-spring-wood-100: #f1ede3;
+  --color-spring-wood-200: #e2d9c6;
+  --color-spring-wood-300: #cfc0a2;
+  --color-spring-wood-400: #bba27c;
+  --color-spring-wood-500: #ad8d62;
+  --color-spring-wood-600: #a07b56;
+  --color-spring-wood-700: #856449;
+  --color-spring-wood-800: #6d523f;
+  --color-spring-wood-900: #594435;
+  --color-spring-wood-950: #2f221b;
 }
-
-* {
-  scroll-behavior: smooth;
-}
-
