@@ -51,4 +51,4 @@ jobs:
         env:
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
-          mc mirror ./portfolio/build "myr2/${R2_BUCKET}/" --overwrite --remove
+          mc mirror ./portfolio/dist "myr2/${R2_BUCKET}/" --overwrite --remove
