@@ -74,7 +74,7 @@ const cardVariants: Variants = {
 
 export default function Blog() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white mt-4 md:mt-12">
       {/* ── HEADER ──────────────────────────────────────────────────────────
           motion.header wraps both the title and subtitle so Framer Motion
           can stagger them. The variants bubble down automatically —
@@ -82,21 +82,21 @@ export default function Blog() {
           just name which variant they use (titleVariant / subtitleVariant).
       ────────────────────────────────────────────────────────────────────── */}
       <motion.header
-        className="pt-20 pb-16 text-center px-6"
+        className="pt-20 pb-20 text-center px-6"
         variants={headerContainerVariants}
         initial="hidden" // starts in the "hidden" state defined above
         animate="show" // animates toward the "show" state on page load
       >
         <motion.h1
           variants={titleVariant}
-          className="text-5xl md:text-6xl font-bold tracking-tight text-gray-950"
+          className="text-heading-3 md:text-heading-2 font-OutfitMedium tracking-tight text-gray-950 mb-2"
         >
           Blog page
         </motion.h1>
 
         <motion.p
           variants={subtitleVariant}
-          className="mt-4 text-gray-500 text-base max-w-md mx-auto leading-relaxed"
+          className="text-gray-500 text-base max-w-md mx-auto leading-relaxed"
         >
           We specialize in crafting customized digital solutions to elevate your
           brand and reach your target audience effectively.
