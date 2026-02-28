@@ -17,7 +17,7 @@ function ProjectDetails() {
   }
 
   return (
-    <section className="px-6 md:px-20 py-16 bg-white">
+    <section className="px-6 md:px-20 pt-24 pb-16 bg-white">
       <div className="max-w-6xl mx-auto">
 
         {/* Title */}
@@ -30,6 +30,7 @@ function ProjectDetails() {
           <img
             src={project.image}
             alt={project.title}
+            loading="lazy"
             className="w-full h-[450px] object-cover rounded-2xl shadow-lg"
           />
         </div>
@@ -77,7 +78,7 @@ function ProjectDetails() {
         {/* Back Button */}
         <div className="mt-16">
           <Link
-            to="/"
+            to="/Projects"
             className="inline-block px-6 py-3 rounded-full bg-black text-white hover:text-cyan-400 transition"
           >
             ← Back to Projects
