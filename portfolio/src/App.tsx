@@ -9,10 +9,11 @@ import Blog from "./blog/Blog";
 import BlogPost from "./blog/Blogpost";
 import ProjectDetails from "./projects/ProjectDetails";
 import NotFound from "./not-found/NotFound";
+import { ArrowUpFromDot } from "lucide-react";
 
 function App() {
   return (
-    <>
+    <div className="relative">
       <Navbar />
 
             <Routes>
@@ -27,10 +28,15 @@ function App() {
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+        <div className="animate-bounce absolute bottom-4 right-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+           <div className="h-8 w-8 rounded-full bg-secondary-950 flex items-center justify-center">
+               <ArrowUpFromDot color="#18aeb4" />
+           </div>
+        </div>
 
 
       <Footer />
-    </>
+    </div>
   );
 }
 
