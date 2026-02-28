@@ -1,4 +1,6 @@
 import FaqsItem from "./FaqsItem.tsx";
+import { motion } from "framer-motion";
+import {divParentVariants, divChildHeaderVariants} from "./Services.tsx";
 
 interface Faq {
     question: string;
@@ -20,7 +22,7 @@ const Faqs = () => {
             answer: "Empower your business with tailored integration solutions that simplify insights and enhance efficiency. Begin with dedicated support and expand on your terms."
         },
         {
-            question: "Can Pixelta assist with ongoing design requirements for my business?",
+            question: "Can Pixel assist with ongoing design requirements for my business?",
             answer: "Unlock seamless operations and higher productivity through a robust integration platform. Start strong with professional support and scale confidently."
         },
         {
@@ -30,21 +32,29 @@ const Faqs = () => {
     ] as Faq []
 
     return (
-        <div className="space-y-8">
-            <div className=" w-1/3 mx-auto">
+        <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={divParentVariants}
+            className="space-y-8">
+            <motion.div
+                initial="hidden"
+                whileInView="show"
+                variants={divChildHeaderVariants}
+                className=" lg:w-1/3 w-3/4 mx-auto">
                 <div className="flex flex-col gap-2 items-center justify-center">
                     <p>FAQ</p>
-                    <p className="text-5xl text-center leading-14">Vital Inquiries Responded for You</p>
-                    <span className="text-stone-900 text-[18px]">Customer Testimonials Speak Volumes.</span>
+                    <p className="lg:text-5xl text-2xl text-center leading-none">Vital Inquiries Responded for You</p>
+                    <span className="text-stone-900 text-nowrap">Customer Testimonials Speak Volumes.</span>
                 </div>
-            </div>
+            </motion.div>
             {/*The questions*/}
             {
                 faqs.map((faq: Faq)=> <FaqsItem question={faq.question} answer={faq.answer} />)
             }
 
 
-        </div>
+        </motion.div>
     )
 }
 
