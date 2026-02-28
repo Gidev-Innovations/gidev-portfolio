@@ -9,21 +9,30 @@ import Blog from "./blog/Blog";
 import BlogPost from "./blog/Blogpost";
 import ProjectDetails from "./projects/ProjectDetails";
 import NotFound from "./not-found/NotFound";
-import Contact from "./contact/Contact";
+import { ArrowUpFromDot } from "lucide-react";
 
 function App() {
   return (
-    <>
+    <div className="relative">
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:id" element={<ProjectDetails />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="/about" element={<About />} />
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:id" element={<ProjectDetails />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/about" element={<About />} />
+
+                <Route path="/404" element={<NotFound />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        <div className="animate-bounce absolute bottom-4 right-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+           <div className="h-8 w-8 rounded-full bg-secondary-950 flex items-center justify-center">
+               <ArrowUpFromDot color="#18aeb4" />
+           </div>
+        </div>
 
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
@@ -31,7 +40,7 @@ function App() {
       </Routes>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
