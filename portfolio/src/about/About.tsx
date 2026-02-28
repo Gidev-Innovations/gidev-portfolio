@@ -151,7 +151,7 @@ export default function About() {
   const [activeService, setActiveService] = useState(0);
 
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white mt-10 md:mt-14">
       {/* ══ 1. HERO ════════════════════════════════════════════ */}
       <motion.header
         className="pt-20 pb-0 text-center px-6"
@@ -161,7 +161,7 @@ export default function About() {
       >
         <motion.h1
           variants={titleVariant}
-          className="text-5xl md:text-6xl font-bold tracking-tight text-gray-950"
+          className="text-4xl md:text-6xl font-OutfitMedium tracking-tight text-gray-950"
         >
           Inspire growth with
           <br />
@@ -170,7 +170,7 @@ export default function About() {
 
         <motion.p
           variants={subtitleVariant}
-          className="mt-4 text-gray-500 text-base max-w-md mx-auto leading-relaxed"
+          className="mt-2 text-gray-500 text-base max-w-md mx-auto leading-relaxed"
         >
           Successful brands capture hearts and minds. Their logos are symbols of
           quality and their stories resonate. It's not luck; it's the power of
@@ -180,7 +180,7 @@ export default function About() {
         {/* hero image — animates in with the subtitle's delay */}
         <motion.div
           variants={subtitleVariant}
-          className="mx-auto mt-14 overflow-hidden rounded-2xl max-w-[1100px]"
+          className="mx-auto mt-16 overflow-hidden rounded-2xl max-w-[1100px]"
         >
           <img
             src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80"
@@ -288,7 +288,7 @@ export default function About() {
                         className="font-bold tracking-tight transition-colors duration-200"
                         style={{
                           fontSize: "clamp(24px, 4vw, 46px)",
-                          color: active ? "#030712" : "#b0b0b0", 
+                          color: active ? "#030712" : "#b0b0b0",
                         }}
                       >
                         {s.label}

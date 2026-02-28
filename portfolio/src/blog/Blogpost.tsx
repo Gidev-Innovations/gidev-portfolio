@@ -127,37 +127,12 @@ export default function BlogPost() {
   const relatedPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white mt-36">
       {/* ── HERO SECTION ────────────────────────────────────────────────────────
           The image container (max-w-6xl) is the source of truth for alignment.
           Back link, category, and title all use the same max-w-6xl + px-12
           so their left edge lines up exactly with the image's left edge.
       ────────────────────────────────────────────────────────────────────────── */}
-
-      {/* Back link — same container as the image */}
-      <div className="max-w-7xl mx-auto px-12 pt-10">
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors duration-300"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            className="shrink-0"
-          >
-            <path
-              d="M10 12L6 8L10 4"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          Back to blog
-        </Link>
-      </div>
 
       {/* Hero — category, title, image, author all share max-w-6xl px-12 */}
       <motion.div
@@ -179,7 +154,7 @@ export default function BlogPost() {
         {/* Title — lead car, biggest element */}
         <motion.h1
           variants={heroTitleVariant}
-          className="text-5xl md:text-6xl font-bold text-gray-950 leading-[1.08] tracking-tight max-w-4xl"
+          className="text-heading-4 font-semibold text-gray-950 leading-[1.08] tracking-tight max-w-4xl"
         >
           {post.title}
         </motion.h1>
