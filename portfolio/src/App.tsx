@@ -11,11 +11,13 @@ import ProjectDetails from "./projects/ProjectDetails";
 import NotFound from "./not-found/NotFound";
 import { ArrowUpFromDot } from "lucide-react";
 import Contact from "./contact/Contact";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
       <div className="relative">
+        <ScrollToTop />
         <Navbar />
 
         <Routes>
