@@ -17,7 +17,7 @@ const slideTrans = { duration: 0.3, ease: "easeInOut" as const };
 
 const Footer = () => {
   return (
-    <footer className="px-6 pb-8">
+    <footer className="mt-12 px-6 pb-8">
       {/* CTA Card */}
       <div className="bg-primary-400 rounded-3xl px-16 py-16 flex flex-col items-center justify-center text-center gap-4 mb-8">
         <div className="flex items-center gap-2 text-secondary-950">
