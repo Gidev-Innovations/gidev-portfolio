@@ -62,7 +62,7 @@ export default function Contact() {
 
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-8 items-start">
           {/* Left sticky — desktop */}
-          <div className="hidden md:block md:w-5/12 sticky top-28 self-start">
+          <div className="hidden md:block md:w-5/12 sticky top-32 self-start">
             <h2 className="text-3xl font-OutfitSemiBold text-black leading-snug">
               Let's Create an unforgettable Brand together
             </h2>
@@ -151,9 +151,6 @@ export default function Contact() {
           )}
         </AnimatePresence>
       </section>
-
-      {/* Delete this --- Placeholder footer — remove this when you add your real footer */}
-      <div className="bg-[#0f172a] h-120 w-full" />
     </>
   );
 }
