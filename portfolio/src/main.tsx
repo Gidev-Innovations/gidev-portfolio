@@ -5,7 +5,7 @@ import Lenis from "lenis";
 import "./index.css";
 import App from "./App.tsx";
 
-const lenis = new Lenis();
+export const lenis = new Lenis();
 
 function raf(time: number) {
   lenis.raf(time);
