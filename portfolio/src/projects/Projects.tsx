@@ -14,7 +14,7 @@ function Projects() {
   }, [])
 
   return (
-    <section className="min-h-screen py-20 px-6 bg-white">
+    <section className="min-h-screen py-20 px-6 bg-white md:mt-12">
       <div className="max-w-6xl mx-auto text-center">
 
         {/* Title */}
