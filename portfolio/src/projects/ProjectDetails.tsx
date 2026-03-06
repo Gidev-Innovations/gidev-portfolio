@@ -17,7 +17,7 @@ function ProjectDetails() {
   }
 
   return (
-    <section className="px-6 md:px-20 pt-24 pb-16 bg-white">
+    <section className="px-6 md:px-20 pt-24 pb-16 bg-white md:mt-12">
       <div className="max-w-6xl mx-auto">
 
         {/* Title */}
