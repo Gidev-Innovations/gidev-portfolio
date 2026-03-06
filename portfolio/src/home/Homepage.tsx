@@ -5,7 +5,7 @@ export default function Homepage() {
 
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-gray-100">
+      <section className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-gray-100 md:mt-12">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-float"></div>
