@@ -1,25 +1,34 @@
+import ParallaxGallery from "../components/ParallaxGallery";
+import { Settings } from "lucide-react";
+
 export default function Homepage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden font-inter">
+    <div className="min-h-screen bg-white text-gray-900 font-inter">
       {/* Navigation Bar */}
-
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-gray-100 md:mt-12">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-float"></div>
-          <div className="absolute bottom-10 right-20 w-80 h-80 bg-purple-400 rounded-full mix-blend-screen filter blur-3xl opacity-8 animate-float" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-blue-300 rounded-full mix-blend-screen filter blur-3xl opacity-5 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div
+            className="absolute bottom-10 right-20 w-80 h-80 bg-purple-400 rounded-full mix-blend-screen filter blur-3xl opacity-8 animate-float"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-1/2 w-72 h-72 bg-blue-300 rounded-full mix-blend-screen filter blur-3xl opacity-5 animate-float"
+            style={{ animationDelay: "2s" }}
+          ></div>
         </div>
-        
+
         <div className="relative z-10 max-w-5xl text-center">
           <div className="animate-fadeInScale">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight text-gray-900 font-syne">
               Building Africa's Next Generation of Scalable Digital Products
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              A technology studio building world-class software for ambitious teams.
+              A technology studio building world-class software for ambitious
+              teams.
             </p>
             <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl">
               Book A Call
@@ -30,13 +39,31 @@ export default function Homepage() {
         {/* Hero Images Display */}
         <div className="absolute bottom-0 left-0 right-0 h-1/3 flex justify-around items-end px-10 opacity-70">
           <div className="w-20 h-32 md:w-32 md:h-48 rounded-lg overflow-hidden shadow-xl animate-float">
-            <img src="https://framerusercontent.com/images/Ryo4JaLObfaEyNx9ZInFl4YtVM.png" alt="Project" className="w-full h-full object-cover" />
+            <img
+              src="https://framerusercontent.com/images/Ryo4JaLObfaEyNx9ZInFl4YtVM.png"
+              alt="Project"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="w-20 h-32 md:w-32 md:h-48 rounded-lg overflow-hidden shadow-xl animate-float" style={{ animationDelay: '0.5s' }}>
-            <img src="https://framerusercontent.com/images/sWSbzxm8z3IWTVlRlYV6cI2rg.png" alt="Project" className="w-full h-full object-cover" />
+          <div
+            className="w-20 h-32 md:w-32 md:h-48 rounded-lg overflow-hidden shadow-xl animate-float"
+            style={{ animationDelay: "0.5s" }}
+          >
+            <img
+              src="https://framerusercontent.com/images/sWSbzxm8z3IWTVlRlYV6cI2rg.png"
+              alt="Project"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="w-20 h-32 md:w-32 md:h-48 rounded-lg overflow-hidden shadow-xl animate-float" style={{ animationDelay: '1s' }}>
-            <img src="https://framerusercontent.com/images/x0qO5TJPYvbIx3dNcR897Yt3Y.png" alt="Project" className="w-full h-full object-cover" />
+          <div
+            className="w-20 h-32 md:w-32 md:h-48 rounded-lg overflow-hidden shadow-xl animate-float"
+            style={{ animationDelay: "1s" }}
+          >
+            <img
+              src="https://framerusercontent.com/images/x0qO5TJPYvbIx3dNcR897Yt3Y.png"
+              alt="Project"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
@@ -48,23 +75,30 @@ export default function Homepage() {
             {/* Left: Latest Work Title and Description */}
             <div>
               <div className="flex flex-col gap-4">
-                <p className="text-blue-600 font-semibold text-lg font-syne">Latest</p>
+                <p className="text-blue-600 font-semibold text-lg font-syne">
+                  Latest
+                </p>
                 <h2 className="text-5xl md:text-6xl font-bold text-gray-900 font-syne leading-tight">
                   work
                 </h2>
                 <p className="text-gray-600 text-lg leading-relaxed max-w-md">
-                  Join 40+ companies already growing with our innovative digital solutions.
+                  Join 40+ companies already growing with our innovative digital
+                  solutions.
                 </p>
               </div>
-              
+
               <div className="mt-12 flex flex-col gap-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-blue-600 font-bold">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">Proven Track Record</h3>
-                    <p className="text-gray-600 mt-1">Successful projects across industries</p>
+                    <h3 className="font-bold text-gray-900 text-lg">
+                      Proven Track Record
+                    </h3>
+                    <p className="text-gray-600 mt-1">
+                      Successful projects across industries
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -72,8 +106,12 @@ export default function Homepage() {
                     <span className="text-blue-600 font-bold">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">Expert Team</h3>
-                    <p className="text-gray-600 mt-1">Dedicated professionals with deep expertise</p>
+                    <h3 className="font-bold text-gray-900 text-lg">
+                      Expert Team
+                    </h3>
+                    <p className="text-gray-600 mt-1">
+                      Dedicated professionals with deep expertise
+                    </p>
                   </div>
                 </div>
               </div>
@@ -85,17 +123,25 @@ export default function Homepage() {
               <div className="absolute inset-0 flex items-center justify-center">
                 {/* Outer Spinning Ring */}
                 <div className="absolute w-80 h-80 border-2 border-transparent border-t-blue-400 border-r-purple-400 rounded-full animate-spin-slow"></div>
-                
+
                 {/* Middle Ring */}
-                <div className="absolute w-64 h-64 border-2 border-transparent border-b-blue-300 border-l-purple-300 rounded-full animate-spin-slow" style={{ animationDirection: 'reverse', animationDuration: '30s' }}></div>
-                
+                <div
+                  className="absolute w-64 h-64 border-2 border-transparent border-b-blue-300 border-l-purple-300 rounded-full animate-spin-slow"
+                  style={{
+                    animationDirection: "reverse",
+                    animationDuration: "30s",
+                  }}
+                ></div>
+
                 {/* Inner Ring with Glow */}
                 <div className="absolute w-48 h-48 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse-glow shadow-2xl"></div>
 
                 {/* Center Content */}
                 <div className="absolute w-40 h-40 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center z-10">
                   <p className="text-center">
-                    <span className="text-4xl font-bold text-blue-600 font-syne">40+</span>
+                    <span className="text-4xl font-bold text-blue-600 font-syne">
+                      40+
+                    </span>
                     <br />
                     <span className="text-gray-600 text-sm">Companies</span>
                   </p>
@@ -107,117 +153,24 @@ export default function Homepage() {
       </section>
 
       {/* Portfolio Gallery Section */}
-      <section className="py-24 px-6 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 text-center text-gray-900 font-syne">
-              Apps, websites, logos and more
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto text-center">
-              Discover all your essentials in one convenient location.
-            </p>
-          </div>
-
-          {/* 3x3 Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Row 1 */}
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/IQc6LCgHy6DiMY2U33ZTTbzPmA.jpg" 
-                alt="Mobile App" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Mobile App</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/FcltPQKF2o59IqCfVBoA34aPI1M.jpg" 
-                alt="UI/UX" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">UI/UX</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/nkdc0GZXfH0Fx1SmnwsXtDpE8.jpg" 
-                alt="Logo Design" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Logo Design</p>
-              </div>
-            </div>
-
-            {/* Row 2 */}
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/VCbF3Wc09w9DQrxygCIxb8ewwM.jpg" 
-                alt="Web Design" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Web Design</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/albPZgc8p8l89NTLa6LasY2y3Q.jpg" 
-                alt="Platform" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Platform</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/1gyIEROvsPRK0pguIyhvLa4dA.jpg" 
-                alt="Brand Identity" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Brand Identity</p>
-              </div>
-            </div>
-
-            {/* Row 3 */}
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/o8TH1l3EJ38byXmIQb6yPx54A0.jpg" 
-                alt="Dashboard" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Dashboard</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/wnfv9hM8JxoEzLrQyQAC5Iw0J0.jpg" 
-                alt="Website" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Website</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-3">
-              <img 
-                src="https://framerusercontent.com/images/7YqRDx7sHd9Fy8L69HwVZj2iT4.jpg" 
-                alt="Illustration" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent group-hover:from-gray-900/60 transition-all duration-300 flex items-end">
-                <p className="text-white font-bold p-6 text-lg font-syne">Illustration</p>
-              </div>
-            </div>
-          </div>
+      {/* Services heading */}
+      <div className="text-center px-6 pt-20 pb-8 bg-white">
+        <div className="inline-flex items-center gap-1.5 mb-4">
+          <Settings size={13} strokeWidth={1.8} className="text-neutral-400" />
+          <span className="tracking-widest uppercase text-xs font-medium text-neutral-400">
+            Services
+          </span>
         </div>
-      </section>
+        <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight mb-3">
+          Apps, websites,
+          <br className="hidden sm:block" /> logos and more
+        </h2>
+        <p className="text-base text-neutral-400 max-w-md mx-auto">
+          Discover all your essentials in one convenient location.
+        </p>
+      </div>
+
+      <ParallaxGallery />
 
       {/* Process Section */}
       <section className="py-32 px-6 bg-gray-50 relative overflow-hidden">
@@ -233,38 +186,45 @@ export default function Homepage() {
               From Concept to Code
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our founder-led process ensures your product is built on time, on budget, and ready to scale.
+              Our founder-led process ensures your product is built on time, on
+              budget, and ready to scale.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { 
-                number: '01',
-                icon: '🔍', 
-                title: 'Discovery & Strategy', 
-                desc: 'We analyze your requirements and business goals to architect a roadmap that works.' 
+              {
+                number: "01",
+                icon: "🔍",
+                title: "Discovery & Strategy",
+                desc: "We analyze your requirements and business goals to architect a roadmap that works.",
               },
-              { 
-                number: '02',
-                icon: '⚙️', 
-                title: 'Agile Development', 
-                desc: 'Our full-stack team builds your solution using scalable code, running rigorous tests at every sprint.' 
+              {
+                number: "02",
+                icon: "⚙️",
+                title: "Agile Development",
+                desc: "Our full-stack team builds your solution using scalable code, running rigorous tests at every sprint.",
               },
-              { 
-                number: '03',
-                icon: '🚀', 
-                title: 'Launch & Scale', 
-                desc: 'We handle deployment and provide ongoing support to help you grow your user base.' 
+              {
+                number: "03",
+                icon: "🚀",
+                title: "Launch & Scale",
+                desc: "We handle deployment and provide ongoing support to help you grow your user base.",
               },
             ].map((service, idx) => (
               <div key={idx} className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative bg-white p-10 rounded-2xl border border-gray-200 hover:border-blue-300 transition-all duration-300 h-full">
-                  <div className="text-5xl font-bold text-gray-100 font-syne mb-4">{service.number}</div>
+                  <div className="text-5xl font-bold text-gray-100 font-syne mb-4">
+                    {service.number}
+                  </div>
                   <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-2xl font-bold text-gray-900 font-syne mb-4">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.desc}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 font-syne mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {service.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -286,23 +246,51 @@ export default function Homepage() {
               How We Deliver Excellence
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We combine technical expertise with structured execution to build software that performs and scales.
+              We combine technical expertise with structured execution to build
+              software that performs and scales.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: '✓', title: 'Structured Process', desc: 'Clear discovery, architecture, and execution from idea to deployment.' },
-              { icon: '⚡', title: 'Fast Turnaround', desc: 'Efficient workflows that move projects forward without compromising quality.' },
-              { icon: '🎨', title: 'Product-Focused Design', desc: 'Thoughtful UI/UX that balances usability and performance.' },
-              { icon: '💰', title: 'Transparent Pricing', desc: 'Flexible models including project-based, retainer, or partnership structures.' },
-              { icon: '🔧', title: 'Scalable Architecture', desc: 'Systems designed to integrate, expand, and evolve.' },
-              { icon: '🛡️', title: 'Reliable Delivery', desc: 'Tested, optimized, and maintained for long-term stability.' },
+              {
+                icon: "✓",
+                title: "Structured Process",
+                desc: "Clear discovery, architecture, and execution from idea to deployment.",
+              },
+              {
+                icon: "⚡",
+                title: "Fast Turnaround",
+                desc: "Efficient workflows that move projects forward without compromising quality.",
+              },
+              {
+                icon: "🎨",
+                title: "Product-Focused Design",
+                desc: "Thoughtful UI/UX that balances usability and performance.",
+              },
+              {
+                icon: "💰",
+                title: "Transparent Pricing",
+                desc: "Flexible models including project-based, retainer, or partnership structures.",
+              },
+              {
+                icon: "🔧",
+                title: "Scalable Architecture",
+                desc: "Systems designed to integrate, expand, and evolve.",
+              },
+              {
+                icon: "🛡️",
+                title: "Reliable Delivery",
+                desc: "Tested, optimized, and maintained for long-term stability.",
+              },
             ].map((feature, idx) => (
-              <div key={idx} className="group relative overflow-hidden rounded-2xl p-8 bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 hover:border-blue-400 transition-all duration-300 hover:shadow-lg">
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-2xl p-8 bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 hover:border-blue-400 transition-all duration-300 hover:shadow-lg"
+              >
                 {/* Hover background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                
+
                 {/* Content */}
                 <div className="relative z-10">
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-white border-2 border-blue-400 text-blue-600 font-bold text-lg mb-4 group-hover:scale-110 transition-transform">
@@ -329,7 +317,8 @@ export default function Homepage() {
               View Our Current Projects
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover our latest projects showcasing our most recent and innovative work.
+              Discover our latest projects showcasing our most recent and
+              innovative work.
             </p>
           </div>
 
@@ -337,15 +326,33 @@ export default function Homepage() {
           <div className="relative">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto pb-4">
               {[
-                { name: 'GreenLeaf', year: '2024', color: 'from-green-400 to-emerald-600' },
-                { name: 'Artificial Intelligence (AI)', year: '2024', color: 'from-blue-400 to-blue-600' },
-                { name: 'Natural Networks', year: '2024', color: 'from-purple-400 to-pink-600' },
-                { name: 'Future Networks', year: '2024', color: 'from-orange-400 to-red-600' },
+                {
+                  name: "GreenLeaf",
+                  year: "2024",
+                  color: "from-green-400 to-emerald-600",
+                },
+                {
+                  name: "Artificial Intelligence (AI)",
+                  year: "2024",
+                  color: "from-blue-400 to-blue-600",
+                },
+                {
+                  name: "Natural Networks",
+                  year: "2024",
+                  color: "from-purple-400 to-pink-600",
+                },
+                {
+                  name: "Future Networks",
+                  year: "2024",
+                  color: "from-orange-400 to-red-600",
+                },
               ].map((project, idx) => (
                 <div key={idx} className="group flex-shrink-0 w-full md:w-auto">
                   <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 cursor-pointer">
                     {/* Project Card */}
-                    <div className={`aspect-square bg-gradient-to-br ${project.color} relative overflow-hidden`}>
+                    <div
+                      className={`aspect-square bg-gradient-to-br ${project.color} relative overflow-hidden`}
+                    >
                       {/* Animated background elements */}
                       <div className="absolute inset-0 opacity-20">
                         <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full blur-3xl group-hover:blur-2xl transition-all"></div>
@@ -355,14 +362,22 @@ export default function Homepage() {
                       {/* Content */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center text-white group-hover:scale-110 transition-transform duration-500">
                         <div className="text-5xl mb-4 group-hover:scale-150 transition-transform">
-                          {idx === 0 ? '🌿' : idx === 1 ? '🤖' : idx === 2 ? '🧠' : '🚀'}
+                          {idx === 0
+                            ? "🌿"
+                            : idx === 1
+                              ? "🤖"
+                              : idx === 2
+                                ? "🧠"
+                                : "🚀"}
                         </div>
                       </div>
                     </div>
 
                     {/* Info Section */}
                     <div className="bg-white p-6 group-hover:bg-gray-50 transition-colors">
-                      <h3 className="text-lg font-bold text-gray-900 font-syne">{project.name}</h3>
+                      <h3 className="text-lg font-bold text-gray-900 font-syne">
+                        {project.name}
+                      </h3>
                       <p className="text-gray-500 mt-2">{project.year}</p>
                     </div>
                   </div>
@@ -394,21 +409,21 @@ export default function Homepage() {
             {[
               {
                 text: "Working with Pixelta was an eye-opening experience. They transformed our complex vision into a simple, beautiful reality.",
-                author: 'Erlicha',
-                role: 'Creative Director at Flowify',
-                rating: 5
+                author: "Erlicha",
+                role: "Creative Director at Flowify",
+                rating: 5,
               },
               {
                 text: "Pixelta exceeded all expectations. Their team went above and beyond to deliver a design that felt both modern and timeless.",
-                author: 'Eliana',
-                role: 'CEO of BrightPath',
-                rating: 5
+                author: "Eliana",
+                role: "CEO of BrightPath",
+                rating: 5,
               },
               {
                 text: "Pixelta turned our disjointed ideas into a sleek, cohesive vision—like a design maestro on a creative high.",
-                author: 'Mardicha',
-                role: 'Founder of Ordi',
-                rating: 5
+                author: "Mardicha",
+                role: "Founder of Ordi",
+                rating: 5,
               },
             ].map((testimonial, idx) => (
               <div key={idx} className="group relative">
@@ -417,7 +432,9 @@ export default function Homepage() {
                   {/* Stars */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="text-yellow-400">★</span>
+                      <span key={i} className="text-yellow-400">
+                        ★
+                      </span>
                     ))}
                   </div>
 
@@ -431,8 +448,12 @@ export default function Homepage() {
                       {testimonial.author.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900 font-syne">{testimonial.author}</p>
-                      <p className="text-gray-600 text-sm">{testimonial.role}</p>
+                      <p className="font-bold text-gray-900 font-syne">
+                        {testimonial.author}
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        {testimonial.role}
+                      </p>
                     </div>
                   </div>
                 </div>
