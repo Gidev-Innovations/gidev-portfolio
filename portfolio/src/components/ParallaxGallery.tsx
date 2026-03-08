@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import {
   motion,
   useMotionValue,
@@ -7,20 +7,29 @@ import {
 } from "framer-motion";
 import { lenis } from "../main";
 
+// ─── Replace with your real project images when ready ───────────────────────
 const IMAGES = Array.from(
   { length: 12 },
   (_, i) => `https://picsum.photos/seed/${i + 10}/600/800`,
 );
 
-const SCROLL_BUDGET = 1800; // reduced from 2800 — same TRAVEL, less runway = faster
+const SCROLL_BUDGET = 1800;
 const TRAVEL = 900;
-const GAP = 16;
 
-function calcColHeight(imgCount: number, cardWidth: number): number {
-  const cardHeight = cardWidth * (5 / 3);
-  return imgCount * cardHeight + (imgCount - 1) * GAP;
+// Separate them so calcColHeight is accurate per breakpoint.
+const GAP_5 = 20; // gap-5, used on desktop + tablet
+const GAP_3 = 12; // gap-3, used on mobile
+
+function calcColHeight(
+  imgCount: number,
+  cardWidth: number,
+  gap: number,
+): number {
+  const cardHeight = cardWidth * (5 / 3); // aspect-ratio 3/5
+  return imgCount * cardHeight + (imgCount - 1) * gap;
 }
 
+// ─── ImageCard ───────────────────────────────────────────────────────────────
 function ImageCard({ src, index }: { src: string; index: number }) {
   return (
     <div
@@ -31,12 +40,13 @@ function ImageCard({ src, index }: { src: string; index: number }) {
         src={src}
         alt={`Gallery image ${index + 1}`}
         className="w-full h-full object-cover"
-        loading="lazy"
+        loading={index < 4 ? "eager" : "lazy"}
       />
     </div>
   );
 }
 
+// ─── ParallaxColumn ──────────────────────────────────────────────────────────
 function ParallaxColumn({
   images,
   yMotion,
@@ -53,6 +63,7 @@ function ParallaxColumn({
   );
 }
 
+// ─── useCenterOffsets ────────────────────────────────────────────────────────
 function useCenterOffsets() {
   const [offsets, setOffsets] = useState({ desktop: 0, tablet: 0, mobile: 0 });
 
@@ -62,18 +73,18 @@ function useCenterOffsets() {
       const vpH = window.innerHeight;
 
       const desktopContainerW = Math.min(vw, 1152) - 64;
-      const desktopCardW = (desktopContainerW - 20 * 3) / 4;
-      const desktopColH = calcColHeight(3, desktopCardW);
+      const desktopCardW = (desktopContainerW - GAP_5 * 3) / 4;
+      const desktopColH = calcColHeight(3, desktopCardW, GAP_5);
       const desktopOffset = (desktopColH - vpH) / 2;
 
       const tabletContainerW = Math.min(vw, 768) - 48;
-      const tabletCardW = (tabletContainerW - 20 * 2) / 3;
-      const tabletColH = calcColHeight(4, tabletCardW);
+      const tabletCardW = (tabletContainerW - GAP_5 * 2) / 3;
+      const tabletColH = calcColHeight(4, tabletCardW, GAP_5);
       const tabletOffset = (tabletColH - vpH) / 2;
 
       const mobileContainerW = vw - 32;
-      const mobileCardW = (mobileContainerW - 12) / 2;
-      const mobileColH = calcColHeight(6, mobileCardW);
+      const mobileCardW = (mobileContainerW - GAP_3) / 2;
+      const mobileColH = calcColHeight(6, mobileCardW, GAP_3);
       const mobileOffset = (mobileColH - vpH) / 2;
 
       setOffsets({
@@ -83,18 +94,27 @@ function useCenterOffsets() {
       });
     };
 
+    // Debounced resize
+    let timer: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      clearTimeout(timer);
+      timer = setTimeout(measure, 100);
+    };
+
     measure();
     const t1 = setTimeout(measure, 300);
-    window.addEventListener("resize", measure);
+    window.addEventListener("resize", onResize);
     return () => {
       clearTimeout(t1);
-      window.removeEventListener("resize", measure);
+      clearTimeout(timer);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return offsets;
 }
 
+// ─── ParallaxGallery ─────────────────────────────────────────────────────────
 export default function ParallaxGallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const progress = useMotionValue(0);
@@ -103,7 +123,8 @@ export default function ParallaxGallery() {
   useEffect(() => {
     const onScroll = ({ scroll }: { scroll: number }) => {
       if (!sectionRef.current) return;
-      const sectionTop = sectionRef.current.offsetTop;
+      const sectionTop =
+        sectionRef.current.getBoundingClientRect().top + window.scrollY;
       const p = Math.min(Math.max((scroll - sectionTop) / SCROLL_BUDGET, 0), 1);
       progress.set(p);
     };
@@ -113,48 +134,62 @@ export default function ParallaxGallery() {
 
   const half = TRAVEL / 2;
 
-  const d_odd: MotionValue<number> = useTransform(
+  const d_odd = useTransform(
     progress,
     [0, 1],
-    [-offsets.desktop - half, -offsets.desktop + half],
+    useMemo(
+      () => [-offsets.desktop - half, -offsets.desktop + half],
+      [offsets.desktop, half],
+    ),
   );
-  const d_even: MotionValue<number> = useTransform(
+  const d_even = useTransform(
     progress,
     [0, 1],
-    [-offsets.desktop + half, -offsets.desktop - half],
+    useMemo(
+      () => [-offsets.desktop + half, -offsets.desktop - half],
+      [offsets.desktop, half],
+    ),
   );
-
-  const t_down: MotionValue<number> = useTransform(
+  const t_down = useTransform(
     progress,
     [0, 1],
-    [-offsets.tablet + half, -offsets.tablet - half],
+    useMemo(
+      () => [-offsets.tablet + half, -offsets.tablet - half],
+      [offsets.tablet, half],
+    ),
   );
-  const t_up: MotionValue<number> = useTransform(
+  const t_up = useTransform(
     progress,
     [0, 1],
-    [-offsets.tablet - half, -offsets.tablet + half],
+    useMemo(
+      () => [-offsets.tablet - half, -offsets.tablet + half],
+      [offsets.tablet, half],
+    ),
   );
-
-  const m_down: MotionValue<number> = useTransform(
+  const m_down = useTransform(
     progress,
     [0, 1],
-    [-offsets.mobile + half, -offsets.mobile - half],
+    useMemo(
+      () => [-offsets.mobile + half, -offsets.mobile - half],
+      [offsets.mobile, half],
+    ),
   );
-  const m_up: MotionValue<number> = useTransform(
+  const m_up = useTransform(
     progress,
     [0, 1],
-    [-offsets.mobile - half, -offsets.mobile + half],
+    useMemo(
+      () => [-offsets.mobile - half, -offsets.mobile + half],
+      [offsets.mobile, half],
+    ),
   );
 
   const dCol1 = IMAGES.slice(0, 3);
   const dCol2 = IMAGES.slice(3, 6);
   const dCol3 = IMAGES.slice(6, 9);
   const dCol4 = IMAGES.slice(9, 12);
-
   const tCol1 = IMAGES.slice(0, 4);
   const tCol2 = IMAGES.slice(4, 8);
   const tCol3 = IMAGES.slice(8, 12);
-
   const mCol1 = IMAGES.slice(0, 6);
   const mCol2 = IMAGES.slice(6, 12);
 
@@ -169,6 +204,7 @@ export default function ParallaxGallery() {
         style={{ overflow: "hidden" }}
       >
         <div className="absolute inset-0">
+          {/* Desktop: 4 cols × 3 rows */}
           <div className="hidden lg:grid absolute inset-0 grid-cols-4 gap-5 px-8 max-w-6xl mx-auto left-0 right-0">
             <ParallaxColumn images={dCol1} yMotion={d_odd} />
             <ParallaxColumn images={dCol2} yMotion={d_even} />
@@ -176,17 +212,20 @@ export default function ParallaxGallery() {
             <ParallaxColumn images={dCol4} yMotion={d_even} />
           </div>
 
+          {/* Tablet: 3 cols × 4 rows — outer cols down, mid col up */}
           <div className="hidden sm:grid lg:hidden absolute inset-0 grid-cols-3 gap-5 px-6 max-w-3xl mx-auto left-0 right-0">
             <ParallaxColumn images={tCol1} yMotion={t_down} />
             <ParallaxColumn images={tCol2} yMotion={t_up} />
             <ParallaxColumn images={tCol3} yMotion={t_down} />
           </div>
 
+          {/* Mobile: 2 cols × 6 rows — left down, right up */}
           <div className="grid sm:hidden absolute inset-0 grid-cols-2 gap-3 px-4">
             <ParallaxColumn images={mCol1} yMotion={m_down} />
             <ParallaxColumn images={mCol2} yMotion={m_up} />
           </div>
 
+          {/* Top fade */}
           <div
             className="absolute top-0 inset-x-0 pointer-events-none z-10"
             style={{
@@ -195,12 +234,13 @@ export default function ParallaxGallery() {
                 "linear-gradient(to bottom, white 15%, transparent 100%)",
             }}
           />
+          {/* Bottom fade */}
           <div
             className="absolute bottom-0 inset-x-0 pointer-events-none z-10"
             style={{
               height: "140px",
               background:
-                "linear-gradient(to top, white 20%, transparent 100%)",
+                "linear-gradient(to top, white 15%, transparent 100%)",
             }}
           />
         </div>
