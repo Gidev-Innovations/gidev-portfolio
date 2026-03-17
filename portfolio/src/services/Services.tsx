@@ -73,13 +73,13 @@ const Services = () => {
 
     return (
         <div className="min-h-screen  w-10/12 mx-auto  space-y-32 xl:space-y-64 lg:space-y-32">
-            <div className="lg:flex space-y-10 lg:space-x-8  lg:pt-44 md:pt-32 pt-24">
+            <div className="lg:flex space-y-10 lg:space-x-8  lg:pt-64 md:pt-32 pt-24">
                 <motion.header className="flex-1"
                                initial="hidden"
                                whileInView="show"
                                variants={headerContainerVariantLeft}
                 >
-                    <h1 className="xl:text-heading-1 md:text-heading-3  text-center lg:text-start text-2xl mx-auto w-3/4  font-bold  leading-none text-black">
+                    <h1 className="xl:text-[64px] md:text-heading-3  text-center lg:text-start text-2xl mx-auto w-3/4  font-bold  leading-none text-black">
                         Powering Digital <span
                         className="bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text  text-transparent">Transformations</span> Across
                         Africa
@@ -92,7 +92,7 @@ const Services = () => {
                                whileInView="show"
                                variants={headerContainerVariantRight}
                 >
-                    <div className="grid grid-cols-3 gap-4 auto-rows-max">
+                    <div className="grid grid-cols-3 gap-4">
                         {/* Top Left Image - spans 1 column */}
                         <div className="col-span-1 row-span-2">
                             <img
@@ -236,7 +236,6 @@ const Services = () => {
                         </motion.div>
                     </div>
                 </motion.div>
-
             </motion.div>
             {/*  third section  */}
             <motion.div
