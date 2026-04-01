@@ -1,3 +1,4 @@
+/*
 import React from 'react'
 import DOMPurify from 'dompurify'
 import { useRef, useEffect, useState } from 'react'
@@ -5,8 +6,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/userMessage'
 import { Send } from 'lucide-react'
 import { v4 as uuidv4 } from 'uuid';
-
-
 
 interface UIMessage {
     id: string
@@ -29,9 +28,6 @@ export default function ChatPage() {
     const [userInput, setUserInput] = useState('')
     const [error, setError] = useState(false)
     const messageContainer: UIMessage [] = []
-    // const { messages, sendMessage, status } = useChat({
-    //     transport: new DefaultChatTransport({ api: '/api/chat' }),
-    // })
 
     const scrollRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -40,19 +36,8 @@ export default function ChatPage() {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight
         }
-
     }, [userMessage, aiMessage])
 
-    // const handleUserMessage = (value: string) =>{
-    //     let chatId = uuidv4()
-    //     setUserMessage({
-    //         id: chatId,
-    //         role: "user",
-    //         text: value
-    //     })
-    // }
-
-     // purify user input to prevent XXS attacks
      const formattedInput = ()=>{
          let purifiedBreak = userInput.replace(/\n/g, '<br>')
          purifiedBreak = DOMPurify.sanitize(purifiedBreak, {
@@ -62,10 +47,9 @@ export default function ChatPage() {
          return purifiedBreak
      }
 
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // push the user userMessage and ai output into the message container
+
         setUserMessage({
             id: uuidv4(),
             role: 'user',
@@ -79,11 +63,9 @@ export default function ChatPage() {
         })
         messageContainer.push(userMessage)
 
-        // simulate ai response after 500ms
         setTimeout(()=>{
             messageContainer.push(aiMessage)
         }, 500)
-
 
         if (userMessage.text.trim().length > 0) {
             setStreaming(true)
@@ -94,15 +76,12 @@ export default function ChatPage() {
                 role: 'user',
                 text: ''
             })
-
         }
         return
     }
 
-
     return (
         <div className="flex h-screen flex-col bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            {/* Header */}
             <header className="border-b border-slate-200 bg-white px-6 py-4 shadow-sm dark:border-slate-700 dark:bg-slate-950">
                 <div className="mx-auto max-w-4xl">
                     <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Chat Assistant</h1>
@@ -112,7 +91,6 @@ export default function ChatPage() {
                 </div>
             </header>
 
-            {/* Messages Container */}
             <div
                 ref={scrollRef}
                 className="flex-1 overflow-y-auto px-4 py-6 sm:px-6"
@@ -180,7 +158,6 @@ export default function ChatPage() {
                 </div>
             </div>
 
-            {/* Input Area */}
             <div className="border-t border-slate-200 bg-white px-4 py-4 dark:border-slate-700 dark:bg-slate-950 sm:px-6">
                 <form onSubmit={handleSubmit} className="mx-auto max-w-2xl">
                     <div className="flex gap-3">
@@ -207,3 +184,4 @@ export default function ChatPage() {
         </div>
     )
 }
+*/
