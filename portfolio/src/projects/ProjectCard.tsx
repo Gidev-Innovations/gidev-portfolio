@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom"
-import type { Project } from "./projects.data"
+import type { CaseStudy } from "./projects.data"
 
 interface ProjectCardProps {
-  project: Project
+  project: CaseStudy
 }
 
 function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
-      to={`/projects/${project.id}`}
+      to={`/projects/${project.slug}`}
       className="block group"
     >
       <div className="overflow-hidden rounded-xl shadow-md">
@@ -19,9 +19,17 @@ function ProjectCard({ project }: ProjectCardProps) {
         />
       </div>
 
-      <h3 className="mt-4 text-lg font-semibold transition-all duration-300 group-hover:text-cyan-400">
+      <p className="mt-4 text-xs font-mono text-gray-400 tracking-widest uppercase">
+        {project.sector}
+      </p>
+
+      <h3 className="mt-1 text-lg font-semibold transition-all duration-300 group-hover:text-cyan-400">
           {project.title}
       </h3>
+
+      <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+        {project.summary}
+      </p>
     </Link>
   )
 }

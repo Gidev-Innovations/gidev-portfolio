@@ -32,15 +32,14 @@ export default function HomeProjects() {
           maxWidth: "520px",
         }}
       >
-        View our current projects
+        Work we've shipped
       </h2>
 
       <p
         className="text-gray-400 mx-auto mb-12"
         style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "420px" }}
       >
-        Discover our latest projects showcasing our most recent and innovative
-        work.
+        The problem each client came with, and what we built to solve it.
       </p>
 
       {/* Grid */}
@@ -51,12 +50,12 @@ export default function HomeProjects() {
       >
         {featured.map((project, i) => (
           <motion.div
-            key={project.id}
+            key={project.slug}
             className="cursor-pointer group"
             initial={{ y: 50, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ ...springEntry, delay: i * 0.12 }}
-            onClick={() => navigate(`/projects/${project.id}`)}
+            onClick={() => navigate(`/projects/${project.slug}`)}
           >
             {/* Image */}
             <div

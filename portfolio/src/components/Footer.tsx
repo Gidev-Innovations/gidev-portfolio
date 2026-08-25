@@ -6,8 +6,9 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
   { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -26,11 +27,11 @@ const Footer = () => {
         </div>
 
         <h2 className="text-white text-heading-4 font-OutfitSemiBold max-w-5xl">
-          Are you ready to embark on this journey?
+          Got something you need built?
         </h2>
 
         <p className="text-white text-regular-20">
-          This could be the beginning of something great.
+          Book a free 15-minute call and tell us about it.
         </p>
 
         {/* CTA Button */}

@@ -8,8 +8,9 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 export default [
   index("routes/home.tsx"),
   route("services", "routes/services.tsx"),
+  route("services/:slug", "routes/service-detail.tsx"),
   route("projects", "routes/projects.tsx"),
-  route("projects/:id", "routes/project-detail.tsx"),
+  route("projects/:slug", "routes/project-detail.tsx"),
   route("about", "routes/about.tsx"),
   route("contact", "routes/contact.tsx"),
   route("blog", "routes/blog.tsx"),

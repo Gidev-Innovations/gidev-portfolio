@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
+import { Link } from "react-router-dom";
+import { services } from "../data/services";
 
 /* ─── ease curve ──────────────────────────────────────────── */
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -75,28 +77,26 @@ const team = [
 ];
 */
 
-const services = [
-  {
-    label: "WEB DEVELOPMENT",
-    num: "001",
-    img: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80",
-  },
-  {
-    label: "MOBILE APPS",
-    num: "002",
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80",
-  },
-  {
-    label: "UI/UX DESIGN",
-    num: "003",
-    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
-  },
-  {
-    label: "STARTUP STUDIO",
-    num: "004",
-    img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&q=80",
-  },
+/**
+ * Derived from the shared service list so this page can't drift out of sync
+ * with /services the way it previously had.
+ *
+ * TODO: the imagery below is Unsplash stock. Replace with real screenshots of
+ * shipped Gidev work once available.
+ */
+const serviceImages = [
+  "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80",
+  "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
+  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80",
+  "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&q=80",
 ];
+
+const serviceList = services.map((service, i) => ({
+  label: service.name.toUpperCase(),
+  slug: service.slug,
+  num: String(i + 1).padStart(3, "0"),
+  img: serviceImages[i % serviceImages.length],
+}));
 
 const values = [
   {
@@ -299,7 +299,7 @@ export default function About() {
 
           <div className="flex gap-12 items-start">
             <div className="flex-1 min-w-0">
-              {services.map((s, i) => {
+              {serviceList.map((s, i) => {
                 const active = activeService === i;
                 return (
                   <motion.div
@@ -312,7 +312,8 @@ export default function About() {
                     transition={{ delay: i * 0.07 }}
                     className="cursor-pointer"
                   >
-                    <div
+                    <Link
+                      to={`/services/${s.slug}`}
                       className="flex items-center justify-between py-5 transition-colors duration-200"
                       style={{
                         borderBottom: active
@@ -335,7 +336,7 @@ export default function About() {
                       >
                         {s.num}
                       </span>
-                    </div>
+                    </Link>
                   </motion.div>
                 );
               })}
@@ -351,8 +352,8 @@ export default function About() {
                 style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
               >
                 <img
-                  src={services[activeService].img}
-                  alt={`Gidev Innovations ${services[activeService].label}`}
+                  src={serviceList[activeService].img}
+                  alt={`Gidev Innovations ${serviceList[activeService].label}`}
                   className="w-full object-cover"
                   style={{ height: 220 }}
                 />

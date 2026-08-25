@@ -36,15 +36,15 @@ export default function Process() {
             letterSpacing: "-0.02em",
           }}
         >
-          From Concept to Code
+          How We Work
         </h2>
 
         <p
-          className="text-gray-500 max-w-sm mx-auto mb-16"
+          className="text-gray-500 max-w-md mx-auto mb-16"
           style={{ fontSize: "15px", lineHeight: 1.6 }}
         >
-          Our founder-led process ensures your product is built on time, on
-          budget, and ready to scale.
+          Three stages, and you know what is happening at every point. Most
+          projects are scoped and started within a week.
         </p>
 
         {/* Steps */}
@@ -86,14 +86,15 @@ export default function Process() {
               className="font-bold text-black mb-2"
               style={{ fontSize: "17px", lineHeight: 1.2 }}
             >
-              Discovery & Strategy
+              Discovery & Scoping
             </h3>
             <p
               className="text-gray-500"
               style={{ fontSize: "14px", lineHeight: 1.6 }}
             >
-              We analyze your requirements and business goals to architect a
-              roadmap that works.
+              We start with a free 15-minute call to understand the problem,
+              then write down the scope, timeline, and price before any code
+              exists. Most projects kick off within a week.
             </p>
           </motion.div>
 
@@ -134,14 +135,15 @@ export default function Process() {
               className="font-bold text-black mb-2"
               style={{ fontSize: "17px", lineHeight: 1.2 }}
             >
-              Agile Development
+              Build in Short Sprints
             </h3>
             <p
               className="text-gray-500"
               style={{ fontSize: "14px", lineHeight: 1.6 }}
             >
-              Our full-stack team builds your solution using scalable code,
-              running rigorous tests at every sprint.
+              We build in tight sprints and keep you updated throughout, so
+              there are no surprises at the end. Typical MVPs land in four to
+              eight weeks depending on scope.
             </p>
           </motion.div>
 
@@ -183,14 +185,15 @@ export default function Process() {
               className="font-bold text-black mb-2"
               style={{ fontSize: "17px", lineHeight: 1.2 }}
             >
-              Launch & Scale
+              Launch & Support
             </h3>
             <p
               className="text-gray-500"
               style={{ fontSize: "14px", lineHeight: 1.6 }}
             >
-              We handle deployment and provide ongoing support to help you grow
-              your user base.
+              We deploy it, then stay on through a revision period until you
+              are satisfied. Many clients keep us on retainer afterwards for
+              new features and maintenance.
             </p>
           </motion.div>
         </div>
@@ -206,7 +209,7 @@ export default function Process() {
             className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full pl-6 pr-2 py-2 font-semibold hover:bg-gray-700 transition-colors duration-200"
             style={{ fontSize: "15px" }}
           >
-            Book a 15-min call
+            Book a free 15-min call
             <span className="flex items-center justify-center bg-white text-gray-900 rounded-full w-8 h-8">
               <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
                 <path

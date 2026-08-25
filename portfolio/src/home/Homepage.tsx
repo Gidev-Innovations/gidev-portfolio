@@ -57,7 +57,8 @@ export default function Homepage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ ...spring, delay: 0.55 }}
         >
-          A technology studio building world-class software for ambitious teams.
+          A software studio in Nairobi building web apps, online stores, and
+          mobile products for businesses across Africa.
         </motion.p>
 
         {/* Slides in from bottom, slightly delayed */}
@@ -71,7 +72,7 @@ export default function Homepage() {
             className="bg-gray-900 text-white rounded-full px-8 py-4 font-semibold hover:bg-gray-700 transition-colors duration-200"
             style={{ fontSize: "16px" }}
           >
-            Book A Call
+            Book a free 15-min call
           </Link>
         </motion.div>
       </section>

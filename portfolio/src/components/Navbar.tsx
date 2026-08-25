@@ -5,10 +5,10 @@ import logo from "../assets/logo.png";
 
 const links = [
   { label: "Home", to: "/" },
-  { label: "Projects", to: "/projects" },
   { label: "Services", to: "/services" },
-  { label: "Blog", to: "/blog" },
+  { label: "Projects", to: "/projects" },
   { label: "About", to: "/about" },
+  { label: "Blog", to: "/blog" },
 ];
 
 export default function Navbar() {

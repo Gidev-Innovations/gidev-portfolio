@@ -1,12 +1,10 @@
 import { useParams, Link } from "react-router-dom"
-import { projects } from "./projects.data"
+import { caseStudyBySlug } from "./projects.data"
 
 function ProjectDetails() {
-  const { id } = useParams()
+  const { slug } = useParams<{ slug: string }>()
 
-  const project = projects.find(
-    (p) => p.id === Number(id)
-  )
+  const project = caseStudyBySlug(slug ?? "")
 
   if (!project) {
     return (
@@ -21,9 +19,17 @@ function ProjectDetails() {
       <div className="max-w-6xl mx-auto">
 
         {/* Title */}
-        <h1 className="text-4xl font-bold mb-10 text-center">
+        <p className="text-center text-xs font-mono text-gray-400 tracking-widest uppercase mb-3">
+          {project.sector}
+        </p>
+
+        <h1 className="text-4xl font-bold mb-6 text-center">
           {project.title}
         </h1>
+
+        <p className="text-gray-500 text-center max-w-2xl mx-auto mb-10 leading-relaxed">
+          {project.summary}
+        </p>
 
         {/* Image */}
         <div className="mb-16">
@@ -35,40 +41,70 @@ function ProjectDetails() {
           />
         </div>
 
+        {/* Meta strip */}
+        <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pb-12 border-b border-gray-200">
+          <div>
+            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+              Client
+            </dt>
+            <dd className="text-gray-900 font-semibold">{project.client}</dd>
+          </div>
+          <div>
+            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+              Sector
+            </dt>
+            <dd className="text-gray-900 font-semibold">{project.sector}</dd>
+          </div>
+          <div>
+            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+              Year
+            </dt>
+            <dd className="text-gray-900 font-semibold">{project.year}</dd>
+          </div>
+          <div>
+            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+              Stack
+            </dt>
+            <dd className="text-gray-900 font-semibold">
+              {project.technologies.join(", ")}
+            </dd>
+          </div>
+        </dl>
+
         {/* Content Grid */}
         <div className="grid md:grid-cols-2 gap-16">
 
           {/* Left Column */}
-          <div>
+          <div className="border-t-2 border-gray-950 pt-8">
             <h2 className="text-2xl font-semibold mb-4">
-              Work Overview
+              The problem
             </h2>
 
             <p className="text-gray-600 leading-relaxed">
-              {project.overview}
+              {project.problem}
             </p>
           </div>
 
           {/* Right Column */}
           <div className="space-y-10">
 
-            <div>
+            <div className="border-t-2 border-teal-400 pt-8">
               <h2 className="text-2xl font-semibold mb-4">
-                Mission
+                What we did
               </h2>
 
               <p className="text-gray-600 leading-relaxed">
-                {project.mission}
+                {project.whatWeDid}
               </p>
             </div>
 
             <div>
               <h2 className="text-2xl font-semibold mb-4">
-                Tagline
+                Outcome
               </h2>
 
               <p className="text-gray-600 leading-relaxed">
-                {project.tagline}
+                {project.outcome}
               </p>
             </div>
 
@@ -78,7 +114,7 @@ function ProjectDetails() {
         {/* Back Button */}
         <div className="mt-16">
           <Link
-            to="/Projects"
+            to="/projects"
             className="inline-block px-6 py-3 rounded-full bg-black text-white hover:text-cyan-400 transition"
           >
             ← Back to Projects
