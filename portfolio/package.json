@@ -8,7 +8,8 @@
     "start": "react-router dev",
     "build": "tsc -b && react-router build && node scripts/generate-seo-files.mjs",
     "lint": "eslint .",
-    "preview": "vite preview --outDir build/client"
+    "preview": "vite preview --outDir build/client",
+    "deploy": "wrangler versions upload"
   },
   "dependencies": {
     "@react-router/node": "7.18.2",
