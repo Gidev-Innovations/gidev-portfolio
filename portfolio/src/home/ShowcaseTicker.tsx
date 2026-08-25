@@ -3,7 +3,7 @@ import { imagery } from "../data/imagery";
 
 // TODO: Replace with real photography or screenshots of shipped Gidev work.
 const carouselImages = [
-  imagery.nairobiSkyline,
+  imagery.africanProfessional,
   imagery.laptopWork,
   imagery.smartphone,
 ];
@@ -77,7 +77,7 @@ export default function ShowcaseTicker() {
                 style={{ width: "min(680px, calc(100vw - 48px))" }}
               >
                 <img
-                  src={img.src.replace(/w=\d+/, "w=800")}
+                  src={img.src}
                   alt={img.alt}
                   width={680}
                   height={480}

@@ -4,14 +4,17 @@
  * city, screens, phones, rooms — not textile motifs, wildlife, or
  * "Africa" clip art.
  *
- * These are not photographs of the Gidev team. Do not write alt text that
- * claims they are. Replace with real photography before launch.
+ * People images are self-hosted under /public/mood so we never ship stale
+ * Unsplash preloads from an old prerender. These are not photographs of
+ * the Gidev team. Do not write alt text that claims they are. Replace with
+ * real photography before launch.
  */
 
 export const imagery = {
-  nairobiSkyline: {
-    src: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=800&q=80",
-    alt: "Nairobi skyline, where Gidev Innovations is based",
+  // Warm, people-first lead image for the homepage ticker and About hero.
+  africanProfessional: {
+    src: "/mood/african-woman-portrait.jpg",
+    alt: "Young African woman outdoors at dusk",
   },
   nairobiStreet: {
     src: "https://images.unsplash.com/photo-1523805009345-7448845a9b2e?w=900&q=80",
@@ -22,20 +25,20 @@ export const imagery = {
     alt: "African city skyline at dusk",
   },
   laptopWork: {
-    src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=80",
-    alt: "Developer working at a laptop",
+    src: "/mood/african-woman-smile.jpg",
+    alt: "African woman smiling in a bright workspace",
   },
   smartphone: {
-    src: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=80",
-    alt: "Person using a smartphone",
+    src: "/mood/african-man-portrait.jpg",
+    alt: "African man smiling at the camera",
   },
   codeOnScreen: {
     src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=80",
     alt: "Application code on a screen",
   },
   collaboration: {
-    src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=80",
-    alt: "People working together around a table",
+    src: "/mood/african-man-outdoors.jpg",
+    alt: "Young African man outdoors",
   },
   planning: {
     src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80",
@@ -60,7 +63,7 @@ export const imagery = {
 } as const;
 
 export const galleryImages = [
-  imagery.nairobiSkyline,
+  imagery.africanProfessional,
   imagery.nairobiStreet,
   imagery.urbanDusk,
   imagery.laptopWork,
