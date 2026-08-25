@@ -10,7 +10,7 @@
 
 export const imagery = {
   nairobiSkyline: {
-    src: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=1400&q=80",
+    src: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=800&q=80",
     alt: "Nairobi skyline, where Gidev Innovations is based",
   },
   nairobiStreet: {

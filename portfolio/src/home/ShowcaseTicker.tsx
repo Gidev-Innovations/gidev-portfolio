@@ -57,11 +57,13 @@ export default function ShowcaseTicker() {
         }
       `}</style>
 
-      {/* Image Carousel — framed, no rounded corners */}
-      <section className="bg-white pt-4 px-8">
+      {/* Image carousel. overflow-hidden on the section, not just the inner
+          frame: the 680px cards otherwise expand document scrollWidth on
+          375px viewports (measured at 399px). */}
+      <section className="bg-white pt-4 px-6 md:px-8 overflow-hidden">
         <div
-          className="mx-auto overflow-hidden"
-          style={{ maxWidth: "1100px", height: "480px" }}
+          className="mx-auto overflow-hidden h-52 md:h-[480px]"
+          style={{ maxWidth: "1100px" }}
         >
           <div
             ref={trackRef}
@@ -72,12 +74,15 @@ export default function ShowcaseTicker() {
               <div
                 key={i}
                 className="flex-shrink-0 rounded-2xl overflow-hidden h-full"
-                style={{ width: "680px" }}
+                style={{ width: "min(680px, calc(100vw - 48px))" }}
               >
                 <img
-                  src={img.src}
+                  src={img.src.replace(/w=\d+/, "w=800")}
                   alt={img.alt}
-                  loading={i === 0 ? "eager" : "lazy"}
+                  width={680}
+                  height={480}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

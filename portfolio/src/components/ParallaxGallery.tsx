@@ -13,7 +13,9 @@ import { galleryImages } from "../data/imagery";
 // Gidev's own shots, and not photos of the team. Replace with screenshots of
 // shipped products or real studio photography before launch.
 const IMAGES = galleryImages.map((img) => img.src);
-const IMAGE_ALTS = new Map(galleryImages.map((img) => [img.src, img.alt]));
+const IMAGE_ALTS = new Map<string, string>(
+  galleryImages.map((img) => [img.src, img.alt]),
+);
 
 const SCROLL_BUDGET = 1800;
 const TRAVEL = 900;

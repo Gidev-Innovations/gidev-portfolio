@@ -32,7 +32,7 @@ export default function HomeFaq() {
       </h2>
 
       <p
-        className="text-gray-400 mx-auto mb-14"
+        className="text-gray-500 mx-auto mb-14"
         style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "360px" }}
       >
         Everything you need to know before we start building together.

@@ -36,6 +36,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-100 focus:bg-white focus:px-4 focus:py-2 focus:rounded-md"
+        >
+          Skip to content
+        </a>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -50,7 +56,9 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
 
-      <Outlet />
+      <main id="main">
+        <Outlet />
+      </main>
 
       <Footer />
 

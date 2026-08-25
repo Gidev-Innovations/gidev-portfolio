@@ -23,12 +23,12 @@ export default function HomeServices() {
           }}
         >
           Web apps, stores
-          <br />
+          <br className="hidden md:inline" />
           and mobile products
         </h2>
 
         <p
-          className="text-gray-400 mx-auto mb-10"
+          className="text-gray-500 mx-auto mb-10"
           style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "420px" }}
         >
           Four things we build, and the systems that keep them running after

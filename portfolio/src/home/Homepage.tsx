@@ -63,9 +63,11 @@ export default function Homepage() {
             Africa's
           </span>{" "}
           Next
-          <br />
+          {/* Hard breaks only once there is room for them; at 375px they
+              fight the natural wrap and strand single words on a line. */}
+          <br className="hidden md:inline" />
           Generation of Scalable
-          <br />
+          <br className="hidden md:inline" />
           Digital Products
         </motion.h1>
 

@@ -20,8 +20,13 @@ const Footer = () => {
   return (
     <footer className="mt-12 px-6 pb-8">
       {/* CTA Card */}
-      <div className="bg-primary-400 rounded-3xl px-16 py-16 flex flex-col items-center justify-center text-center gap-4 mb-8">
-        <div className="flex items-center gap-2 text-secondary-950">
+      {/*
+        Deeper teal than the original primary-400: white text on #2ec4c7 was
+        2.13:1, a WCAG failure on the site's primary call to action. The darker
+        tone also sits better against the warm accents.
+      */}
+      <div className="bg-primary-700 rounded-3xl px-6 sm:px-10 md:px-16 py-12 md:py-16 flex flex-col items-center justify-center text-center gap-4 mb-8">
+        <div className="flex items-center gap-2 text-primary-100">
           <Settings2 size={15} strokeWidth={1.5} aria-hidden="true" />
           <span className="text-regular-16">Available now</span>
         </div>
@@ -64,11 +69,11 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-black pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-regular-18 text-gray-400 font-OutfitRegular">
+        <p className="text-regular-18 text-gray-500 font-OutfitRegular">
           &copy; {CURRENT_YEAR} Gidev Innovations. All rights reserved.
         </p>
 
-        <nav className="flex items-center gap-8">
+        <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-8">
           {NAV_LINKS.map((link) => (
             <motion.div
               key={link.label}
@@ -80,7 +85,7 @@ const Footer = () => {
                 <motion.span
                   variants={slideUp}
                   transition={slideTrans}
-                  className="block text-regular-16 text-gray-400 font-OutfitLight"
+                  className="block text-regular-16 text-gray-500 font-OutfitLight"
                 >
                   {link.label}
                 </motion.span>

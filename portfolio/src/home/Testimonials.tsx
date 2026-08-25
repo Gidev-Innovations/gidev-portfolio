@@ -75,7 +75,7 @@ export default function Testimonials() {
         </motion.h2>
 
         <motion.p
-          className="text-gray-400 mx-auto"
+          className="text-gray-500 mx-auto"
           style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "360px" }}
           initial={{ y: 30, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
@@ -162,7 +162,7 @@ export default function Testimonials() {
                   >
                     {t.name}
                   </p>
-                  <p className="text-gray-400" style={{ fontSize: "13px" }}>
+                  <p className="text-gray-500" style={{ fontSize: "13px" }}>
                     {t.role}
                   </p>
                 </div>

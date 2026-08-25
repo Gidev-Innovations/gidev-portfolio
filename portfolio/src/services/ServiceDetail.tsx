@@ -41,8 +41,8 @@ export default function ServiceDetail({ service }: { service: Service }) {
         </h1>
 
         <div
-          className="gidev-band-tri mx-auto mb-6"
-          style={{ height: "9px", width: "84px" }}
+          className="gidev-band mx-auto mb-6"
+          style={{ height: "10px", width: "96px" }}
           aria-hidden="true"
         />
 
@@ -64,14 +64,14 @@ export default function ServiceDetail({ service }: { service: Service }) {
           viewport={{ once: true, margin: "-80px" }}
         >
           <div className="border-t-2 border-gray-950 pt-8">
-            <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-4">
+            <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-4">
               The problem we solve
             </p>
             <p className="text-gray-600 text-base leading-relaxed">
               {service.intro}
             </p>
 
-            <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-10 mb-4">
+            <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mt-10 mb-4">
               Best for
             </p>
             <p className="text-gray-600 text-base leading-relaxed">
@@ -80,7 +80,7 @@ export default function ServiceDetail({ service }: { service: Service }) {
           </div>
 
           <div className="border-t-2 border-clay-500 pt-8">
-            <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-6">
+            <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-6">
               What's included
             </p>
             <ul className="flex flex-col gap-4">
@@ -164,7 +164,7 @@ export default function ServiceDetail({ service }: { service: Service }) {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-6 text-center">
+          <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-6 text-center">
             Other services
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

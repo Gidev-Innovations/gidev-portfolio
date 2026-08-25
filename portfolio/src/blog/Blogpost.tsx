@@ -144,7 +144,7 @@ export default function BlogPost() {
         {/* Category + date */}
         <motion.div
           variants={heroItemVariant}
-          className="flex items-center gap-3 text-sm text-gray-400 tracking-widest uppercase mt-8 mb-5"
+          className="flex items-center gap-3 text-sm text-gray-500 tracking-widest uppercase mt-8 mb-5"
         >
           <span className="text-gray-800 font-semibold">{post.category}</span>
           <span>—</span>
@@ -174,7 +174,7 @@ export default function BlogPost() {
         {/* Author sits just below the image, aligned left with it */}
         <motion.p
           variants={heroItemVariant}
-          className="mt-4 text-base text-gray-400 tracking-wide"
+          className="mt-4 text-base text-gray-500 tracking-wide"
         >
           By {post.author}
         </motion.p>
@@ -199,7 +199,7 @@ export default function BlogPost() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 1.2, ease, delay: 0.1 }}
       >
-        <p className="text-sm uppercase tracking-widest text-gray-400 mb-10">
+        <p className="text-sm uppercase tracking-widest text-gray-500 mb-10">
           More posts
         </p>
 
@@ -222,7 +222,7 @@ export default function BlogPost() {
                     transition={{ duration: 1.0, ease }}
                   />
                 </div>
-                <div className="mt-4 flex items-center gap-2 text-sm text-gray-400 tracking-wide">
+                <div className="mt-4 flex items-center gap-2 text-sm text-gray-500 tracking-wide">
                   <span className="text-gray-700 font-medium">
                     {related.category}
                   </span>

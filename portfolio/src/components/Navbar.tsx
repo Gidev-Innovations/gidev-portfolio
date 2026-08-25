@@ -24,6 +24,8 @@ export default function Navbar() {
             <img
               src={logo}
               alt="Gidev Innovations"
+              width={384}
+              height={384}
               className="h-20 md:h-40 w-auto object-contain"
             />
           </Link>

@@ -36,7 +36,7 @@ export default function HomeProjects() {
       </h2>
 
       <p
-        className="text-gray-400 mx-auto mb-12"
+        className="text-gray-500 mx-auto mb-12"
         style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "420px" }}
       >
         The problem each client came with, and what we built to solve it.
@@ -77,7 +77,7 @@ export default function HomeProjects() {
               >
                 {project.title}
               </span>
-              <span className="text-gray-400" style={{ fontSize: "14px" }}>
+              <span className="text-gray-500" style={{ fontSize: "14px" }}>
                 {project.year}
               </span>
             </div>

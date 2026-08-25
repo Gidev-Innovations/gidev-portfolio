@@ -19,7 +19,7 @@ function ProjectCard({ project }: ProjectCardProps) {
         />
       </div>
 
-      <p className="mt-4 text-xs font-mono text-gray-400 tracking-widest uppercase">
+      <p className="mt-4 text-xs font-mono text-gray-500 tracking-widest uppercase">
         {project.sector}
       </p>
 

@@ -13,7 +13,7 @@ export default function Process() {
   return (
     <section className="bg-white px-8 py-8">
       <div
-        className="mx-auto rounded-3xl px-14 py-20 text-center gidev-surface-dots"
+        className="mx-auto rounded-3xl px-6 md:px-14 py-16 md:py-20 text-center gidev-surface-dots"
         style={{
           maxWidth: "900px",
           backgroundColor: "var(--color-spring-wood-50)",
@@ -52,8 +52,8 @@ export default function Process() {
           {/* Discovery */}
           <motion.div
             className="flex flex-col items-center text-center"
-            initial={{ x: 80, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
+            initial={{ y: 24, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ ...springEntry, delay: 0 }}
           >
             <div
@@ -101,8 +101,8 @@ export default function Process() {
           {/* Agile */}
           <motion.div
             className="flex flex-col items-center text-center"
-            initial={{ x: 80, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
+            initial={{ y: 24, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ ...springEntry, delay: 0.15 }}
           >
             <div
@@ -150,8 +150,8 @@ export default function Process() {
           {/* Launch */}
           <motion.div
             className="flex flex-col items-center text-center"
-            initial={{ x: 80, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
+            initial={{ y: 24, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ ...springEntry, delay: 0.3 }}
           >
             <div

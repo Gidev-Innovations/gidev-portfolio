@@ -19,7 +19,7 @@ function ProjectDetails() {
       <div className="max-w-6xl mx-auto">
 
         {/* Title */}
-        <p className="text-center text-xs font-mono text-gray-400 tracking-widest uppercase mb-3">
+        <p className="text-center text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">
           {project.sector}
         </p>
 
@@ -37,32 +37,32 @@ function ProjectDetails() {
             src={project.image}
             alt={project.title}
             loading="lazy"
-            className="w-full h-[450px] object-cover rounded-2xl shadow-lg"
+            className="w-full h-56 md:h-[450px] object-cover rounded-2xl shadow-lg"
           />
         </div>
 
         {/* Meta strip */}
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pb-12 border-b border-gray-200">
           <div>
-            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
               Client
             </dt>
             <dd className="text-gray-900 font-semibold">{project.client}</dd>
           </div>
           <div>
-            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
               Sector
             </dt>
             <dd className="text-gray-900 font-semibold">{project.sector}</dd>
           </div>
           <div>
-            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
               Year
             </dt>
             <dd className="text-gray-900 font-semibold">{project.year}</dd>
           </div>
           <div>
-            <dt className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">
+            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
               Stack
             </dt>
             <dd className="text-gray-900 font-semibold">

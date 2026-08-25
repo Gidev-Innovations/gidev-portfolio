@@ -49,7 +49,7 @@ export default function Contact() {
         <div
           className="calendly-inline-widget w-full md:w-7/12"
           data-url="https://calendly.com/gidevtech/30min?primary_color=2ec4c7"
-          style={{ minWidth: "320px", height: "700px" }}
+          style={{ minWidth: 0, height: "700px" }}
         />
       </div>
     </section>
