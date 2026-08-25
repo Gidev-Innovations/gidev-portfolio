@@ -53,9 +53,9 @@ export default function Testimonials() {
   return (
     <section className="bg-white py-16 overflow-hidden">
       {/* Header */}
-      <div ref={headerRef} className="text-center px-8 mb-14">
+      <div ref={headerRef} className="gidev-stage text-center md:text-left mb-14">
         <motion.div
-          className="flex items-center justify-center gap-2 text-gray-500 mb-3"
+          className="flex items-center justify-center md:justify-start gap-2 text-gray-500 mb-3"
           initial={{ y: 30, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ ...springEntry, delay: 0 }}
@@ -65,7 +65,7 @@ export default function Testimonials() {
         </motion.div>
 
         <motion.h2
-          className="font-black text-black mx-auto mb-3"
+          className="font-black text-black mx-auto md:mx-0 mb-3"
           style={{
             fontSize: "clamp(32px, 5vw, 60px)",
             lineHeight: 1.05,
@@ -80,7 +80,7 @@ export default function Testimonials() {
         </motion.h2>
 
         <motion.p
-          className="text-gray-500 mx-auto"
+          className="text-gray-500 mx-auto md:mx-0"
           style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "360px" }}
           initial={{ y: 30, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
@@ -90,11 +90,8 @@ export default function Testimonials() {
         </motion.p>
       </div>
 
-      {/* Infinite carousel */}
-      <div
-        className="relative mx-auto overflow-hidden"
-        style={{ maxWidth: "1000px" }}
-      >
+      {/* Infinite carousel — full-bleed track, modest cards */}
+      <div className="relative overflow-hidden">
         {/* Left fade */}
         <div
           className="absolute left-0 top-0 bottom-0 z-10 pointer-events-none"

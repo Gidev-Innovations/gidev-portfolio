@@ -78,12 +78,12 @@ function useCenterOffsets() {
       const vw = window.innerWidth;
       const vpH = window.innerHeight;
 
-      const desktopContainerW = Math.min(vw, 1152) - 64;
+      const desktopContainerW = Math.min(vw, 1600) - 64;
       const desktopCardW = (desktopContainerW - GAP_5 * 3) / 4;
       const desktopColH = calcColHeight(3, desktopCardW, GAP_5);
       const desktopOffset = (desktopColH - vpH) / 2;
 
-      const tabletContainerW = Math.min(vw, 768) - 48;
+      const tabletContainerW = vw - 48;
       const tabletCardW = (tabletContainerW - GAP_5 * 2) / 3;
       const tabletColH = calcColHeight(4, tabletCardW, GAP_5);
       const tabletOffset = (tabletColH - vpH) / 2;
@@ -212,7 +212,7 @@ export default function ParallaxGallery() {
       >
         <div className="absolute inset-0">
           {/* Desktop: 4 cols × 3 rows */}
-          <div className="hidden lg:grid absolute inset-0 grid-cols-4 gap-5 px-8 max-w-6xl mx-auto left-0 right-0">
+          <div className="hidden lg:grid absolute inset-0 grid-cols-4 gap-5 px-8 max-w-[1600px] mx-auto left-0 right-0">
             <ParallaxColumn images={dCol1} yMotion={d_odd} />
             <ParallaxColumn images={dCol2} yMotion={d_even} />
             <ParallaxColumn images={dCol3} yMotion={d_odd} />
@@ -220,7 +220,7 @@ export default function ParallaxGallery() {
           </div>
 
           {/* Tablet: 3 cols × 4 rows — outer cols down, mid col up */}
-          <div className="hidden sm:grid lg:hidden absolute inset-0 grid-cols-3 gap-5 px-6 max-w-3xl mx-auto left-0 right-0">
+          <div className="hidden sm:grid lg:hidden absolute inset-0 grid-cols-3 gap-5 px-6">
             <ParallaxColumn images={tCol1} yMotion={t_down} />
             <ParallaxColumn images={tCol2} yMotion={t_up} />
             <ParallaxColumn images={tCol3} yMotion={t_down} />

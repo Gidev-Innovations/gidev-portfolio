@@ -11,16 +11,17 @@ export default function HomeFaq() {
   };
 
   return (
-    <section className="bg-white px-8 py-16 text-center">
+    <section className="bg-white py-16">
+      <div className="mx-auto px-8 text-center md:text-left" style={{ maxWidth: "760px" }}>
       {/* Label */}
-      <div className="flex items-center justify-center gap-2 text-gray-500 mb-3">
+      <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 mb-3">
         <Settings size={13} strokeWidth={1.5} />
         <span style={{ fontSize: "13px" }}>FAQ</span>
       </div>
 
       {/* Heading */}
       <h2
-        className="font-black text-black mx-auto mb-3"
+        className="font-black text-black mx-auto md:mx-0 mb-3"
         style={{
           fontSize: "clamp(32px, 5vw, 62px)",
           lineHeight: 1.05,
@@ -32,17 +33,14 @@ export default function HomeFaq() {
       </h2>
 
       <p
-        className="text-gray-500 mx-auto mb-14"
+        className="text-gray-500 mx-auto md:mx-0 mb-14"
         style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "360px" }}
       >
         Everything you need to know before we start building together.
       </p>
 
       {/* Accordion */}
-      <div
-        className="mx-auto flex flex-col gap-3"
-        style={{ maxWidth: "760px" }}
-      >
+      <div className="flex flex-col gap-3">
         {faqs.map((faq, i) => {
           const isOpen = openIndex === i;
           return (
@@ -97,6 +95,7 @@ export default function HomeFaq() {
             </div>
           );
         })}
+      </div>
       </div>
     </section>
   );

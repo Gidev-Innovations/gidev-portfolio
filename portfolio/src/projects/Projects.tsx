@@ -14,12 +14,12 @@ function Projects() {
   }, [])
 
   return (
-    <section className="min-h-screen py-20 px-6 bg-white md:mt-12">
-      <div className="max-w-6xl mx-auto text-center">
+    <section className="min-h-screen py-20 bg-white md:mt-12">
+      <div className="gidev-stage">
 
         {/* Title */}
         <h1
-          className={`text-4xl md:text-5xl font-semibold mb-4 transition-all duration-700 ease-out transform ${
+          className={`text-4xl md:text-5xl font-semibold mb-4 text-center md:text-left transition-all duration-700 ease-out transform ${
             visible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
@@ -30,7 +30,7 @@ function Projects() {
 
         {/* Paragraph */}
         <p
-          className={`text-gray-600 max-w-2xl mx-auto mb-12 transition-all duration-700 ease-out transform ${
+          className={`text-gray-600 max-w-2xl mx-auto md:mx-0 mb-12 text-center md:text-left transition-all duration-700 ease-out transform ${
             visible
               ? "opacity-100 translate-y-0 delay-200"
               : "opacity-0 translate-y-8"
@@ -41,7 +41,7 @@ function Projects() {
         </p>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
+        <div className="grid md:grid-cols-2 gap-10 text-left">
           {projects.map((project, index) => (
             <div
               key={project.slug}

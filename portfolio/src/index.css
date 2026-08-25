@@ -439,6 +439,32 @@
   opacity: 0.6;
 }
 
+/*
+ * Two-rail layout.
+ *
+ * Copy stays readable. Media (photos, project grids, carousels) uses the
+ * stage rail so laptop viewports are not a centered ~1100px WordPress column.
+ */
+.gidev-copy {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 48rem; /* max-w-3xl */
+  padding-inline: 1.5rem;
+}
+
+.gidev-stage {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1600px;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .gidev-stage {
+    padding-inline: 2rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .logo-track {
     animation: none !important;

@@ -143,14 +143,14 @@ export default function About() {
     <div className="min-h-screen bg-white mt-10 md:mt-14">
       {/* ══ 1. HERO ══════════════════════════════════════════════ */}
       <motion.header
-        className="pt-20 pb-0 text-center px-6"
+        className="pt-20 pb-0 text-center"
         variants={headerContainerVariants}
         initial="hidden"
         animate="show"
       >
         <motion.h1
           variants={titleVariant}
-          className="text-4xl md:text-6xl font-OutfitMedium tracking-tight text-gray-950"
+          className="gidev-copy text-4xl md:text-6xl font-OutfitMedium tracking-tight text-gray-950"
         >
           We build great products
           <br />
@@ -159,23 +159,21 @@ export default function About() {
 
         <motion.p
           variants={subtitleVariant}
-          className="mt-4 text-gray-500 text-base max-w-lg mx-auto leading-relaxed"
+          className="gidev-copy mt-4 text-gray-500 text-base max-w-lg mx-auto leading-relaxed"
         >
           Gidev Innovations is a lean team of developers, designers, and
           builders on a mission to connect African businesses to the internet,
           to AI, and to what is actually possible when technology is done right.
         </motion.p>
 
-        <motion.div
-          variants={subtitleVariant}
-          className="mx-auto mt-16 overflow-hidden rounded-2xl max-w-[1100px]"
-        >
-          <img
-            src={imagery.africanProfessional.src}
-            alt={imagery.africanProfessional.alt}
-            className="w-full object-cover"
-            style={{ height: 480 }}
-          />
+        <motion.div variants={subtitleVariant} className="gidev-stage mt-16">
+          <div className="overflow-hidden rounded-2xl aspect-[21/9] min-h-[280px] md:min-h-[55vh]">
+            <img
+              src={imagery.africanProfessional.src}
+              alt={imagery.africanProfessional.alt}
+              className="w-full h-full object-cover"
+            />
+          </div>
         </motion.div>
       </motion.header>
 
@@ -335,7 +333,7 @@ export default function About() {
       ══════════════════════════════════════════════════════════ */}
 
       {/* ══ 5. SERVICES ══════════════════════════════════════════ */}
-      <main className="max-w-[1400px] mx-auto px-8 pb-28">
+      <main className="gidev-stage pb-28">
         <motion.div
           className="pt-4"
           variants={sectionVariants}

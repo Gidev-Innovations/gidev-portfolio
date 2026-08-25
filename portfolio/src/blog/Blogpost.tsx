@@ -129,14 +129,12 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen bg-white mt-36">
       {/* ── HERO SECTION ────────────────────────────────────────────────────────
-          The image container (max-w-6xl) is the source of truth for alignment.
-          Back link, category, and title all use the same max-w-6xl + px-12
-          so their left edge lines up exactly with the image's left edge.
+          Stage rail is the source of truth for alignment. Title stays in a
+          copy-width max so the image can go wider than the article.
       ────────────────────────────────────────────────────────────────────────── */}
 
-      {/* Hero — category, title, image, author all share max-w-6xl px-12 */}
       <motion.div
-        className="max-w-7xl mx-auto px-12"
+        className="gidev-stage"
         variants={heroContainerVariants}
         initial="hidden"
         animate="show"
@@ -159,7 +157,7 @@ export default function BlogPost() {
           {post.title}
         </motion.h1>
 
-        {/* Hero image — full width of max-w-6xl, 30% bigger than before */}
+        {/* Hero image — full width of the stage rail */}
         <motion.div
           variants={heroItemVariant}
           className="mt-10 rounded-2xl overflow-hidden bg-gray-100 aspect-[16/9]"
@@ -181,19 +179,18 @@ export default function BlogPost() {
       </motion.div>
 
       {/* ── BODY CONTENT ──────────────────────────────────────────────────────
-          Completely independent container — centered on the page with max-w-2xl.
-          This is narrower than the image intentionally: long reading lines are
-          uncomfortable, so the text column is centered for a clean editorial feel.
+          Copy rail — narrower than the image intentionally so long reading
+          lines stay comfortable.
       ────────────────────────────────────────────────────────────────────────── */}
-      <div className="max-w-3xl mx-auto px-6 mt-16 space-y-7 pb-24">
+      <div className="gidev-copy mt-16 space-y-7 pb-24">
         {post.content.map((block, idx) => renderContent(block, idx))}
       </div>
 
       {/* ── MORE POSTS ────────────────────────────────────────────────────────
-          Uses the same max-w-6xl as the hero so it feels anchored to the image width.
+          Same stage rail as the hero so related cards match the image width.
       ────────────────────────────────────────────────────────────────────────── */}
       <motion.div
-        className="max-w-7xl mx-auto px-12 pb-32 pt-12 border-t border-gray-100"
+        className="gidev-stage pb-32 pt-12 border-t border-gray-100"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}

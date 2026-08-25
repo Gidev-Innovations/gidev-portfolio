@@ -15,32 +15,35 @@ function ProjectDetails() {
   }
 
   return (
-    <section className="px-6 md:px-20 pt-24 pb-16 bg-white md:mt-12">
-      <div className="max-w-6xl mx-auto">
+    <section className="pt-24 pb-16 bg-white md:mt-12">
+      <div className="gidev-copy text-center md:text-left">
 
         {/* Title */}
-        <p className="text-center text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">
+        <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">
           {project.sector}
         </p>
 
-        <h1 className="text-4xl font-bold mb-6 text-center">
+        <h1 className="text-4xl font-bold mb-6">
           {project.title}
         </h1>
 
-        <p className="text-gray-500 text-center max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-gray-500 max-w-2xl md:mx-0 mx-auto mb-10 leading-relaxed">
           {project.summary}
         </p>
 
-        {/* Image */}
-        <div className="mb-16">
+      </div>
+
+        {/* Image — breaks out of the copy rail */}
+        <div className="gidev-stage mb-16">
           <img
             src={project.image}
             alt={project.title}
             loading="lazy"
-            className="w-full h-56 md:h-[450px] object-cover rounded-2xl shadow-lg"
+            className="w-full aspect-[16/9] object-cover rounded-2xl shadow-lg"
           />
         </div>
 
+      <div className="gidev-stage">
         {/* Meta strip */}
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pb-12 border-b border-gray-200">
           <div>

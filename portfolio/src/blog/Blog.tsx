@@ -104,15 +104,12 @@ export default function Blog() {
       </motion.header>
 
       {/* ── BLOG CARD GRID ───────────────────────────────────────────────────
-          - max-w-[1400px]: wider than Tailwind's defaults so cards feel large
-          - grid-cols-1: one column on mobile phones
-          - sm:grid-cols-2: two columns on tablets (640px+)
-          - lg:grid-cols-3: three columns on desktop (1024px+)
-          - gap-8: breathing room between each card
+          Stage rail so cards feel large on laptop. Two columns from tablet
+          up — three-up made thumbnails look like a theme grid.
       ────────────────────────────────────────────────────────────────────── */}
-      <main className="max-w-[1400px] mx-auto px-8 pb-28">
+      <main className="gidev-stage pb-28">
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-8"
           variants={gridVariants}
           initial="hidden"
           animate="show"
