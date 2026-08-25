@@ -1,33 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Settings, Plus } from "lucide-react";
-
-const faqs = [
-  {
-    q: "How fast can Gidev deliver a complete product?",
-    a: "Most projects are scoped and kicked off within a week. Depending on complexity, we typically deliver MVPs in 4–8 weeks. We work in tight sprints and keep you updated throughout so there are no surprises.",
-  },
-  {
-    q: "Do you offer revisions after the project is delivered?",
-    a: "Yes. Every engagement includes a revision period post-delivery. We don't consider the work done until you're fully satisfied. For ongoing clients we offer retainer arrangements that include continuous iteration.",
-  },
-  {
-    q: "What factors influence Gidev's pricing?",
-    a: "Pricing is based on project scope, timeline, and the technologies involved. We offer three models: fixed project-based pricing, monthly retainers, and long-term partnership structures. We'll recommend the right fit after our discovery call.",
-  },
-  {
-    q: "Can Gidev support ongoing development needs for my business?",
-    a: "Absolutely. Many of our clients retain us after launch for feature development, bug fixes, performance optimization, and scaling. We become a natural extension of your team.",
-  },
-  {
-    q: "What technologies does Gidev specialize in?",
-    a: "Our core stack is React, TypeScript, Node.js, and modern cloud infrastructure. We also work with React Native for mobile, and tailor our tech choices to what best serves your product goals.",
-  },
-  {
-    q: "Do you work with early-stage startups or only established businesses?",
-    a: "Both. We love working with founders at the idea stage to build their first product, and equally enjoy helping established businesses modernize or scale their existing systems.",
-  },
-];
+import { faqs } from "../data/faqs";
 
 export default function HomeFaq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -91,7 +65,7 @@ export default function HomeFaq() {
                     paddingRight: "24px",
                   }}
                 >
-                  {faq.q}
+                  {faq.question}
                 </span>
                 <motion.div
                   animate={{ rotate: isOpen ? 45 : 0 }}
@@ -115,7 +89,7 @@ export default function HomeFaq() {
                       className="text-gray-500 px-7 pb-6"
                       style={{ fontSize: "14px", lineHeight: 1.8 }}
                     >
-                      {faq.a}
+                      {faq.answer}
                     </p>
                   </motion.div>
                 )}

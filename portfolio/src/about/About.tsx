@@ -1,24 +1,6 @@
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 
-/*
- * SEO – paste these inside your framework's <Head> component (e.g. next/head):
- *
- * <title>About Us | Gidev Innovations – Digital Transformation Across Africa</title>
- * <meta name="description" content="Gidev Innovations is a software development studio powering digital transformations across Africa. We build websites, mobile apps, web applications, and partner with startups." />
- * <meta name="keywords" content="Gidev Innovations, software development Africa, digital transformation, web development Kenya, mobile app development Africa, startup studio, MVP development, UI UX design Africa" />
- * <meta name="robots" content="index, follow" />
- * <link rel="canonical" href="https://www.gidev.com/about" />
- * <meta property="og:type" content="website" />
- * <meta property="og:url" content="https://www.gidev.com/about" />
- * <meta property="og:title" content="About Us | Gidev Innovations – Digital Transformation Across Africa" />
- * <meta property="og:description" content="Gidev Innovations is a software development studio powering digital growth across Africa." />
- * <meta property="og:image" content="https://www.gidev.com/og-image.jpg" />
- * <meta name="twitter:card" content="summary_large_image" />
- * <meta name="twitter:title" content="About Us | Gidev Innovations – Digital Transformation Across Africa" />
- * <meta name="twitter:description" content="Gidev Innovations powers digital transformations across Africa through software development and startup partnerships." />
- */
-
 /* ─── ease curve ──────────────────────────────────────────── */
 const ease = [0.16, 1, 0.3, 1] as const;
 

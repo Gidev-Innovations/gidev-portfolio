@@ -1,5 +1,7 @@
 import { useRef, useEffect } from "react";
 
+// TODO: Replace these stock placeholders with real photography or screenshots
+// of shipped Gidev work. These are random picsum.photos images, not our work.
 const carouselImages = [
   {
     url: "https://picsum.photos/seed/tech1/900/600",
@@ -15,16 +17,11 @@ const carouselImages = [
   },
 ];
 
-const companies = [
-  "Zenvault",
-  "Orbitpay",
-  "Stacklane",
-  "Nuvora",
-  "Crestbit",
-  "Pulseforge",
-  "Luminary",
-  "Driftware",
-];
+// TODO: Replace with the names of real Gidev clients who have agreed to be
+// listed publicly. The previous entries were invented template brand names.
+// Leave this list empty rather than filling it with placeholder names — the
+// ticker hides itself when empty so we never imply clients we don't have.
+const companies: string[] = [];
 
 export default function ShowcaseTicker() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -98,28 +95,33 @@ export default function ShowcaseTicker() {
       </section>
 
       {/* Logo Ticker */}
-      <section className="bg-white py-16 px-8">
-        <p
-          className="text-center text-gray-400 mb-10"
-          style={{ fontSize: "14px" }}
-        >
-          Join 40+ companies already growing
-        </p>
+      {companies.length > 0 && (
+        <section className="bg-white py-16 px-8">
+          <p
+            className="text-center text-gray-400 mb-10"
+            style={{ fontSize: "14px" }}
+          >
+            Teams we've built with
+          </p>
 
-        <div className="mx-auto overflow-hidden" style={{ maxWidth: "1100px" }}>
-          <div className="logo-track">
-            {[...companies, ...companies].map((name, i) => (
-              <span
-                key={i}
-                className="flex-shrink-0 text-gray-300 font-bold tracking-tight select-none"
-                style={{ fontSize: "22px", whiteSpace: "nowrap" }}
-              >
-                {name}
-              </span>
-            ))}
+          <div
+            className="mx-auto overflow-hidden"
+            style={{ maxWidth: "1100px" }}
+          >
+            <div className="logo-track">
+              {[...companies, ...companies].map((name, i) => (
+                <span
+                  key={i}
+                  className="flex-shrink-0 text-gray-300 font-bold tracking-tight select-none"
+                  style={{ fontSize: "22px", whiteSpace: "nowrap" }}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

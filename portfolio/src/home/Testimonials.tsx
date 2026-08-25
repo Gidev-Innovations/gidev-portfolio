@@ -5,48 +5,36 @@ import { Settings } from "lucide-react";
 
 const springEntry: Transition = { type: "spring", stiffness: 50, damping: 16 };
 
-const testimonials = [
+type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  image: string | null;
+};
+
+// TODO: Replace with real Gidev Innovations client testimonials.
+// Each entry needs: a verbatim quote, the person's real name, their real
+// role + company, and a headshot they have given permission to publish.
+// The section auto-hides while this list is empty, so no fake social proof
+// ships to production. Delete the placeholder entries below as real ones land.
+const testimonials: Testimonial[] = [
   {
-    quote:
-      "Working with this team was genuinely transformative. They took our rough concept and turned it into a product our users love. The attention to detail was unlike anything we've experienced before.",
-    name: "Amara Osei",
-    role: "CEO at BrightPath",
-    image: "https://picsum.photos/seed/amara/80/80",
+    quote: "[NEEDS REAL CONTENT] Client quote pending approval.",
+    name: "[NEEDS REAL CONTENT]",
+    role: "[NEEDS REAL CONTENT]",
+    image: null,
   },
   {
-    quote:
-      "They exceeded every expectation. Our platform went from a static site to a fully dynamic, scalable system in record time. Their process is clean, their communication is excellent.",
-    name: "Eliana Torres",
-    role: "Founder of Flowify",
-    image: "https://picsum.photos/seed/eliana/80/80",
+    quote: "[NEEDS REAL CONTENT] Client quote pending approval.",
+    name: "[NEEDS REAL CONTENT]",
+    role: "[NEEDS REAL CONTENT]",
+    image: null,
   },
   {
-    quote:
-      "The design sensibility here is world-class. They didn't just build what we asked for — they challenged our thinking and delivered something far better than we imagined.",
-    name: "Kwame Mensah",
-    role: "Product Lead at Nuvora",
-    image: "https://picsum.photos/seed/kwame/80/80",
-  },
-  {
-    quote:
-      "Fast, reliable, and deeply talented. Within weeks we had a polished product that looked and felt premium. Our investors were impressed at our next pitch.",
-    name: "Sadia Ibrahim",
-    role: "CTO at Stacklane",
-    image: "https://picsum.photos/seed/sadia/80/80",
-  },
-  {
-    quote:
-      "I've worked with agencies across three continents. This studio stands apart — they think like founders, not just developers. The result speaks for itself.",
-    name: "Mardicha Yusuf",
-    role: "Creative Director at Ordi",
-    image: "https://picsum.photos/seed/mardicha/80/80",
-  },
-  {
-    quote:
-      "Our brand identity needed a complete overhaul and they delivered a cohesive, beautiful system that our entire team is proud to put in front of clients.",
-    name: "Chisom Eze",
-    role: "Marketing Head at Lumina",
-    image: "https://picsum.photos/seed/chisom/80/80",
+    quote: "[NEEDS REAL CONTENT] Client quote pending approval.",
+    name: "[NEEDS REAL CONTENT]",
+    role: "[NEEDS REAL CONTENT]",
+    image: null,
   },
 ];
 
@@ -149,12 +137,24 @@ export default function Testimonials() {
               </p>
 
               <div className="flex items-center gap-3">
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="rounded-full object-cover flex-shrink-0"
-                  style={{ width: "44px", height: "44px" }}
-                />
+                {t.image ? (
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="rounded-full object-cover flex-shrink-0"
+                    style={{ width: "44px", height: "44px" }}
+                  />
+                ) : (
+                  <div
+                    className="rounded-full flex-shrink-0"
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      backgroundColor: "var(--color-spring-wood-100)",
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
                 <div>
                   <p
                     className="font-bold text-black"
