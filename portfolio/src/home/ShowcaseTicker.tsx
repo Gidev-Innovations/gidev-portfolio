@@ -1,12 +1,8 @@
 import { useRef, useEffect } from "react";
-import { imagery } from "../data/imagery";
+import { showcaseImages } from "../data/imagery";
 
 // TODO: Replace with real photography or screenshots of shipped Gidev work.
-const carouselImages = [
-  imagery.africanProfessional,
-  imagery.laptopWork,
-  imagery.smartphone,
-];
+const carouselImages = showcaseImages;
 
 // TODO: Replace with the names of real Gidev clients who have agreed to be
 // listed publicly. The previous entries were invented template brand names.
