@@ -31,6 +31,31 @@ function ProjectDetails() {
           {project.summary}
         </p>
 
+        {(project.liveUrl || project.repoUrl) && (
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-10">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-5 py-2.5 rounded-full bg-black text-white text-sm hover:text-cyan-400 transition"
+              >
+                View live
+              </a>
+            )}
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-5 py-2.5 rounded-full border border-gray-300 text-gray-900 text-sm hover:border-cyan-400 hover:text-cyan-400 transition"
+              >
+                GitHub
+              </a>
+            )}
+          </div>
+        )}
+
       </div>
 
         {/* Image — breaks out of the copy rail */}

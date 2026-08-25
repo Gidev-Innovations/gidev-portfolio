@@ -1,4 +1,5 @@
 import m5 from "./images/R-Flex.png";
+import kibandaski from "./images/kibandaski.jpg";
 
 /**
  * Case studies, not portfolio entries.
@@ -29,6 +30,10 @@ export type CaseStudy = {
   whatWeDid: string;
   outcome: string;
   technologies: string[];
+  /** Optional public product URL. */
+  liveUrl?: string;
+  /** Optional public source repository. */
+  repoUrl?: string;
 };
 
 export const projects: CaseStudy[] = [
@@ -43,23 +48,40 @@ export const projects: CaseStudy[] = [
     image: m5,
     summary:
       "An e-commerce platform for a streetwear and lifestyle brand selling sneakers, belts, caps, and shirts.",
-    // TODO [NEEDS REAL CONTENT]: the three fields below are placeholders.
-    // Replace with what was actually true for this engagement — where they
-    // were selling before, what specifically was built, and what changed
-    // afterwards. Do not add metrics that haven't been measured.
     problem:
-      "[NEEDS REAL CONTENT] Describe where R-Flex was selling before this build and what was limiting them.",
+      "Finding the right sneakers and streetwear still meant walking far — hopping between shops across town, hoping sizes and styles were in stock. Physical distance limited who could discover the brand, and inventory sat waiting for foot traffic that might never arrive.",
     whatWeDid:
-      "We designed and built a custom e-commerce platform for R-Flex covering the storefront, product catalogue, and checkout, built around the brand's visual identity. [NEEDS REAL CONTENT] Add the specifics: payment methods integrated, inventory handling, and anything built for their particular workflow.",
+      "We designed and built a custom e-commerce platform for R-Flex covering the storefront, product catalogue, and checkout, built around the brand's visual identity. Buyers can browse sneakers, belts, caps, and shirts online and order without making the trek.",
     outcome:
-      "[NEEDS REAL CONTENT] Describe the verifiable result — what they can now do that they couldn't before. Leave metrics out unless they have been measured.",
+      "The storefront shortens the distance between the brand and its customers. People no longer have to walk across town to find the right pair — the catalogue comes to them — so product can stay in play longer and reach buyers who would never have walked far enough to find it in person.",
     technologies: ["React", "TypeScript", "Vite", "CSS"],
   },
-
-  // TODO: Add remaining real case studies here, following the same shape.
-  // Four template-derived entries were removed in the Stage 1 audit. Their
-  // images remain at src/projects/images/ (custom.jpg, m2.jpg, m3.jpg,
-  // m4.jpg) and are currently unreferenced — reuse or delete them.
+  {
+    slug: "kibandaski-finder",
+    title: "Kibandaski Finder",
+    client: "Gidev Innovations (community open-source)",
+    sector: "Local food discovery",
+    year: "2026",
+    image: kibandaski,
+    summary:
+      "An open-source directory for discovering fixed kibandas and mobile street-food vendors in Kenya — with map browse, prices, hours, and honest reviews.",
+    problem:
+      "Small local food vendors — both pinned kibandas and mobile route-based sellers — are hard to find unless you already know where to walk. Delivery apps and paid map listings rarely cover them, so people rely on word of mouth, miss opening hours and prices, and have no shared place for honest reviews from real customers.",
+    whatWeDid:
+      "We are building Kibandaski Finder as a community-run, non-commercial directory: vendors register as fixed (map pin) or mobile (route + schedule), anyone can browse on a map or list with search and filters, and signed-in users leave ratings and reviews. Directions hand off to Google Maps while browsing uses Leaflet and OpenStreetMap so there is no paid map API. New listings go through a lightweight moderation queue before they go public. Design is complete; Next.js scaffolding and Cloudflare deployment are underway.",
+    outcome:
+      "A coming-soon site is live at kibandaski.gidevtech.com, and the full plan, design, and stack reasoning are public on GitHub so contributors can pick the project up without starting from zero. The product itself is still in build — no usage metrics yet.",
+    technologies: [
+      "Next.js",
+      "Neon / PostGIS",
+      "Drizzle",
+      "Auth.js",
+      "Cloudflare R2",
+      "Leaflet",
+    ],
+    liveUrl: "https://kibandaski.gidevtech.com/",
+    repoUrl: "https://github.com/Josekariz/kibandaski-finder",
+  },
 ];
 
 export function caseStudyBySlug(slug: string): CaseStudy | undefined {
