@@ -171,8 +171,8 @@ export default function About() {
           className="mx-auto mt-16 overflow-hidden rounded-2xl max-w-[1100px]"
         >
           <img
-            src={imagery.nairobiSkyline.src}
-            alt={imagery.nairobiSkyline.alt}
+            src={imagery.africanProfessional.src}
+            alt={imagery.africanProfessional.alt}
             className="w-full object-cover"
             style={{ height: 480 }}
           />

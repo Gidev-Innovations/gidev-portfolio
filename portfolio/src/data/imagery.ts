@@ -4,36 +4,39 @@
  * city, screens, phones, rooms — not textile motifs, wildlife, or
  * "Africa" clip art.
  *
- * People images are self-hosted under /public/mood so we never ship stale
- * Unsplash preloads from an old prerender. These are not photographs of
- * the Gidev team. Do not write alt text that claims they are. Replace with
- * real photography before launch.
+ * People images under /public/mood are stock — not the Gidev team. Do not
+ * write alt text that claims they are. Replace with real photography before
+ * launch.
+ *
+ * Testimonial avatars live in /mood/avatars and must stay out of
+ * galleryImages / ShowcaseTicker so faces do not repeat across sections.
  */
 
 export const imagery = {
-  // Warm, people-first lead image for the homepage ticker and About hero.
+  // About hero + occasional human beat in the intro mix.
   africanProfessional: {
     src: "/mood/african-woman-portrait.jpg",
     alt: "Young African woman outdoors at dusk",
   },
   nairobiStreet: {
-    src: "https://images.unsplash.com/photo-1523805009345-7448845a9b2e?w=900&q=80",
-    alt: "Street in Nairobi, Kenya",
+    src: "/mood/city-skyline.jpg",
+    alt: "Dense city skyline at dusk",
   },
   urbanDusk: {
     src: "https://images.unsplash.com/photo-1577948000111-9c970dfe3743?w=900&q=80",
     alt: "African city skyline at dusk",
   },
+  // Kept for About service thumbnails / older refs — not a face.
   laptopWork: {
-    src: "/mood/african-woman-smile.jpg",
-    alt: "African woman smiling in a bright workspace",
+    src: "/mood/laptop-ui.jpg",
+    alt: "Product interface on a laptop",
   },
   smartphone: {
-    src: "/mood/african-man-portrait.jpg",
-    alt: "African man smiling at the camera",
+    src: "/mood/phone-desk.jpg",
+    alt: "Smartphone on a desk",
   },
   codeOnScreen: {
-    src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=80",
+    src: "/mood/code-screen.jpg",
     alt: "Application code on a screen",
   },
   collaboration: {
@@ -41,19 +44,19 @@ export const imagery = {
     alt: "Young African man outdoors",
   },
   planning: {
-    src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80",
-    alt: "Planning session around a table",
+    src: "/mood/design-board.jpg",
+    alt: "Design sketches and colour samples",
   },
   checkout: {
     src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80",
     alt: "Card payment at a counter",
   },
   productUi: {
-    src: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=900&q=80",
+    src: "/mood/laptop-ui.jpg",
     alt: "Product interface on a laptop",
   },
   designBoard: {
-    src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80",
+    src: "/mood/design-board.jpg",
     alt: "Design sketches and colour samples",
   },
   serverRack: {
@@ -62,17 +65,25 @@ export const imagery = {
   },
 } as const;
 
+/** Homepage parallax — mostly product/city, one human beat. */
 export const galleryImages = [
-  imagery.africanProfessional,
   imagery.nairobiStreet,
-  imagery.urbanDusk,
-  imagery.laptopWork,
-  imagery.smartphone,
-  imagery.codeOnScreen,
-  imagery.collaboration,
-  imagery.planning,
-  imagery.checkout,
   imagery.productUi,
+  imagery.codeOnScreen,
+  imagery.africanProfessional,
+  imagery.urbanDusk,
+  imagery.smartphone,
   imagery.designBoard,
+  imagery.checkout,
   imagery.serverRack,
+  imagery.collaboration,
+];
+
+/** Top ticker — city / product / one face / code for a varied first impression. */
+export const showcaseImages = [
+  imagery.nairobiStreet,
+  imagery.productUi,
+  imagery.africanProfessional,
+  imagery.codeOnScreen,
+  imagery.smartphone,
 ];

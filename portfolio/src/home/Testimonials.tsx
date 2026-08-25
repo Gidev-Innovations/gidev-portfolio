@@ -12,29 +12,34 @@ type Testimonial = {
   image: string | null;
 };
 
-// TODO: Replace with real Gidev Innovations client testimonials.
-// Each entry needs: a verbatim quote, the person's real name, their real
-// role + company, and a headshot they have given permission to publish.
-// The section auto-hides while this list is empty, so no fake social proof
-// ships to production. Delete the placeholder entries below as real ones land.
+// TODO [NEEDS REAL CONTENT]: Layout placeholders only. Replace with real
+// quotes, names, roles, and approved headshots before treating as social proof.
+// Avatars in /mood/avatars are reserved for this section — not used in the
+// homepage carousel or parallax gallery.
 const testimonials: Testimonial[] = [
   {
-    quote: "[NEEDS REAL CONTENT] Client quote pending approval.",
-    name: "[NEEDS REAL CONTENT]",
-    role: "[NEEDS REAL CONTENT]",
-    image: null,
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Amina Otieno",
+    role: "CEO",
+    image: "/mood/avatars/ceo.jpg",
   },
   {
-    quote: "[NEEDS REAL CONTENT] Client quote pending approval.",
-    name: "[NEEDS REAL CONTENT]",
-    role: "[NEEDS REAL CONTENT]",
-    image: null,
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Kwame Asante",
+    role: "Product Manager",
+    image: "/mood/avatars/pm.jpg",
   },
   {
-    quote: "[NEEDS REAL CONTENT] Client quote pending approval.",
-    name: "[NEEDS REAL CONTENT]",
-    role: "[NEEDS REAL CONTENT]",
-    image: null,
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Wanjiru Kamau",
+    role: "Founder",
+    image: "/mood/avatars/founder.jpg",
+  },
+  {
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Chinedu Okonkwo",
+    role: "CTO",
+    image: "/mood/avatars/cto.jpg",
   },
 ];
 
@@ -81,7 +86,7 @@ export default function Testimonials() {
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ ...springEntry, delay: 0.2 }}
         >
-          See what our customers think of our work
+          Placeholder cards — swap in real quotes when clients approve them
         </motion.p>
       </div>
 
