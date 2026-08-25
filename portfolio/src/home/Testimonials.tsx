@@ -90,88 +90,82 @@ export default function Testimonials() {
         </motion.p>
       </div>
 
-      {/* Infinite carousel — full-bleed track, modest cards */}
-      <div className="relative overflow-hidden">
-        {/* Left fade */}
+      {/* Infinite carousel — inset from the viewport, soft fades so cards
+          appear and dissolve before the edges instead of a full-bleed strip. */}
+      <div className="gidev-stage">
         <div
-          className="absolute left-0 top-0 bottom-0 z-10 pointer-events-none"
+          className="relative overflow-hidden"
           style={{
-            width: "80px",
-            background: "linear-gradient(to right, white, transparent)",
-          }}
-        />
-        {/* Right fade */}
-        <div
-          className="absolute right-0 top-0 bottom-0 z-10 pointer-events-none"
-          style={{
-            width: "80px",
-            background: "linear-gradient(to left, white, transparent)",
-          }}
-        />
-
-        <motion.div
-          className="flex gap-4"
-          style={{ width: "max-content" }}
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            duration: 60,
-            repeat: Infinity,
-            ease: "linear",
-            repeatType: "loop",
+            maskImage:
+              "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
           }}
         >
-          {doubled.map((t, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 rounded-2xl p-8 flex flex-col justify-between"
-              style={{
-                width: "260px",
-                minHeight: "320px",
-                backgroundColor: "var(--color-spring-wood-50)",
-                border: "1px solid var(--color-spring-wood-100)",
-              }}
-            >
-              <p
-                className="text-gray-700 mb-10"
-                style={{ fontSize: "15.5px", lineHeight: 1.85 }}
+          <motion.div
+            className="flex gap-4"
+            style={{ width: "max-content" }}
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 60,
+              repeat: Infinity,
+              ease: "linear",
+              repeatType: "loop",
+            }}
+          >
+            {doubled.map((t, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 rounded-2xl p-8 flex flex-col justify-between"
+                style={{
+                  width: "260px",
+                  minHeight: "320px",
+                  backgroundColor: "var(--color-spring-wood-50)",
+                  border: "1px solid var(--color-spring-wood-100)",
+                }}
               >
-                "{t.quote}"
-              </p>
+                <p
+                  className="text-gray-700 mb-10"
+                  style={{ fontSize: "15.5px", lineHeight: 1.85 }}
+                >
+                  "{t.quote}"
+                </p>
 
-              <div className="flex items-center gap-3">
-                {t.image ? (
-                  <img
-                    src={t.image}
-                    alt={t.name}
-                    className="rounded-full object-cover flex-shrink-0"
-                    style={{ width: "44px", height: "44px" }}
-                  />
-                ) : (
-                  <div
-                    className="rounded-full flex-shrink-0"
-                    style={{
-                      width: "44px",
-                      height: "44px",
-                      backgroundColor: "var(--color-spring-wood-100)",
-                    }}
-                    aria-hidden="true"
-                  />
-                )}
-                <div>
-                  <p
-                    className="font-bold text-black"
-                    style={{ fontSize: "15px" }}
-                  >
-                    {t.name}
-                  </p>
-                  <p className="text-gray-500" style={{ fontSize: "13px" }}>
-                    {t.role}
-                  </p>
+                <div className="flex items-center gap-3">
+                  {t.image ? (
+                    <img
+                      src={t.image}
+                      alt={t.name}
+                      className="rounded-full object-cover flex-shrink-0"
+                      style={{ width: "44px", height: "44px" }}
+                    />
+                  ) : (
+                    <div
+                      className="rounded-full flex-shrink-0"
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        backgroundColor: "var(--color-spring-wood-100)",
+                      }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <div>
+                    <p
+                      className="font-bold text-black"
+                      style={{ fontSize: "15px" }}
+                    >
+                      {t.name}
+                    </p>
+                    <p className="text-gray-500" style={{ fontSize: "13px" }}>
+                      {t.role}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
