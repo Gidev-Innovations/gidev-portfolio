@@ -54,13 +54,10 @@ export default function ShowcaseTicker() {
       `}</style>
 
       {/* Image carousel. overflow-hidden on the section, not just the inner
-          frame: the 680px cards otherwise expand document scrollWidth on
-          375px viewports (measured at 399px). */}
-      <section className="bg-white pt-4 px-6 md:px-8 overflow-hidden">
-        <div
-          className="mx-auto overflow-hidden h-52 md:h-[480px]"
-          style={{ maxWidth: "1100px" }}
-        >
+          frame: wide cards otherwise expand document scrollWidth on
+          375px viewports. */}
+      <section className="bg-white pt-4 overflow-hidden">
+        <div className="gidev-stage overflow-hidden h-52 md:h-[min(62vh,560px)]">
           <div
             ref={trackRef}
             className="flex h-full"
@@ -69,14 +66,13 @@ export default function ShowcaseTicker() {
             {[...carouselImages, ...carouselImages].map((img, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 rounded-2xl overflow-hidden h-full"
-                style={{ width: "min(680px, calc(100vw - 48px))" }}
+                className="flex-shrink-0 rounded-2xl overflow-hidden h-full w-[min(680px,calc(100vw-48px))] md:w-[min(72vw,920px)]"
               >
                 <img
                   src={img.src}
                   alt={img.alt}
-                  width={680}
-                  height={480}
+                  width={920}
+                  height={560}
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover"
@@ -97,10 +93,7 @@ export default function ShowcaseTicker() {
             Teams we've built with
           </p>
 
-          <div
-            className="mx-auto overflow-hidden"
-            style={{ maxWidth: "1100px" }}
-          >
+          <div className="gidev-stage overflow-hidden">
             <div className="logo-track">
               {[...companies, ...companies].map((name, i) => (
                 <span

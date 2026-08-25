@@ -7,14 +7,15 @@ export default function HomeServices() {
   return (
     <>
       {/* Header */}
-      <section className="bg-white text-center px-6 pt-20 pb-10">
-        <div className="flex items-center justify-center gap-2 text-gray-500 mb-4">
+      <section className="bg-white pt-20 pb-10">
+        <div className="gidev-stage text-center md:text-left">
+        <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 mb-4">
           <Settings size={13} strokeWidth={1.5} />
           <span style={{ fontSize: "13px" }}>Services</span>
         </div>
 
         <h2
-          className="font-black text-black mx-auto mb-4"
+          className="font-black text-black mx-auto md:mx-0 mb-4"
           style={{
             fontSize: "clamp(40px, 6vw, 72px)",
             lineHeight: 1.05,
@@ -28,7 +29,7 @@ export default function HomeServices() {
         </h2>
 
         <p
-          className="text-gray-500 mx-auto mb-10"
+          className="text-gray-500 mx-auto md:mx-0 mb-10"
           style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "420px" }}
         >
           Four things we build, and the systems that keep them running after
@@ -37,7 +38,7 @@ export default function HomeServices() {
 
         {/* Links through to each service page */}
         <nav
-          className="flex flex-wrap items-center justify-center gap-3"
+          className="flex flex-wrap items-center justify-center md:justify-start gap-3"
           aria-label="Services"
         >
           {services.map((service) => (
@@ -61,6 +62,7 @@ export default function HomeServices() {
             </Link>
           ))}
         </nav>
+        </div>
       </section>
 
       <ParallaxGallery />

@@ -11,11 +11,11 @@ function ProjectCard({ project }: ProjectCardProps) {
       to={`/projects/${project.slug}`}
       className="block group"
     >
-      <div className="overflow-hidden rounded-xl shadow-md">
+      <div className="overflow-hidden rounded-xl shadow-md aspect-[4/3]">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 

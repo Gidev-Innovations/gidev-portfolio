@@ -100,44 +100,44 @@ const Services = () => {
                       product-work contexts, not Gidev's own photography.
                       Replace with screenshots of shipped work.
                     */}
-                    <div className="grid grid-cols-3 gap-4">
-                        {/* Top Left Image - spans 1 column */}
-                        <div className="col-span-1 row-span-2">
+                    <div className="grid grid-cols-3 grid-rows-2 gap-4 aspect-[16/10] min-h-[220px] md:min-h-[380px]">
+                        {/* Top Left Image - spans 1 column, 2 rows */}
+                        <div className="col-span-1 row-span-2 min-h-0">
                             <img
                                 src={imagery.collaboration.src}
                                 alt={imagery.collaboration.alt}
                                 loading="lazy"
-                                className="w-full md:h-64 h-32 object-cover rounded-2xl"
+                                className="w-full h-full object-cover rounded-2xl"
                             />
                         </div>
 
                         {/* Top Right Image - spans 2 columns */}
-                        <div className="col-span-2">
+                        <div className="col-span-2 min-h-0">
                             <img
                                 src={imagery.laptopWork.src}
                                 alt={imagery.laptopWork.alt}
                                 loading="lazy"
-                                className="w-full md:h-64 h-32 object-cover rounded-2xl"
+                                className="w-full h-full object-cover rounded-2xl"
                             />
                         </div>
 
-                        {/* Bottom Left Image - spans 1 column */}
-                        <div className="col-span-1">
+                        {/* Bottom Left Image */}
+                        <div className="min-h-0">
                             <img
                                 src={imagery.nairobiStreet.src}
                                 alt={imagery.nairobiStreet.alt}
                                 loading="lazy"
-                                className="w-full md:h-48 h-28 object-cover rounded-2xl"
+                                className="w-full h-full object-cover rounded-2xl"
                             />
                         </div>
 
-                        {/* Bottom Right Image - spans 2 columns */}
-                        <div className="col-span-1">
+                        {/* Bottom Right Image */}
+                        <div className="min-h-0">
                             <img
                                 src={imagery.planning.src}
                                 alt={imagery.planning.alt}
                                 loading="lazy"
-                                className="w-full md:h-48 h-28 object-cover rounded-2xl"
+                                className="w-full h-full object-cover rounded-2xl"
                             />
                         </div>
                     </div>

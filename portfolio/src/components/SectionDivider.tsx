@@ -22,8 +22,8 @@ export default function SectionDivider({
   variant?: "tri" | "clay";
 }) {
   return (
-    <div className="bg-white px-8 py-12" aria-hidden="true">
-      <div className="mx-auto flex" style={{ maxWidth: "1100px" }}>
+    <div className="bg-white py-12" aria-hidden="true">
+      <div className="gidev-stage flex">
         {variant === "clay" ? (
           <div className="gidev-band w-full" style={{ height: "12px" }} />
         ) : (
