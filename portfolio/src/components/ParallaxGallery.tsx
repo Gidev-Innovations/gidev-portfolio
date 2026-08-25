@@ -6,16 +6,14 @@ import {
   MotionValue,
 } from "framer-motion";
 import { getLenis } from "../lib/lenis";
+import { galleryImages } from "../data/imagery";
 
 // ─── TODO [NEEDS REAL CONTENT] ──────────────────────────────────────────────
-// These 12 images are random picsum.photos placeholders, not Gidev work. This
-// gallery sits directly under the homepage services heading, so it is the most
-// prominent imagery on the site — replace with screenshots of shipped products
-// or real photography of the team before launch.
-const IMAGES = Array.from(
-  { length: 12 },
-  (_, i) => `https://picsum.photos/seed/${i + 10}/600/800`,
-);
+// Stock photography of East African cities and product-work contexts — not
+// Gidev's own shots, and not photos of the team. Replace with screenshots of
+// shipped products or real studio photography before launch.
+const IMAGES = galleryImages.map((img) => img.src);
+const IMAGE_ALTS = new Map(galleryImages.map((img) => [img.src, img.alt]));
 
 const SCROLL_BUDGET = 1800;
 const TRAVEL = 900;
@@ -40,11 +38,13 @@ function ImageCard({ src, index }: { src: string; index: number }) {
       className="w-full overflow-hidden rounded-2xl flex-shrink-0"
       style={{ aspectRatio: "3/5" }}
     >
+      {/* Lazy throughout: this gallery sits well below the fold, and eagerly
+          fetching the first four competed with the render-blocking CSS. */}
       <img
         src={src}
-        alt={`Gallery image ${index + 1}`}
+        alt={IMAGE_ALTS.get(src) ?? `Gallery image ${index + 1}`}
         className="w-full h-full object-cover"
-        loading={index < 4 ? "eager" : "lazy"}
+        loading="lazy"
       />
     </div>
   );

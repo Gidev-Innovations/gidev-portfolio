@@ -1,20 +1,11 @@
 import { useRef, useEffect } from "react";
+import { imagery } from "../data/imagery";
 
-// TODO: Replace these stock placeholders with real photography or screenshots
-// of shipped Gidev work. These are random picsum.photos images, not our work.
+// TODO: Replace with real photography or screenshots of shipped Gidev work.
 const carouselImages = [
-  {
-    url: "https://picsum.photos/seed/tech1/900/600",
-    alt: "Digital product design",
-  },
-  {
-    url: "https://picsum.photos/seed/africa2/900/600",
-    alt: "Software development",
-  },
-  {
-    url: "https://picsum.photos/seed/startup3/900/600",
-    alt: "Scalable technology",
-  },
+  imagery.nairobiSkyline,
+  imagery.laptopWork,
+  imagery.smartphone,
 ];
 
 // TODO: Replace with the names of real Gidev clients who have agreed to be
@@ -84,8 +75,9 @@ export default function ShowcaseTicker() {
                 style={{ width: "680px" }}
               >
                 <img
-                  src={img.url}
+                  src={img.src}
                   alt={img.alt}
+                  loading={i === 0 ? "eager" : "lazy"}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -98,7 +90,7 @@ export default function ShowcaseTicker() {
       {companies.length > 0 && (
         <section className="bg-white py-16 px-8">
           <p
-            className="text-center text-gray-400 mb-10"
+            className="text-center text-gray-500 mb-10"
             style={{ fontSize: "14px" }}
           >
             Teams we've built with

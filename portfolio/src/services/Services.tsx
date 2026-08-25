@@ -3,6 +3,7 @@ import {Microchip, ArrowUpRight} from "lucide-react";
 import {motion, type Variants} from "framer-motion";
 import {Link} from "react-router-dom";
 import {services, studioOfferings, capabilities} from "../data/services";
+import {imagery} from "../data/imagery";
 
 
 export const divParentVariants: Variants = {
@@ -95,16 +96,16 @@ const Services = () => {
                                variants={headerContainerVariantRight}
                 >
                     {/*
-                      TODO [NEEDS REAL CONTENT]: these are Unsplash stock photos and
-                      all four previously pointed at the same image. Replace with real
-                      photography of the team or screenshots of shipped work.
+                      TODO [NEEDS REAL CONTENT]: Unsplash stock of urban and
+                      product-work contexts, not Gidev's own photography.
+                      Replace with screenshots of shipped work.
                     */}
                     <div className="grid grid-cols-3 gap-4">
                         {/* Top Left Image - spans 1 column */}
                         <div className="col-span-1 row-span-2">
                             <img
-                                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=600&fit=crop"
-                                alt="Developers working together on a software project"
+                                src={imagery.collaboration.src}
+                                alt={imagery.collaboration.alt}
                                 loading="lazy"
                                 className="w-full md:h-64 h-32 object-cover rounded-2xl"
                             />
@@ -113,8 +114,8 @@ const Services = () => {
                         {/* Top Right Image - spans 2 columns */}
                         <div className="col-span-2">
                             <img
-                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=300&fit=crop"
-                                alt="Developer writing code on a laptop"
+                                src={imagery.laptopWork.src}
+                                alt={imagery.laptopWork.alt}
                                 loading="lazy"
                                 className="w-full md:h-64 h-32 object-cover rounded-2xl"
                             />
@@ -123,8 +124,8 @@ const Services = () => {
                         {/* Bottom Left Image - spans 1 column */}
                         <div className="col-span-1">
                             <img
-                                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop"
-                                alt="Close-up of code on a screen"
+                                src={imagery.nairobiStreet.src}
+                                alt={imagery.nairobiStreet.alt}
                                 loading="lazy"
                                 className="w-full md:h-48 h-28 object-cover rounded-2xl"
                             />
@@ -133,8 +134,8 @@ const Services = () => {
                         {/* Bottom Right Image - spans 2 columns */}
                         <div className="col-span-1">
                             <img
-                                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=300&fit=crop"
-                                alt="Team planning session around a table"
+                                src={imagery.planning.src}
+                                alt={imagery.planning.alt}
                                 loading="lazy"
                                 className="w-full md:h-48 h-28 object-cover rounded-2xl"
                             />
@@ -194,7 +195,7 @@ const Services = () => {
 
                     {/*capabilities included across every engagement*/}
                     <div className="mt-16 lg:mt-24">
-                        <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-6 text-center">
+                        <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-6 text-center">
                             Included across every engagement
                         </p>
                         <ul className="flex flex-wrap justify-center gap-3">

@@ -8,6 +8,8 @@
   font-weight: 400;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -18,6 +20,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -28,6 +32,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -38,6 +44,8 @@
   font-weight: 800;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -48,6 +56,8 @@
   font-weight: 200;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -58,6 +68,8 @@
   font-weight: 300;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -68,6 +80,8 @@
   font-weight: 500;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -78,6 +92,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -88,6 +104,8 @@
   font-weight: 600;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -98,6 +116,8 @@
   font-weight: 900;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -108,6 +128,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -118,6 +140,8 @@
   font-weight: 700;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -128,6 +152,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -138,6 +164,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -148,6 +176,8 @@
   font-weight: 400;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -158,6 +188,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -168,6 +200,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -178,6 +212,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -188,6 +224,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -198,6 +236,8 @@
   font-weight: 400;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @keyframes fadeIn {
@@ -345,25 +385,30 @@
  * every consumer marks them aria-hidden.
  */
 
-/* Triangle rhythm. A thin band, intended at 8-14px tall. */
+/*
+ * Triangle rhythm. A thin band, intended at 10-14px tall.
+ *
+ * Colour comes from --band-color so a caller can block out segments in
+ * different accents. Stacking three differently-coloured gradient layers in
+ * one element does not work: they all tile at the same interval, so the
+ * topmost layer simply wins and the band comes out monochrome.
+ */
 .gidev-band {
+  --band-color: var(--color-clay-500);
   background-image:
-    linear-gradient(135deg, var(--color-clay-500) 25%, transparent 25%),
-    linear-gradient(225deg, var(--color-clay-500) 25%, transparent 25%);
+    linear-gradient(135deg, var(--band-color) 25%, transparent 25%),
+    linear-gradient(225deg, var(--band-color) 25%, transparent 25%);
   background-position: 0 0;
-  background-size: 14px 14px;
+  background-size: 16px 16px;
   background-repeat: repeat-x;
 }
 
-/* Alternating clay/ochre/teal variant for section breaks. */
-.gidev-band-tri {
-  background-image:
-    linear-gradient(135deg, var(--color-clay-500) 25%, transparent 25%),
-    linear-gradient(225deg, var(--color-ochre-400) 25%, transparent 25%),
-    linear-gradient(135deg, var(--color-primary-500) 25%, transparent 25%);
-  background-position: 0 0, 14px 0, 28px 0;
-  background-size: 14px 14px;
-  background-repeat: repeat-x;
+.gidev-band-ochre {
+  --band-color: var(--color-ochre-400);
+}
+
+.gidev-band-teal {
+  --band-color: var(--color-primary-500);
 }
 
 /*
