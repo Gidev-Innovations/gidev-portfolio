@@ -1,5 +1,5 @@
 import Faqs from './Faqs'
-import {Microchip, ArrowUpRight} from "lucide-react";
+import {ArrowUpRight} from "lucide-react";
 import {motion, type Variants} from "framer-motion";
 import {Link} from "react-router-dom";
 import {services, studioOfferings, capabilities} from "../data/services";
@@ -178,13 +178,20 @@ const Services = () => {
                                 className="col-span-2 md:col-span-1">
                                 <Link
                                     to={`/services/${service.slug}`}
-                                    className="group block h-full bg-spring-wood-50 rounded-2xl p-8 lg:p-10 space-y-4 lg:space-y-6 transition-colors duration-200 hover:bg-white">
-                                    <div className="flex flex-col gap-6 lg:gap-8 justify-center items-center">
-                                        <Microchip size={35}/>
-                                        <p className="lg:text-3xl text-2xl w-2/3 mx-auto text-center">{service.name}</p>
+                                    className="group block h-full bg-spring-wood-50 rounded-2xl p-6 lg:p-8 space-y-5 lg:space-y-6 transition-colors duration-200 hover:bg-white">
+                                    <div className="overflow-hidden rounded-xl aspect-[16/10]">
+                                        <img
+                                            src={service.image.src}
+                                            alt={service.image.alt}
+                                            loading="lazy"
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
                                     </div>
-                                    <span className="text-center flex">{service.summary}</span>
-                                    <span className="flex items-center justify-center gap-1 text-[15px] text-teal-600 font-medium">
+                                    <div className="space-y-3">
+                                        <p className="lg:text-3xl text-2xl font-semibold tracking-tight">{service.name}</p>
+                                        <span className="block text-stone-800 leading-relaxed">{service.summary}</span>
+                                    </div>
+                                    <span className="flex items-center gap-1 text-[15px] text-teal-600 font-medium">
                                         Explore this service
                                         <ArrowUpRight size={16} strokeWidth={2} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"/>
                                     </span>
@@ -232,18 +239,18 @@ const Services = () => {
                 </motion.div>
                 <div className="lg:w-10/12  w-full mx-auto">
                     <div className="grid grid-cols-2 gap-18 lg:gap-32">
-                        {studioOfferings.map((offering) => (
+                        {studioOfferings.map((offering, index) => (
                             <motion.div
                                 key={offering.name}
                                 initial="hidden"
                                 whileInView="show"
                                 variants={divChildHeroVariants}
-                                className="col-span-2 md:col-span-1 bg-spring-wood-50 rounded-2xl p-8 lg:p-10 space-y-4  lg:space-y-6">
-                                <div className="flex flex-col gap-6 lg:gap-8 justify-center items-center">
-                                    <Microchip size={35}/>
-                                    <p className="lg:text-3xl text-2xl w-2/3 mx-auto text-center">{offering.name}</p>
-                                </div>
-                                <span className="text-center flex">{offering.summary}</span>
+                                className="col-span-2 md:col-span-1 bg-spring-wood-50 rounded-2xl p-8 lg:p-10 space-y-4 lg:space-y-5">
+                                <p className="text-xs font-mono text-gray-500 tracking-widest">
+                                    {String(index + 1).padStart(2, "0")}
+                                </p>
+                                <p className="lg:text-3xl text-2xl font-semibold tracking-tight">{offering.name}</p>
+                                <span className="block text-stone-800 leading-relaxed">{offering.summary}</span>
                             </motion.div>
                         ))}
                     </div>

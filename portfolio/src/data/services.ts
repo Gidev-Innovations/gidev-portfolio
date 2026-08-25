@@ -11,12 +11,21 @@
  * are part of how the four services are delivered (capabilities).
  */
 
+import { imagery } from "./imagery";
+
+export type ServiceImage = {
+  src: string;
+  alt: string;
+};
+
 export type Service = {
   slug: string;
   /** Display name, used in headings and cards. */
   name: string;
   /** One-line summary for cards and the hub grid. */
   summary: string;
+  /** Mood / product-context image for hub cards and About. */
+  image: ServiceImage;
   /** <title> for the detail page. */
   metaTitle: string;
   /** <meta name="description"> for the detail page. */
@@ -35,6 +44,7 @@ export const services: Service[] = [
     name: "Web Applications",
     summary:
       "Custom web systems that handle real business logic — dashboards, portals, booking, and internal tools.",
+    image: imagery.serviceWebApps,
     metaTitle: "Web Application Development | Gidev Innovations, Nairobi",
     metaDescription:
       "We build custom web applications: dashboards, client portals, booking systems, and internal tools. React and TypeScript, built in Nairobi for teams across Africa.",
@@ -56,6 +66,7 @@ export const services: Service[] = [
     name: "E-Commerce Platforms",
     summary:
       "Online stores built for the way African customers actually pay — mobile-first, with local payment rails.",
+    image: imagery.serviceEcommerce,
     metaTitle: "E-Commerce Website Development | Gidev Innovations, Nairobi",
     metaDescription:
       "Custom e-commerce platforms with mobile money and card payment integration, inventory management, and mobile-first checkout. Built by Gidev Innovations in Nairobi, Kenya.",
@@ -77,6 +88,7 @@ export const services: Service[] = [
     name: "Mobile Apps",
     summary:
       "Android and iOS apps from one codebase, built to work on mid-range devices and patchy connections.",
+    image: imagery.serviceMobile,
     metaTitle: "Mobile App Development Android & iOS | Gidev Innovations",
     metaDescription:
       "React Native mobile app development for Android and iOS. Offline-tolerant apps built for mid-range devices and real network conditions, by Gidev Innovations in Nairobi.",
@@ -98,6 +110,7 @@ export const services: Service[] = [
     name: "Business Websites & Systems",
     summary:
       "Fast, findable websites — plus the internal systems that automate the work behind them.",
+    image: imagery.serviceWebsites,
     metaTitle: "Business Website Development | Gidev Innovations, Nairobi",
     metaDescription:
       "Business websites built to be fast and findable in search, plus internal systems that automate quoting, invoicing, and reporting. Gidev Innovations, Nairobi, Kenya.",

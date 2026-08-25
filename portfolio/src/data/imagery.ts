@@ -10,7 +10,15 @@
  *
  * Testimonial avatars live in /mood/avatars and must stay out of
  * galleryImages / ShowcaseTicker so faces do not repeat across sections.
+ *
+ * Service-card photos reuse the unused project stills under
+ * src/projects/images/ — higher-res product-in-hand shots than the mood
+ * set. Still stock until real shipped-work screenshots replace them.
  */
+
+import serviceDashboard from "../projects/images/m3.jpg";
+import serviceRetailTablet from "../projects/images/m2.jpg";
+import serviceMobileApp from "../projects/images/custom.jpg";
 
 export const imagery = {
   // About hero + occasional human beat in the intro mix.
@@ -62,6 +70,23 @@ export const imagery = {
   serverRack: {
     src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80",
     alt: "Server infrastructure",
+  },
+  // Service hub + About — product-device stills (not the generic mood set).
+  serviceWebApps: {
+    src: serviceDashboard,
+    alt: "Hands on a laptop showing a business dashboard",
+  },
+  serviceEcommerce: {
+    src: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80",
+    alt: "Clothing displayed in a retail store",
+  },
+  serviceMobile: {
+    src: serviceMobileApp,
+    alt: "Smartphone showing a product app interface",
+  },
+  serviceWebsites: {
+    src: serviceRetailTablet,
+    alt: "Tablet showing a product website in a shop",
   },
 } as const;
 

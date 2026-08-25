@@ -80,23 +80,15 @@ const team = [
 
 /**
  * Derived from the shared service list so this page can't drift out of sync
- * with /services the way it previously had.
- *
- * TODO: the imagery below is Unsplash stock of product-work contexts, not
- * Gidev screenshots. Replace with real shots of shipped work once available.
+ * with /services the way it previously had. Images live on each service in
+ * services.ts (stock mood shots until real product photography exists).
  */
-const serviceImages = [
-  imagery.productUi.src,
-  imagery.checkout.src,
-  imagery.smartphone.src,
-  imagery.designBoard.src,
-];
-
 const serviceList = services.map((service, i) => ({
   label: service.name.toUpperCase(),
   slug: service.slug,
   num: String(i + 1).padStart(3, "0"),
-  img: serviceImages[i % serviceImages.length],
+  img: service.image.src,
+  alt: service.image.alt,
 }));
 
 /**
@@ -409,7 +401,7 @@ export default function About() {
               >
                 <img
                   src={serviceList[activeService].img}
-                  alt={`Gidev Innovations ${serviceList[activeService].label}`}
+                  alt={serviceList[activeService].alt}
                   className="w-full object-cover"
                   style={{ height: 220 }}
                 />
