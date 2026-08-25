@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import {fileURLToPath} from "node:url";
 
 export default defineConfig({
   plugins: [
-    react(),
     tailwindcss(),
+    // Replaces @vitejs/plugin-react: the React Router plugin includes React
+    // support and adds the build-time pre-rendering step.
+    reactRouter(),
   ],
 
     resolve: {

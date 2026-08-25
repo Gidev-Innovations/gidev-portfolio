@@ -1,81 +1,67 @@
-import m1 from "./images/custom.jpg";
-import m2 from "./images/m2.jpg";
-import m3 from "./images/m3.jpg";
-import m4 from "./images/m4.jpg";
 import m5 from "./images/R-Flex.png";
 
-export type Project = {
-  id: number;
+/**
+ * Case studies, not portfolio entries.
+ *
+ * The previous shape (tagline / overview / mission) described what a project
+ * *was*. This shape describes what *changed*: who the client was, the problem
+ * they had, what we built, and the outcome. That is what a prospective client
+ * is actually reading for.
+ *
+ * Rules for adding entries:
+ *   - `outcome` must be verifiable. No invented metrics, percentages, or
+ *     revenue figures. If there is no measurable result yet, describe what
+ *     shipped and leave the measurement out.
+ *   - `client` must be a real, named client who has agreed to be referenced,
+ *     or a truthful description such as "Private client, retail sector".
+ */
+export type CaseStudy = {
+  /** URL segment: /projects/<slug> */
+  slug: string;
   title: string;
+  client: string;
+  sector: string;
   year: string;
   image: string;
-  tagline: string;
-  overview: string;
-  mission: string;
+  /** One-line hook used on cards and as the meta description. */
+  summary: string;
+  problem: string;
+  whatWeDid: string;
+  outcome: string;
   technologies: string[];
 };
 
-export const projects: Project[] = [
+export const projects: CaseStudy[] = [
   {
-    id: 1,
-    title: "R-Flex(E-Commerce)",
+    slug: "r-flex",
+    title: "R-Flex",
+    // TODO [NEEDS REAL CONTENT]: confirm how R-Flex should be credited and
+    // whether they've agreed to be named as a client.
+    client: "R-Flex",
+    sector: "Fashion & lifestyle retail",
     year: "2024",
     image: m5,
-    tagline: "Where Streetwear Meets Digital Excellence.",
-    overview:
-      "We developed a modern e-commerce platform for R-Flex — a premium fashion and lifestyle brand specializing in sneakers, belts, caps, and shirts. The platform delivers a bold, high-performance shopping experience aligned with the brand identity.",
-    mission:
-      "To build a scalable, visually powerful e-commerce system that reflects R-Flex’s ambition to become a global lifestyle brand.",
+    summary:
+      "An e-commerce platform for a streetwear and lifestyle brand selling sneakers, belts, caps, and shirts.",
+    // TODO [NEEDS REAL CONTENT]: the three fields below are placeholders.
+    // Replace with what was actually true for this engagement — where they
+    // were selling before, what specifically was built, and what changed
+    // afterwards. Do not add metrics that haven't been measured.
+    problem:
+      "[NEEDS REAL CONTENT] Describe where R-Flex was selling before this build and what was limiting them.",
+    whatWeDid:
+      "We designed and built a custom e-commerce platform for R-Flex covering the storefront, product catalogue, and checkout, built around the brand's visual identity. [NEEDS REAL CONTENT] Add the specifics: payment methods integrated, inventory handling, and anything built for their particular workflow.",
+    outcome:
+      "[NEEDS REAL CONTENT] Describe the verifiable result — what they can now do that they couldn't before. Leave metrics out unless they have been measured.",
     technologies: ["React", "TypeScript", "Vite", "CSS"],
   },
 
-  {
-    id: 2,
-    title: "Agricultural Innovations",
-    year: "2022",
-    image: m2,
-    tagline: "Empowering Smart Farming Through Technology.",
-    overview:
-      "A digital solution built to support modern farmers with data-driven decision-making tools, crop monitoring systems, and resource optimization platforms.",
-    mission:
-      "To bridge technology and agriculture for increased productivity, sustainability, and economic growth.",
-    technologies: ["React", "TypeScript", "Vite", "CSS"],
-  },
-  {
-    id: 3,
-    title: "Neural Interface",
-    year: "2023",
-    image: m1,
-    tagline: "Connecting Human Intelligence with Digital Systems.",
-    overview:
-      "An experimental tech interface focused on bridging human input and machine responsiveness through advanced signal interpretation and adaptive UI systems.",
-    mission:
-      "To explore the future of human-computer interaction by developing adaptive, intelligent interfaces.",
-    technologies: ["React", "TypeScript", "Vite", "CSS"],
-  },
-  {
-    id: 4,
-    title: "Custom Technology",
-    year: "2024",
-    image: m4,
-    tagline: "Engineering Tailored Digital Solutions for Unique Challenges.",
-    overview:
-      "A collection of customized digital tools and systems built to solve unique business-specific problems across industries.",
-    mission:
-      "To deliver precision-built technological solutions that align perfectly with client operational needs.",
-    technologies: ["React", "TypeScript", "Vite", "CSS"],
-  },
-
-  {
-    id: 5,
-    title: "Financial App",
-    year: "2023",
-    image: m3,
-    tagline: "Redefining Personal Finance for the Digital Generation.",
-    overview:
-      "We designed and developed a modern financial management application focused on simplifying budgeting, savings tracking, and digital payments. The app delivers a secure, intuitive, and performance-optimized experience for users managing their finances in real time.",
-    mission:
-      "To empower individuals with smart, secure, and accessible financial tools that promote financial literacy and independence.",
-    technologies: ["React", "TypeScript", "Vite", "CSS"],
-  },
+  // TODO: Add remaining real case studies here, following the same shape.
+  // Four template-derived entries were removed in the Stage 1 audit. Their
+  // images remain at src/projects/images/ (custom.jpg, m2.jpg, m3.jpg,
+  // m4.jpg) and are currently unreferenced — reuse or delete them.
 ];
+
+export function caseStudyBySlug(slug: string): CaseStudy | undefined {
+  return projects.find((p) => p.slug === slug);
+}

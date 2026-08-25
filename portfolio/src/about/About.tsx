@@ -1,23 +1,8 @@
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
-
-/*
- * SEO – paste these inside your framework's <Head> component (e.g. next/head):
- *
- * <title>About Us | Gidev Innovations – Digital Transformation Across Africa</title>
- * <meta name="description" content="Gidev Innovations is a software development studio powering digital transformations across Africa. We build websites, mobile apps, web applications, and partner with startups." />
- * <meta name="keywords" content="Gidev Innovations, software development Africa, digital transformation, web development Kenya, mobile app development Africa, startup studio, MVP development, UI UX design Africa" />
- * <meta name="robots" content="index, follow" />
- * <link rel="canonical" href="https://www.gidev.com/about" />
- * <meta property="og:type" content="website" />
- * <meta property="og:url" content="https://www.gidev.com/about" />
- * <meta property="og:title" content="About Us | Gidev Innovations – Digital Transformation Across Africa" />
- * <meta property="og:description" content="Gidev Innovations is a software development studio powering digital growth across Africa." />
- * <meta property="og:image" content="https://www.gidev.com/og-image.jpg" />
- * <meta name="twitter:card" content="summary_large_image" />
- * <meta name="twitter:title" content="About Us | Gidev Innovations – Digital Transformation Across Africa" />
- * <meta name="twitter:description" content="Gidev Innovations powers digital transformations across Africa through software development and startup partnerships." />
- */
+import { Link } from "react-router-dom";
+import { services } from "../data/services";
+import { imagery } from "../data/imagery";
 
 /* ─── ease curve ──────────────────────────────────────────── */
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -93,27 +78,43 @@ const team = [
 ];
 */
 
-const services = [
+/**
+ * Derived from the shared service list so this page can't drift out of sync
+ * with /services the way it previously had.
+ *
+ * TODO: the imagery below is Unsplash stock of product-work contexts, not
+ * Gidev screenshots. Replace with real shots of shipped work once available.
+ */
+const serviceImages = [
+  imagery.productUi.src,
+  imagery.checkout.src,
+  imagery.smartphone.src,
+  imagery.designBoard.src,
+];
+
+const serviceList = services.map((service, i) => ({
+  label: service.name.toUpperCase(),
+  slug: service.slug,
+  num: String(i + 1).padStart(3, "0"),
+  img: serviceImages[i % serviceImages.length],
+}));
+
+/**
+ * Markets and jurisdictions.
+ *
+ * Only Nairobi is stated as fact, because it is the only one that can be
+ * backed up right now. Claiming delivery in markets we have not worked in
+ * would be the same category of invention as a fake testimonial.
+ */
+const markets = [
   {
-    label: "WEB DEVELOPMENT",
-    num: "001",
-    img: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80",
+    place: "Nairobi, Kenya",
+    note: "Our home base. Where the studio is registered and where the team works from.",
   },
-  {
-    label: "MOBILE APPS",
-    num: "002",
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80",
-  },
-  {
-    label: "UI/UX DESIGN",
-    num: "003",
-    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
-  },
-  {
-    label: "STARTUP STUDIO",
-    num: "004",
-    img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&q=80",
-  },
+  // TODO [NEEDS REAL CONTENT]: add real markets once there is delivered work
+  // to point to, and say what was actually done there. Do not invent
+  // jurisdictions. Entries below stay commented so placeholders never ship.
+  // { place: "…", note: "…" },
 ];
 
 const values = [
@@ -124,8 +125,8 @@ const values = [
   },
   {
     num: "02",
-    title: "Quality that competes globally",
-    body: "We hold our work to a standard that has no geography. Whether a client is in Nairobi or New York, the code is clean, the design is sharp, and the delivery is real.",
+    title: "Built for the conditions we build in",
+    body: "We test on mid-range Android phones and slow connections because that is what our users have. Software that only works on fast hardware and fast internet is software that excludes most of the continent.",
   },
   {
     num: "03",
@@ -170,8 +171,8 @@ export default function About() {
           className="mx-auto mt-16 overflow-hidden rounded-2xl max-w-[1100px]"
         >
           <img
-            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80"
-            alt="Gidev Innovations team collaborating on digital solutions"
+            src={imagery.africanProfessional.src}
+            alt={imagery.africanProfessional.alt}
             className="w-full object-cover"
             style={{ height: 480 }}
           />
@@ -188,7 +189,7 @@ export default function About() {
           viewport={{ once: true, margin: "-80px" }}
         >
           <div className="border-t-2 border-gray-950 pt-8">
-            <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-4">
+            <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-4">
               Mission
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-950 leading-snug mb-4">
@@ -203,8 +204,8 @@ export default function About() {
             </p>
           </div>
 
-          <div className="border-t-2 border-teal-400 pt-8">
-            <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-4">
+          <div className="border-t-2 border-clay-500 pt-8">
+            <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-4">
               Vision
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-950 leading-snug mb-4">
@@ -213,10 +214,49 @@ export default function About() {
             </h2>
             <p className="text-gray-500 text-base leading-relaxed">
               We are not just building software. We are building a studio where
-              talented developers grow into world-class builders, where every
-              client engagement raises the bar, and where the products we ship
-              become proof that exceptional technology is made here too.
+              developers here grow into the engineers other teams want to hire,
+              and where the products we ship are the argument that serious
+              technology is built on this continent, for this continent.
             </p>
+          </div>
+        </motion.div>
+
+        {/* ══ 2b. WHERE WE WORK ══════════════════════════════════ */}
+        <motion.div
+          className="mb-24"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          <div
+            className="rounded-3xl px-8 md:px-12 py-10 gidev-surface-dots"
+            style={{
+              backgroundColor: "var(--color-spring-wood-50)",
+              borderRadius: "28px",
+            }}
+          >
+            <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-5">
+              Where we work
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {markets.map((market) => (
+                <div key={market.place}>
+                  <div
+                    className="gidev-band mb-4"
+                    style={{ height: "8px", width: "42px" }}
+                    aria-hidden="true"
+                  />
+                  <p className="font-bold text-gray-950 mb-1.5">
+                    {market.place}
+                  </p>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {market.note}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -238,7 +278,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {values.map((v) => (
               <div key={v.num}>
-                <p className="text-xs font-mono text-teal-400 tracking-widest mb-4">
+                <p className="text-xs font-mono text-clay-600 tracking-widest mb-4">
                   {v.num}
                 </p>
                 <h3 className="text-lg font-bold text-gray-950 mb-3 leading-snug">
@@ -287,7 +327,7 @@ export default function About() {
                 />
               </div>
               <p className="mt-4 text-[15px] font-bold text-gray-900 leading-snug">{member.name}</p>
-              <p className="mt-0.5 text-sm text-gray-400">{member.role}</p>
+              <p className="mt-0.5 text-sm text-gray-500">{member.role}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -317,7 +357,7 @@ export default function About() {
 
           <div className="flex gap-12 items-start">
             <div className="flex-1 min-w-0">
-              {services.map((s, i) => {
+              {serviceList.map((s, i) => {
                 const active = activeService === i;
                 return (
                   <motion.div
@@ -330,11 +370,12 @@ export default function About() {
                     transition={{ delay: i * 0.07 }}
                     className="cursor-pointer"
                   >
-                    <div
+                    <Link
+                      to={`/services/${s.slug}`}
                       className="flex items-center justify-between py-5 transition-colors duration-200"
                       style={{
                         borderBottom: active
-                          ? "2.5px solid #2dd4bf"
+                          ? "2.5px solid #d75f38"
                           : "1px solid #e5e7eb",
                       }}
                     >
@@ -353,7 +394,7 @@ export default function About() {
                       >
                         {s.num}
                       </span>
-                    </div>
+                    </Link>
                   </motion.div>
                 );
               })}
@@ -369,8 +410,8 @@ export default function About() {
                 style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
               >
                 <img
-                  src={services[activeService].img}
-                  alt={`Gidev Innovations ${services[activeService].label}`}
+                  src={serviceList[activeService].img}
+                  alt={`Gidev Innovations ${serviceList[activeService].label}`}
                   className="w-full object-cover"
                   style={{ height: 220 }}
                 />

@@ -8,6 +8,8 @@
   font-weight: 400;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -18,6 +20,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -28,6 +32,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -38,6 +44,8 @@
   font-weight: 800;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -48,6 +56,8 @@
   font-weight: 200;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -58,6 +68,8 @@
   font-weight: 300;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -68,6 +80,8 @@
   font-weight: 500;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -78,6 +92,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -88,6 +104,8 @@
   font-weight: 600;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -98,6 +116,8 @@
   font-weight: 900;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -108,6 +128,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -118,6 +140,8 @@
   font-weight: 700;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -128,6 +152,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -138,6 +164,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -148,6 +176,8 @@
   font-weight: 400;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -158,6 +188,8 @@
   font-weight: 700;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -168,6 +200,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -178,6 +212,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -188,6 +224,8 @@
   font-weight: 400;
 
   font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
@@ -198,6 +236,8 @@
   font-weight: 400;
 
   font-style: italic;
+
+  font-display: swap;
 }
 
 @keyframes fadeIn {
@@ -298,4 +338,109 @@
   --color-spring-wood-800: #6d523f;
   --color-spring-wood-900: #594435;
   --color-spring-wood-950: #2f221b;
+
+  /*
+   * Clay — the warm accent.
+   *
+   * Colour roles, so this stays consistent as the site grows:
+   *   primary (teal)  interactive elements, links, brand marks
+   *   clay            emphasis and accent only: rules, markers, dividers
+   *   ochre           a second warm note, used with clay in patterns
+   *   spring-wood     warm neutral ground for cards and sections
+   *
+   * Clay is deliberately never a full-page or full-section background. It
+   * earns attention by being scarce.
+   */
+  --color-clay-50: #fdf6f3;
+  --color-clay-100: #fbe9e2;
+  --color-clay-200: #f6cfc0;
+  --color-clay-300: #eeac95;
+  --color-clay-400: #e4805d;
+  --color-clay-500: #d75f38;
+  --color-clay-600: #c14a26;
+  --color-clay-700: #a03a1f;
+  --color-clay-800: #82311d;
+  --color-clay-900: #6b2b1b;
+  --color-clay-950: #3a150c;
+
+  --color-ochre-50: #fdf9ed;
+  --color-ochre-100: #f9efcd;
+  --color-ochre-200: #f2dc97;
+  --color-ochre-300: #eac261;
+  --color-ochre-400: #e3a93a;
+  --color-ochre-500: #d18b1f;
+  --color-ochre-600: #b46c19;
+  --color-ochre-700: #8f4f18;
+  --color-ochre-800: #763f1a;
+  --color-ochre-900: #653519;
+  --color-ochre-950: #3a1b09;
+}
+
+/*
+ * Geometric accents.
+ *
+ * Abstract repeating geometry built from CSS gradients — no imported
+ * artwork, no literal Kente or Ankara print. Used as thin dividers and
+ * low-opacity texture, never as dominant wallpaper. All decorative, so
+ * every consumer marks them aria-hidden.
+ */
+
+/*
+ * Triangle rhythm. A thin band, intended at 10-14px tall.
+ *
+ * Colour comes from --band-color so a caller can block out segments in
+ * different accents. Stacking three differently-coloured gradient layers in
+ * one element does not work: they all tile at the same interval, so the
+ * topmost layer simply wins and the band comes out monochrome.
+ */
+.gidev-band {
+  --band-color: var(--color-clay-500);
+  background-image:
+    linear-gradient(135deg, var(--band-color) 25%, transparent 25%),
+    linear-gradient(225deg, var(--band-color) 25%, transparent 25%);
+  background-position: 0 0;
+  background-size: 16px 16px;
+  background-repeat: repeat-x;
+}
+
+.gidev-band-ochre {
+  --band-color: var(--color-ochre-400);
+}
+
+.gidev-band-teal {
+  --band-color: var(--color-primary-500);
+}
+
+/*
+ * Very low-contrast dot grid for large warm surfaces.
+ *
+ * Applied directly to the element as a background-image rather than as an
+ * absolutely-positioned overlay: a positioned overlay paints above static
+ * siblings and would sit on top of the text. The dot colour is kept light
+ * enough that no opacity wrapper is needed, so text contrast is untouched.
+ */
+.gidev-surface-dots {
+  background-image: radial-gradient(
+    var(--color-spring-wood-200) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+}
+
+/* Diagonal hatch, for narrow emphasis panels. */
+.gidev-texture-hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-spring-wood-200) 0,
+    var(--color-spring-wood-200) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation: none !important;
+  }
 }

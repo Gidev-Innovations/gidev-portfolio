@@ -4,7 +4,10 @@
     "target": "ES2023",
     "lib": ["ES2023"],
     "module": "ESNext",
-    "types": ["node"],
+    // vite/client supplies the module declarations for asset imports (.png
+    // etc). react-router.config.ts reaches into src/ for its prerender list,
+    // so those declarations are needed here too.
+    "types": ["node", "vite/client"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -22,5 +25,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "react-router.config.ts"]
 }

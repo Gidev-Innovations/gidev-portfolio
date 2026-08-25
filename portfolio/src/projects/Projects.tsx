@@ -25,7 +25,7 @@ function Projects() {
               : "opacity-0 translate-y-8"
           }`}
         >
-          Our Projects
+          Case Studies
         </h1>
 
         {/* Paragraph */}
@@ -36,16 +36,15 @@ function Projects() {
               : "opacity-0 translate-y-8"
           }`}
         >
-          Explore a collection of our recent work, showcasing innovative solutions,
-          modern design systems, and scalable applications built with performance
-          and user experience in mind.
+          Real client work, written up honestly: who we built for, the problem
+          they came with, what we built, and what changed afterwards.
         </p>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
           {projects.map((project, index) => (
             <div
-              key={project.id}
+              key={project.slug}
               className={`transition-all duration-700 ease-out transform ${
                 visible
                   ? "opacity-100 translate-y-0"

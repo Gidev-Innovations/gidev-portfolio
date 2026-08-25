@@ -5,48 +5,41 @@ import { Settings } from "lucide-react";
 
 const springEntry: Transition = { type: "spring", stiffness: 50, damping: 16 };
 
-const testimonials = [
+type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  image: string | null;
+};
+
+// TODO [NEEDS REAL CONTENT]: Layout placeholders only. Replace with real
+// quotes, names, roles, and approved headshots before treating as social proof.
+// Avatars in /mood/avatars are reserved for this section — not used in the
+// homepage carousel or parallax gallery.
+const testimonials: Testimonial[] = [
   {
-    quote:
-      "Working with this team was genuinely transformative. They took our rough concept and turned it into a product our users love. The attention to detail was unlike anything we've experienced before.",
-    name: "Amara Osei",
-    role: "CEO at BrightPath",
-    image: "https://picsum.photos/seed/amara/80/80",
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Amina Otieno",
+    role: "CEO",
+    image: "/mood/avatars/ceo.jpg",
   },
   {
-    quote:
-      "They exceeded every expectation. Our platform went from a static site to a fully dynamic, scalable system in record time. Their process is clean, their communication is excellent.",
-    name: "Eliana Torres",
-    role: "Founder of Flowify",
-    image: "https://picsum.photos/seed/eliana/80/80",
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Kwame Asante",
+    role: "Product Manager",
+    image: "/mood/avatars/pm.jpg",
   },
   {
-    quote:
-      "The design sensibility here is world-class. They didn't just build what we asked for — they challenged our thinking and delivered something far better than we imagined.",
-    name: "Kwame Mensah",
-    role: "Product Lead at Nuvora",
-    image: "https://picsum.photos/seed/kwame/80/80",
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Wanjiru Kamau",
+    role: "Founder",
+    image: "/mood/avatars/founder.jpg",
   },
   {
-    quote:
-      "Fast, reliable, and deeply talented. Within weeks we had a polished product that looked and felt premium. Our investors were impressed at our next pitch.",
-    name: "Sadia Ibrahim",
-    role: "CTO at Stacklane",
-    image: "https://picsum.photos/seed/sadia/80/80",
-  },
-  {
-    quote:
-      "I've worked with agencies across three continents. This studio stands apart — they think like founders, not just developers. The result speaks for itself.",
-    name: "Mardicha Yusuf",
-    role: "Creative Director at Ordi",
-    image: "https://picsum.photos/seed/mardicha/80/80",
-  },
-  {
-    quote:
-      "Our brand identity needed a complete overhaul and they delivered a cohesive, beautiful system that our entire team is proud to put in front of clients.",
-    name: "Chisom Eze",
-    role: "Marketing Head at Lumina",
-    image: "https://picsum.photos/seed/chisom/80/80",
+    quote: "Placeholder quote — replace with a real client testimonial.",
+    name: "Chinedu Okonkwo",
+    role: "CTO",
+    image: "/mood/avatars/cto.jpg",
   },
 ];
 
@@ -87,13 +80,13 @@ export default function Testimonials() {
         </motion.h2>
 
         <motion.p
-          className="text-gray-400 mx-auto"
+          className="text-gray-500 mx-auto"
           style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "360px" }}
           initial={{ y: 30, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ ...springEntry, delay: 0.2 }}
         >
-          See what our customers think of our work
+          Placeholder cards — swap in real quotes when clients approve them
         </motion.p>
       </div>
 
@@ -149,12 +142,24 @@ export default function Testimonials() {
               </p>
 
               <div className="flex items-center gap-3">
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="rounded-full object-cover flex-shrink-0"
-                  style={{ width: "44px", height: "44px" }}
-                />
+                {t.image ? (
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="rounded-full object-cover flex-shrink-0"
+                    style={{ width: "44px", height: "44px" }}
+                  />
+                ) : (
+                  <div
+                    className="rounded-full flex-shrink-0"
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      backgroundColor: "var(--color-spring-wood-100)",
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
                 <div>
                   <p
                     className="font-bold text-black"
@@ -162,7 +167,7 @@ export default function Testimonials() {
                   >
                     {t.name}
                   </p>
-                  <p className="text-gray-400" style={{ fontSize: "13px" }}>
+                  <p className="text-gray-500" style={{ fontSize: "13px" }}>
                     {t.role}
                   </p>
                 </div>

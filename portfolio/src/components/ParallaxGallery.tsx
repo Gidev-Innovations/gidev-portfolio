@@ -5,12 +5,16 @@ import {
   useTransform,
   MotionValue,
 } from "framer-motion";
-import { lenis } from "../main";
+import { getLenis } from "../lib/lenis";
+import { galleryImages } from "../data/imagery";
 
-// ─── Replace with your real project images when ready ───────────────────────
-const IMAGES = Array.from(
-  { length: 12 },
-  (_, i) => `https://picsum.photos/seed/${i + 10}/600/800`,
+// ─── TODO [NEEDS REAL CONTENT] ──────────────────────────────────────────────
+// Stock photography of East African cities and product-work contexts — not
+// Gidev's own shots, and not photos of the team. Replace with screenshots of
+// shipped products or real studio photography before launch.
+const IMAGES = galleryImages.map((img) => img.src);
+const IMAGE_ALTS = new Map<string, string>(
+  galleryImages.map((img) => [img.src, img.alt]),
 );
 
 const SCROLL_BUDGET = 1800;
@@ -36,11 +40,13 @@ function ImageCard({ src, index }: { src: string; index: number }) {
       className="w-full overflow-hidden rounded-2xl flex-shrink-0"
       style={{ aspectRatio: "3/5" }}
     >
+      {/* Lazy throughout: this gallery sits well below the fold, and eagerly
+          fetching the first four competed with the render-blocking CSS. */}
       <img
         src={src}
-        alt={`Gallery image ${index + 1}`}
+        alt={IMAGE_ALTS.get(src) ?? `Gallery image ${index + 1}`}
         className="w-full h-full object-cover"
-        loading={index < 4 ? "eager" : "lazy"}
+        loading="lazy"
       />
     </div>
   );
@@ -128,8 +134,9 @@ export default function ParallaxGallery() {
       const p = Math.min(Math.max((scroll - sectionTop) / SCROLL_BUDGET, 0), 1);
       progress.set(p);
     };
-    lenis.on("scroll", onScroll);
-    return () => lenis.off("scroll", onScroll);
+    const lenis = getLenis();
+    lenis?.on("scroll", onScroll);
+    return () => lenis?.off("scroll", onScroll);
   }, [progress]);
 
   const half = TRAVEL / 2;

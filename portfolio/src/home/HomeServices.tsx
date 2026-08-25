@@ -1,5 +1,7 @@
-import { Settings } from "lucide-react";
+import { Settings, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import ParallaxGallery from "../components/ParallaxGallery";
+import { services } from "../data/services";
 
 export default function HomeServices() {
   return (
@@ -20,17 +22,45 @@ export default function HomeServices() {
             maxWidth: "600px",
           }}
         >
-          Apps, websites,
-          <br />
-          logos and more
+          Web apps, stores
+          <br className="hidden md:inline" />
+          and mobile products
         </h2>
 
         <p
-          className="text-gray-400 mx-auto"
-          style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "380px" }}
+          className="text-gray-500 mx-auto mb-10"
+          style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "420px" }}
         >
-          Discover all your essentials in one convenient location.
+          Four things we build, and the systems that keep them running after
+          launch.
         </p>
+
+        {/* Links through to each service page */}
+        <nav
+          className="flex flex-wrap items-center justify-center gap-3"
+          aria-label="Services"
+        >
+          {services.map((service) => (
+            <Link
+              key={service.slug}
+              to={`/services/${service.slug}`}
+              className="group inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-gray-700 hover:text-black transition-colors duration-200"
+              style={{
+                fontSize: "14.5px",
+                backgroundColor: "var(--color-spring-wood-50)",
+                border: "1px solid var(--color-spring-wood-100)",
+              }}
+            >
+              {service.name}
+              <ArrowUpRight
+                size={15}
+                strokeWidth={2}
+                className="text-teal-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+          ))}
+        </nav>
       </section>
 
       <ParallaxGallery />

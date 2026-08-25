@@ -16,9 +16,9 @@ const springEntry: Transition = { type: "spring", stiffness: 45, damping: 14 };
 const features = [
   {
     Icon: Layers,
-    title: "Structured Process",
+    title: "Scope Agreed Upfront",
     description:
-      "Clear discovery, architecture, and execution from idea to deployment.",
+      "Timeline and price written down before work starts, so the number at the end is the number you agreed.",
     anim: { y: [0, -4, 0] },
     transition: {
       duration: 1.2,
@@ -29,9 +29,9 @@ const features = [
   },
   {
     Icon: Zap,
-    title: "Fast Turnaround",
+    title: "Built for Real Networks",
     description:
-      "Efficient workflows that move projects forward without compromising quality.",
+      "Tested on mid-range phones and slow connections, not just fast office wifi.",
     anim: { rotate: [0, -10, 10, -5, 0] },
     transition: {
       duration: 0.6,
@@ -42,8 +42,9 @@ const features = [
   },
   {
     Icon: Palette,
-    title: "Product-Focused Design",
-    description: "Thoughtful UI/UX that balances usability and performance.",
+    title: "Local Payment Rails",
+    description:
+      "Mobile money and card payments integrated for how customers here actually pay.",
     anim: { scale: [1, 1.18, 1] },
     transition: {
       duration: 0.9,
@@ -54,9 +55,9 @@ const features = [
   },
   {
     Icon: Tag,
-    title: "Transparent Pricing",
+    title: "Three Ways to Engage",
     description:
-      "Flexible models including project-based, retainer, or partnership structures.",
+      "Fixed project pricing, a monthly retainer, or a partnership with shared upside.",
     anim: { x: [0, -4, 4, -2, 0] },
     transition: {
       duration: 0.7,
@@ -67,8 +68,9 @@ const features = [
   },
   {
     Icon: Server,
-    title: "Scalable Architecture",
-    description: "Systems designed to integrate, expand, and evolve.",
+    title: "Found in Search",
+    description:
+      "Pre-rendered pages with real content, so search engines can actually read your site.",
     anim: { y: [0, -5, 0] },
     transition: {
       duration: 1,
@@ -79,8 +81,9 @@ const features = [
   },
   {
     Icon: Shield,
-    title: "Reliable Delivery",
-    description: "Tested, optimized, and maintained for long-term stability.",
+    title: "We Stay After Launch",
+    description:
+      "A revision period until you're satisfied, then a retainer if you want us to keep going.",
     anim: { scale: [1, 1.12, 1] },
     transition: {
       duration: 1,
@@ -113,15 +116,14 @@ export default function Features() {
           maxWidth: "500px",
         }}
       >
-        How We Deliver Excellence
+        What Working With Us Is Like
       </h2>
 
       <p
-        className="text-gray-400 mx-auto mb-12"
-        style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "380px" }}
+        className="text-gray-500 mx-auto mb-12"
+        style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "400px" }}
       >
-        We combine technical expertise with structured execution to build
-        software that performs and scales.
+        The practical things that tend to matter once a project is underway.
       </p>
 
       {/* Grid */}
@@ -155,7 +157,7 @@ export default function Features() {
                 style={{ display: "flex", color: "#111" }}
                 animate={
                   inView
-                    ? { ...anim, color: ["#111111", "#18aeb4", "#111111"] }
+                    ? { ...anim, color: ["#111111", "#d75f38", "#111111"] }
                     : {}
                 }
                 transition={transition}

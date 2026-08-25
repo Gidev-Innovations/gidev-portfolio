@@ -47,8 +47,11 @@ jobs:
           mc alias set myr2 "${R2_ENDPOINT}" "${R2_ACCESS_KEY}" "${R2_SECRET}" --api S3v4
 
       # 7) Deploy build folder to R2 bucket
+      #    React Router framework mode emits static output to build/client,
+      #    not dist. The pre-rendered HTML, sitemap.xml and robots.txt all
+      #    live there.
       - name: Deploy to Bucket
         env:
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
-          mc mirror ./portfolio/dist "myr2/${R2_BUCKET}/" --overwrite --remove
+          mc mirror ./portfolio/build/client "myr2/${R2_BUCKET}/" --overwrite --remove

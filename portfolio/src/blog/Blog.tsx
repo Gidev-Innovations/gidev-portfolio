@@ -138,7 +138,7 @@ export default function Blog() {
                 </div>
 
                 {/* Category label + date shown in small caps below the image */}
-                <div className="mt-5 flex items-center gap-3 text-xs text-gray-400 tracking-wide">
+                <div className="mt-5 flex items-center gap-3 text-xs text-gray-500 tracking-wide">
                   <span className="text-gray-700 font-medium">
                     {post.category}
                   </span>

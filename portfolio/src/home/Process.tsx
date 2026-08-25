@@ -13,7 +13,7 @@ export default function Process() {
   return (
     <section className="bg-white px-8 py-8">
       <div
-        className="mx-auto rounded-3xl px-14 py-20 text-center"
+        className="mx-auto rounded-3xl px-6 md:px-14 py-16 md:py-20 text-center gidev-surface-dots"
         style={{
           maxWidth: "900px",
           backgroundColor: "var(--color-spring-wood-50)",
@@ -36,15 +36,15 @@ export default function Process() {
             letterSpacing: "-0.02em",
           }}
         >
-          From Concept to Code
+          How We Work
         </h2>
 
         <p
-          className="text-gray-500 max-w-sm mx-auto mb-16"
+          className="text-gray-500 max-w-md mx-auto mb-16"
           style={{ fontSize: "15px", lineHeight: 1.6 }}
         >
-          Our founder-led process ensures your product is built on time, on
-          budget, and ready to scale.
+          Three stages, and you know what is happening at every point. Most
+          projects are scoped and started within a week.
         </p>
 
         {/* Steps */}
@@ -52,8 +52,8 @@ export default function Process() {
           {/* Discovery */}
           <motion.div
             className="flex flex-col items-center text-center"
-            initial={{ x: 80, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
+            initial={{ y: 24, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ ...springEntry, delay: 0 }}
           >
             <div
@@ -66,7 +66,7 @@ export default function Process() {
                   inView
                     ? {
                         rotate: [0, -15, 15, -10, 10, 0],
-                        color: ["#111111", "#18aeb4", "#111111"],
+                        color: ["#111111", "#d75f38", "#111111"],
                       }
                     : {}
                 }
@@ -86,22 +86,23 @@ export default function Process() {
               className="font-bold text-black mb-2"
               style={{ fontSize: "17px", lineHeight: 1.2 }}
             >
-              Discovery & Strategy
+              Discovery & Scoping
             </h3>
             <p
               className="text-gray-500"
               style={{ fontSize: "14px", lineHeight: 1.6 }}
             >
-              We analyze your requirements and business goals to architect a
-              roadmap that works.
+              We start with a free 15-minute call to understand the problem,
+              then write down the scope, timeline, and price before any code
+              exists. Most projects kick off within a week.
             </p>
           </motion.div>
 
           {/* Agile */}
           <motion.div
             className="flex flex-col items-center text-center"
-            initial={{ x: 80, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
+            initial={{ y: 24, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ ...springEntry, delay: 0.15 }}
           >
             <div
@@ -114,7 +115,7 @@ export default function Process() {
                   inView
                     ? {
                         y: [0, -5, 0, -3, 0],
-                        color: ["#111111", "#18aeb4", "#111111"],
+                        color: ["#111111", "#d75f38", "#111111"],
                       }
                     : {}
                 }
@@ -134,22 +135,23 @@ export default function Process() {
               className="font-bold text-black mb-2"
               style={{ fontSize: "17px", lineHeight: 1.2 }}
             >
-              Agile Development
+              Build in Short Sprints
             </h3>
             <p
               className="text-gray-500"
               style={{ fontSize: "14px", lineHeight: 1.6 }}
             >
-              Our full-stack team builds your solution using scalable code,
-              running rigorous tests at every sprint.
+              We build in tight sprints and keep you updated throughout, so
+              there are no surprises at the end. Typical MVPs land in four to
+              eight weeks depending on scope.
             </p>
           </motion.div>
 
           {/* Launch */}
           <motion.div
             className="flex flex-col items-center text-center"
-            initial={{ x: 80, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
+            initial={{ y: 24, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ ...springEntry, delay: 0.3 }}
           >
             <div
@@ -163,7 +165,7 @@ export default function Process() {
                     ? {
                         y: [0, -10, -2, -8, 0],
                         rotate: [0, 8, -4, 6, 0],
-                        color: ["#111111", "#18aeb4", "#111111"],
+                        color: ["#111111", "#d75f38", "#111111"],
                       }
                     : {}
                 }
@@ -183,14 +185,15 @@ export default function Process() {
               className="font-bold text-black mb-2"
               style={{ fontSize: "17px", lineHeight: 1.2 }}
             >
-              Launch & Scale
+              Launch & Support
             </h3>
             <p
               className="text-gray-500"
               style={{ fontSize: "14px", lineHeight: 1.6 }}
             >
-              We handle deployment and provide ongoing support to help you grow
-              your user base.
+              We deploy it, then stay on through a revision period until you
+              are satisfied. Many clients keep us on retainer afterwards for
+              new features and maintenance.
             </p>
           </motion.div>
         </div>
@@ -206,7 +209,7 @@ export default function Process() {
             className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full pl-6 pr-2 py-2 font-semibold hover:bg-gray-700 transition-colors duration-200"
             style={{ fontSize: "15px" }}
           >
-            Book a 15-min call
+            Book a free 15-min call
             <span className="flex items-center justify-center bg-white text-gray-900 rounded-full w-8 h-8">
               <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
                 <path
