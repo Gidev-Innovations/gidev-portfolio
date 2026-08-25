@@ -5,7 +5,7 @@ import {
   useTransform,
   MotionValue,
 } from "framer-motion";
-import { lenis } from "../main";
+import { getLenis } from "../lib/lenis";
 
 // ─── Replace with your real project images when ready ───────────────────────
 const IMAGES = Array.from(
@@ -128,8 +128,9 @@ export default function ParallaxGallery() {
       const p = Math.min(Math.max((scroll - sectionTop) / SCROLL_BUDGET, 0), 1);
       progress.set(p);
     };
-    lenis.on("scroll", onScroll);
-    return () => lenis.off("scroll", onScroll);
+    const lenis = getLenis();
+    lenis?.on("scroll", onScroll);
+    return () => lenis?.off("scroll", onScroll);
   }, [progress]);
 
   const half = TRAVEL / 2;
