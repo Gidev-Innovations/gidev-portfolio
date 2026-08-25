@@ -98,6 +98,33 @@ const serviceList = services.map((service, i) => ({
   img: serviceImages[i % serviceImages.length],
 }));
 
+/**
+ * Markets and jurisdictions.
+ *
+ * Only Nairobi is stated as fact, because it is the only one that can be
+ * backed up right now. Claiming delivery in markets we have not worked in
+ * would be the same category of invention as a fake testimonial.
+ *
+ * TODO [NEEDS REAL CONTENT]: replace the second and third entries with real
+ * markets once there is delivered work to point to, and say what was
+ * actually done there. Remove any entry that stays unfilled rather than
+ * shipping a placeholder to production.
+ */
+const markets = [
+  {
+    place: "Nairobi, Kenya",
+    note: "Our home base. Where the studio is registered and where the team works from.",
+  },
+  {
+    place: "[NEEDS REAL CONTENT]",
+    note: "Second market — name the country and what was delivered there.",
+  },
+  {
+    place: "[NEEDS REAL CONTENT]",
+    note: "Third market — name the country and what was delivered there.",
+  },
+];
+
 const values = [
   {
     num: "01",
@@ -106,8 +133,8 @@ const values = [
   },
   {
     num: "02",
-    title: "Quality that competes globally",
-    body: "We hold our work to a standard that has no geography. Whether a client is in Nairobi or New York, the code is clean, the design is sharp, and the delivery is real.",
+    title: "Built for the conditions we build in",
+    body: "We test on mid-range Android phones and slow connections because that is what our users have. Software that only works on fast hardware and fast internet is software that excludes most of the continent.",
   },
   {
     num: "03",
@@ -185,7 +212,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="border-t-2 border-teal-400 pt-8">
+          <div className="border-t-2 border-clay-500 pt-8">
             <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-4">
               Vision
             </p>
@@ -195,10 +222,49 @@ export default function About() {
             </h2>
             <p className="text-gray-500 text-base leading-relaxed">
               We are not just building software. We are building a studio where
-              talented developers grow into world-class builders, where every
-              client engagement raises the bar, and where the products we ship
-              become proof that exceptional technology is made here too.
+              developers here grow into the engineers other teams want to hire,
+              and where the products we ship are the argument that serious
+              technology is built on this continent, for this continent.
             </p>
+          </div>
+        </motion.div>
+
+        {/* ══ 2b. WHERE WE WORK ══════════════════════════════════ */}
+        <motion.div
+          className="mb-24"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          <div
+            className="rounded-3xl px-8 md:px-12 py-10 gidev-surface-dots"
+            style={{
+              backgroundColor: "var(--color-spring-wood-50)",
+              borderRadius: "28px",
+            }}
+          >
+            <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-5">
+              Where we work
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {markets.map((market) => (
+                <div key={market.place}>
+                  <div
+                    className="gidev-band mb-4"
+                    style={{ height: "8px", width: "42px" }}
+                    aria-hidden="true"
+                  />
+                  <p className="font-bold text-gray-950 mb-1.5">
+                    {market.place}
+                  </p>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {market.note}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -220,7 +286,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {values.map((v) => (
               <div key={v.num}>
-                <p className="text-xs font-mono text-teal-400 tracking-widest mb-4">
+                <p className="text-xs font-mono text-clay-600 tracking-widest mb-4">
                   {v.num}
                 </p>
                 <h3 className="text-lg font-bold text-gray-950 mb-3 leading-snug">

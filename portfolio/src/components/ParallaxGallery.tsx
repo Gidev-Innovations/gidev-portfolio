@@ -7,7 +7,11 @@ import {
 } from "framer-motion";
 import { getLenis } from "../lib/lenis";
 
-// ─── Replace with your real project images when ready ───────────────────────
+// ─── TODO [NEEDS REAL CONTENT] ──────────────────────────────────────────────
+// These 12 images are random picsum.photos placeholders, not Gidev work. This
+// gallery sits directly under the homepage services heading, so it is the most
+// prominent imagery on the site — replace with screenshots of shipped products
+// or real photography of the team before launch.
 const IMAGES = Array.from(
   { length: 12 },
   (_, i) => `https://picsum.photos/seed/${i + 10}/600/800`,

@@ -83,7 +83,7 @@ const Services = () => {
                 >
                     <h1 className="xl:text-[64px] md:text-heading-3  text-center lg:text-start text-2xl mx-auto w-3/4  font-bold  leading-none text-black">
                         Powering Digital <span
-                        className="bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text  text-transparent">Transformations</span> Across
+                        className="bg-linear-to-r from-clay-600 to-ochre-500 bg-clip-text  text-transparent">Transformations</span> Across
                         Africa
                     </h1>
                 </motion.header>
@@ -94,12 +94,18 @@ const Services = () => {
                                whileInView="show"
                                variants={headerContainerVariantRight}
                 >
+                    {/*
+                      TODO [NEEDS REAL CONTENT]: these are Unsplash stock photos and
+                      all four previously pointed at the same image. Replace with real
+                      photography of the team or screenshots of shipped work.
+                    */}
                     <div className="grid grid-cols-3 gap-4">
                         {/* Top Left Image - spans 1 column */}
                         <div className="col-span-1 row-span-2">
                             <img
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop"
-                                alt="Team collaboration with books"
+                                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=600&fit=crop"
+                                alt="Developers working together on a software project"
+                                loading="lazy"
                                 className="w-full md:h-64 h-32 object-cover rounded-2xl"
                             />
                         </div>
@@ -107,8 +113,9 @@ const Services = () => {
                         {/* Top Right Image - spans 2 columns */}
                         <div className="col-span-2">
                             <img
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=300&fit=crop"
-                                alt="Whiteboard planning"
+                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=300&fit=crop"
+                                alt="Developer writing code on a laptop"
+                                loading="lazy"
                                 className="w-full md:h-64 h-32 object-cover rounded-2xl"
                             />
                         </div>
@@ -116,8 +123,9 @@ const Services = () => {
                         {/* Bottom Left Image - spans 1 column */}
                         <div className="col-span-1">
                             <img
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop"
-                                alt="Handshake"
+                                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop"
+                                alt="Close-up of code on a screen"
+                                loading="lazy"
                                 className="w-full md:h-48 h-28 object-cover rounded-2xl"
                             />
                         </div>
@@ -125,8 +133,9 @@ const Services = () => {
                         {/* Bottom Right Image - spans 2 columns */}
                         <div className="col-span-1">
                             <img
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=300&fit=crop"
-                                alt="Team meeting"
+                                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=300&fit=crop"
+                                alt="Team planning session around a table"
+                                loading="lazy"
                                 className="w-full md:h-48 h-28 object-cover rounded-2xl"
                             />
                         </div>

@@ -40,6 +40,12 @@ export default function ServiceDetail({ service }: { service: Service }) {
           {service.name}
         </h1>
 
+        <div
+          className="gidev-band-tri mx-auto mb-6"
+          style={{ height: "9px", width: "84px" }}
+          aria-hidden="true"
+        />
+
         <p
           className="text-gray-500 mx-auto"
           style={{ fontSize: "17px", lineHeight: 1.65, maxWidth: "580px" }}
@@ -73,7 +79,7 @@ export default function ServiceDetail({ service }: { service: Service }) {
             </p>
           </div>
 
-          <div className="border-t-2 border-teal-400 pt-8">
+          <div className="border-t-2 border-clay-500 pt-8">
             <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mb-6">
               What's included
             </p>
@@ -88,7 +94,7 @@ export default function ServiceDetail({ service }: { service: Service }) {
                       backgroundColor: "var(--color-spring-wood-100)",
                     }}
                   >
-                    <Check size={12} strokeWidth={2.4} className="text-teal-500" aria-hidden="true" />
+                    <Check size={12} strokeWidth={2.4} className="text-clay-600" aria-hidden="true" />
                   </span>
                   <span className="text-gray-600 text-[15px] leading-relaxed">
                     {item}

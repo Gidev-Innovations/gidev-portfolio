@@ -13,7 +13,7 @@ export default function Process() {
   return (
     <section className="bg-white px-8 py-8">
       <div
-        className="mx-auto rounded-3xl px-14 py-20 text-center"
+        className="mx-auto rounded-3xl px-14 py-20 text-center gidev-surface-dots"
         style={{
           maxWidth: "900px",
           backgroundColor: "var(--color-spring-wood-50)",
@@ -66,7 +66,7 @@ export default function Process() {
                   inView
                     ? {
                         rotate: [0, -15, 15, -10, 10, 0],
-                        color: ["#111111", "#18aeb4", "#111111"],
+                        color: ["#111111", "#d75f38", "#111111"],
                       }
                     : {}
                 }
@@ -115,7 +115,7 @@ export default function Process() {
                   inView
                     ? {
                         y: [0, -5, 0, -3, 0],
-                        color: ["#111111", "#18aeb4", "#111111"],
+                        color: ["#111111", "#d75f38", "#111111"],
                       }
                     : {}
                 }
@@ -165,7 +165,7 @@ export default function Process() {
                     ? {
                         y: [0, -10, -2, -8, 0],
                         rotate: [0, 8, -4, 6, 0],
-                        color: ["#111111", "#18aeb4", "#111111"],
+                        color: ["#111111", "#d75f38", "#111111"],
                       }
                     : {}
                 }

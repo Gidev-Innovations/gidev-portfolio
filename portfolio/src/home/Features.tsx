@@ -157,7 +157,7 @@ export default function Features() {
                 style={{ display: "flex", color: "#111" }}
                 animate={
                   inView
-                    ? { ...anim, color: ["#111111", "#18aeb4", "#111111"] }
+                    ? { ...anim, color: ["#111111", "#d75f38", "#111111"] }
                     : {}
                 }
                 transition={transition}
