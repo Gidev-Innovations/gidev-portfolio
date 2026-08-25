@@ -16,16 +16,16 @@ export default function HomeProjects() {
 
   return (
     <section className="bg-white py-16">
-      <div className="gidev-stage">
+      <div className="gidev-stage text-center">
       {/* Label */}
-      <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 mb-3">
+      <div className="flex items-center justify-center gap-2 text-gray-500 mb-3">
         <Settings size={13} strokeWidth={1.5} />
         <span style={{ fontSize: "13px" }}>Projects</span>
       </div>
 
       {/* Heading */}
       <h2
-        className="font-black text-black mx-auto md:mx-0 mb-3 text-center md:text-left"
+        className="font-black text-black mx-auto mb-3"
         style={{
           fontSize: "clamp(28px, 4vw, 52px)",
           lineHeight: 1.05,
@@ -37,7 +37,7 @@ export default function HomeProjects() {
       </h2>
 
       <p
-        className="text-gray-500 mx-auto md:mx-0 mb-12 text-center md:text-left"
+        className="text-gray-500 mx-auto mb-12"
         style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "420px" }}
       >
         The problem each client came with, and what we built to solve it.

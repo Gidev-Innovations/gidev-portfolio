@@ -100,16 +100,16 @@ export default function Features() {
 
   return (
     <section className="bg-white py-16">
-      <div className="mx-auto px-8 text-center md:text-left" style={{ maxWidth: "820px" }}>
+      <div className="mx-auto px-8 text-center" style={{ maxWidth: "820px" }}>
       {/* Label */}
-      <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 mb-3">
+      <div className="flex items-center justify-center gap-2 text-gray-500 mb-3">
         <Settings size={13} strokeWidth={1.5} />
         <span style={{ fontSize: "13px" }}>Features</span>
       </div>
 
       {/* Heading */}
       <h2
-        className="font-black text-black mx-auto md:mx-0 mb-3"
+        className="font-black text-black mx-auto mb-3"
         style={{
           fontSize: "clamp(32px, 4.5vw, 56px)",
           lineHeight: 1.05,
@@ -121,7 +121,7 @@ export default function Features() {
       </h2>
 
       <p
-        className="text-gray-500 mx-auto md:mx-0 mb-12"
+        className="text-gray-500 mx-auto mb-12"
         style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "400px" }}
       >
         The practical things that tend to matter once a project is underway.

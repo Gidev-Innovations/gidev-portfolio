@@ -13,7 +13,7 @@ export default function Process() {
   return (
     <section className="bg-white px-8 py-8">
       <div
-        className="mx-auto rounded-3xl px-6 md:px-14 py-16 md:py-20 text-center md:text-left gidev-surface-dots"
+        className="mx-auto rounded-3xl px-6 md:px-14 py-16 md:py-20 text-center gidev-surface-dots"
         style={{
           maxWidth: "900px",
           backgroundColor: "var(--color-spring-wood-50)",
@@ -22,7 +22,7 @@ export default function Process() {
         }}
       >
         {/* Label */}
-        <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 mb-3">
+        <div className="flex items-center justify-center gap-2 text-gray-500 mb-3">
           <Settings size={13} strokeWidth={1.5} />
           <span style={{ fontSize: "13px" }}>Process</span>
         </div>
@@ -40,7 +40,7 @@ export default function Process() {
         </h2>
 
         <p
-          className="text-gray-500 max-w-md mx-auto md:mx-0 mb-16"
+          className="text-gray-500 max-w-md mx-auto mb-16"
           style={{ fontSize: "15px", lineHeight: 1.6 }}
         >
           Three stages, and you know what is happening at every point. Most
