@@ -44,13 +44,25 @@ async function findPrerenderedRoutes(dir, base = "") {
   return found;
 }
 
+/**
+ * Priority/changefreq for pages not in the static route table — the
+ * data-driven detail pages. Service pages rank above case studies and posts
+ * because they carry the commercial search intent.
+ */
+function defaultsFor(path) {
+  if (path.startsWith("/services/")) return { priority: "0.8", changefreq: "monthly" };
+  if (path.startsWith("/projects/")) return { priority: "0.7", changefreq: "monthly" };
+  if (path.startsWith("/blog/")) return { priority: "0.5", changefreq: "yearly" };
+  return { priority: "0.5", changefreq: "monthly" };
+}
+
 function buildSitemap(siteUrl, routes, meta) {
   const today = new Date().toISOString().split("T")[0];
 
   const entries = routes
     .sort((a, b) => a.localeCompare(b))
     .map((path) => {
-      const { priority = "0.5", changefreq = "monthly" } = meta.get(path) ?? {};
+      const { priority, changefreq } = meta.get(path) ?? defaultsFor(path);
       const loc = path === "/" ? `${siteUrl}/` : `${siteUrl}${path}`;
 
       return [
