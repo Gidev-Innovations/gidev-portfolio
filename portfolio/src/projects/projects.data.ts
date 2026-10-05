@@ -1,5 +1,6 @@
 import m5 from "./images/R-Flex.png";
 import kibandaski from "./images/kibandaski.jpg";
+import stickyDay from "./images/sticky-day.webp";
 
 /**
  * Case studies, not portfolio entries.
@@ -81,6 +82,34 @@ export const projects: CaseStudy[] = [
     ],
     liveUrl: "https://kibandaski.gidevtech.com/",
     repoUrl: "https://github.com/Josekariz/kibandaski-finder",
+  },
+  {
+    slug: "sticky-day",
+    title: "Sticky Day",
+    client: "Gidev Innovations (own product, open source)",
+    sector: "Personal productivity",
+    year: "2026",
+    image: stickyDay,
+    summary:
+      "A whiteboard for your day: type what you want to get done, AI turns it into sticky notes, and at the end of the day the app writes you a short note about how it went.",
+    problem:
+      "Most planners ask you to structure your day before you've thought about it — fields, priorities, due dates — and then report on it like a manager. People who think in sentences, not forms, end up with a to-do app they stop opening. There was also no low-cost way to learn what it takes to run a real AI feature in production: prompt design, model fallback, cost caps, privacy.",
+    whatWeDid:
+      "We built Sticky Day as a single-page board: one text box takes a plain-language brain dump and a language model splits it into notes with a rough time and energy level; notes are dragged to a clipboard to work on with a timer, to a tray when done, or to a restorable bin. Unfinished notes roll over to tomorrow. At a time the user chooses, in their own timezone, the app writes an end-of-day page in a warm, non-corporate voice on a rotating theme, with no minutes or scores. Every model answer is validated against a schema before it touches anything; the app does its own arithmetic. Models run in a fallback chain across Gemini and Groq free tiers, with per-account daily caps, row-level security in Postgres, and a privacy page that states plainly what the providers' free-tier terms allow.",
+    outcome:
+      "Version 1 is live at sticky-day.vercel.app with Google sign-in and three pages — board, calendar, your day. The code is open source with a self-hosting guide, so anyone can run it on their own keys. It is in daily use by its author; no usage metrics are published yet.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "Postgres / RLS",
+      "Vercel AI SDK",
+      "Gemini / Groq",
+      "Tailwind",
+      "Framer Motion",
+    ],
+    liveUrl: "https://sticky-day.vercel.app",
+    repoUrl: "https://github.com/Josekariz/sticky-day",
   },
 ];
 
