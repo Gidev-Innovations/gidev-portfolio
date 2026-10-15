@@ -1,6 +1,5 @@
 import { Settings, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import ParallaxGallery from "../components/ParallaxGallery";
 import { services } from "../data/services";
 
 export default function HomeServices() {
@@ -15,7 +14,7 @@ export default function HomeServices() {
         </div>
 
         <h2
-          className="font-black text-black mx-auto mb-4"
+          className="font-bold text-black mx-auto mb-4"
           style={{
             fontSize: "clamp(40px, 6vw, 72px)",
             lineHeight: 1.05,
@@ -45,18 +44,18 @@ export default function HomeServices() {
             <Link
               key={service.slug}
               to={`/services/${service.slug}`}
-              className="group inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-gray-700 hover:text-black transition-colors duration-200"
+              className="group inline-flex min-h-11 items-center gap-1.5 rounded-full px-5 py-2.5 text-gray-700 hover:text-brand-dark transition-colors duration-200"
               style={{
                 fontSize: "14.5px",
-                backgroundColor: "var(--color-spring-wood-50)",
-                border: "1px solid var(--color-spring-wood-100)",
+                backgroundColor: "var(--color-brand-light)",
+                border: "1px solid var(--color-brand-border)",
               }}
             >
               {service.name}
               <ArrowUpRight
                 size={15}
                 strokeWidth={2}
-                className="text-teal-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="text-brand-dark transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
             </Link>
@@ -64,8 +63,6 @@ export default function HomeServices() {
         </nav>
         </div>
       </section>
-
-      <ParallaxGallery />
     </>
   );
 }

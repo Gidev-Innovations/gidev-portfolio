@@ -1,18 +1,13 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { Settings, Plus } from "lucide-react";
+import { Settings } from "lucide-react";
 import { faqs } from "../data/faqs";
+import FaqsItem from "../services/FaqsItem";
+import FaqSchema from "../seo/FaqSchema";
 
 export default function HomeFaq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggle = (i: number) => {
-    setOpenIndex(openIndex === i ? null : i);
-  };
-
   return (
     <section className="bg-white py-16">
-      <div className="mx-auto px-8 text-center" style={{ maxWidth: "760px" }}>
+      <FaqSchema faqs={faqs} />
+      <div className="mx-auto px-6 sm:px-8 text-center" style={{ maxWidth: "760px" }}>
       {/* Label */}
       <div className="flex items-center justify-center gap-2 text-gray-500 mb-3">
         <Settings size={13} strokeWidth={1.5} />
@@ -21,7 +16,7 @@ export default function HomeFaq() {
 
       {/* Heading */}
       <h2
-        className="font-black text-black mx-auto mb-3"
+        className="font-bold text-black mx-auto mb-3"
         style={{
           fontSize: "clamp(32px, 5vw, 62px)",
           lineHeight: 1.05,
@@ -39,62 +34,10 @@ export default function HomeFaq() {
         Everything you need to know before we start building together.
       </p>
 
-      {/* Accordion */}
       <div className="flex flex-col gap-3">
-        {faqs.map((faq, i) => {
-          const isOpen = openIndex === i;
-          return (
-            <div
-              key={i}
-              className="rounded-2xl text-left overflow-hidden cursor-pointer"
-              style={{
-                backgroundColor: "var(--color-spring-wood-50)",
-                border: "1px solid var(--color-spring-wood-100)",
-              }}
-              onClick={() => toggle(i)}
-            >
-              <div className="flex items-center justify-between px-7 py-5">
-                <span
-                  className="text-black"
-                  style={{
-                    fontSize: "15px",
-                    fontWeight: 500,
-                    lineHeight: 1.4,
-                    paddingRight: "24px",
-                  }}
-                >
-                  {faq.question}
-                </span>
-                <motion.div
-                  animate={{ rotate: isOpen ? 45 : 0 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  className="flex-shrink-0"
-                >
-                  <Plus size={18} strokeWidth={1.8} className="text-gray-500" />
-                </motion.div>
-              </div>
-
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 120, damping: 22 }}
-                    style={{ overflow: "hidden" }}
-                  >
-                    <p
-                      className="text-gray-500 px-7 pb-6"
-                      style={{ fontSize: "14px", lineHeight: 1.8 }}
-                    >
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          );
-        })}
+        {faqs.map((faq) => (
+          <FaqsItem key={faq.question} question={faq.question} answer={faq.answer} />
+        ))}
       </div>
       </div>
     </section>

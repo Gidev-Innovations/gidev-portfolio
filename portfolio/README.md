@@ -1,73 +1,27 @@
-# React + TypeScript + Vite
+# gidevtech.com
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing site for Gidev Innovations. React Router 7 (framework mode, `ssr: false`)
+pre-renders every route to static HTML; Cloudflare Workers serves `build/client`
+as static assets (`wrangler.jsonc`).
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Dev server with HMR. |
+| `npm run build` | Type-check, pre-render all routes, write `sitemap.xml`, `robots.txt` and `404.html`. |
+| `npm run preview` | Serve `build/client` on port 4173 the way Cloudflare does (trailing-slash redirect, compression). |
+| `npm run lint` | ESLint. |
+| `npm run validate:seo` | Check titles, descriptions, canonicals and JSON-LD in the built HTML. |
+| `npm run test:responsive` | Build, then run the Playwright suite in `tests/` (layout at 320–1920px, routing). |
+| `npm run images` | Regenerate `public/img/` and the OG cards from `images-src/` and the logo kit. |
+| `npm run fonts` | Rebuild the subset `.woff2` fonts from the `.woff` sources in `src/assets/fonts/`. |
+| `npm run deploy` | Upload a new Worker version (needs `wrangler`). |
 
-## React Compiler
+## Where things live
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Content: `src/data/` (site, services, FAQs, images), `src/blog/blogData.ts`, `src/projects/projects.data.ts`.
+- SEO helpers: `src/seo/`.
+- Brand assets: `src/assets/gidev-logo-kit/` (see its README).
+- Audit record: `audits/` (start with `audits/CHANGELOG.md`) and `seo/`.
+- Open items: search for `TODO(human)`.

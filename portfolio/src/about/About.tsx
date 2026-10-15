@@ -1,44 +1,10 @@
 import { useState } from "react";
-import { motion, type Variants } from "framer-motion";
+import Reveal from "../components/Reveal";
 import { Link } from "react-router-dom";
 import { services } from "../data/services";
 import { imagery } from "../data/imagery";
+import ResponsiveImage from "../components/ResponsiveImage";
 
-/* ─── ease curve ──────────────────────────────────────────── */
-const ease = [0.16, 1, 0.3, 1] as const;
-
-/* ─── variants ───────────────────────────────────────────── */
-const headerContainerVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.45, delayChildren: 0.1 } },
-};
-
-const titleVariant: Variants = {
-  hidden: { opacity: 0, y: 70 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.6, ease } },
-};
-
-const subtitleVariant: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.4, ease } },
-};
-
-const sectionVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.2, ease } },
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 35 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.0, ease } },
-};
-
-/* ── Team variants – kept for when team section is re-enabled
-const gridVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.13, delayChildren: 0.7 } },
-};
-*/
 
 /* ─── icons & shared UI ──────────────────────────────────── */
 const GearIcon = () => (
@@ -48,7 +14,8 @@ const GearIcon = () => (
     height="14"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="#888"
+    stroke="currentColor"
+    className="text-muted"
     strokeWidth="1.8"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -67,16 +34,6 @@ const SectionTag = ({ text }: { text: string }) => (
 
 /* ─── data ───────────────────────────────────────────────── */
 
-/* ── Team data – kept for when team section is re-enabled
-const team = [
-  { name: "Darlene Robertson", role: "CEO & Founder",   img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&q=80" },
-  { name: "Guy Hawkins",       role: "Project Manager", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80" },
-  { name: "Idrish Jan",        role: "Manager",         img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" },
-  { name: "Albert Flores",     role: "Motion Designer", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80" },
-  { name: "Labib Khan",        role: "Developer",       img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=80" },
-  { name: "Kathryn Murphy",    role: "Studio Manager",  img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&q=80" },
-];
-*/
 
 /**
  * Derived from the shared service list so this page can't drift out of sync
@@ -87,7 +44,7 @@ const serviceList = services.map((service, i) => ({
   label: service.name.toUpperCase(),
   slug: service.slug,
   num: String(i + 1).padStart(3, "0"),
-  img: service.image.src,
+  img: service.image.name,
   alt: service.image.alt,
 }));
 
@@ -134,50 +91,39 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white mt-10 md:mt-14">
       {/* ══ 1. HERO ══════════════════════════════════════════════ */}
-      <motion.header
-        className="pt-20 pb-0 text-center"
-        variants={headerContainerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        <motion.h1
-          variants={titleVariant}
-          className="gidev-copy text-4xl md:text-6xl font-OutfitMedium tracking-tight text-gray-950"
+      <header className="pt-20 pb-0 text-center">
+        <h1
+          className="gidev-copy text-4xl md:text-6xl font-medium tracking-tight text-gray-950"
         >
-          We build great products
+          We build great products{" "}
           <br />
           and each other.
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          variants={subtitleVariant}
+        <p
           className="gidev-copy mt-4 text-gray-500 text-base max-w-lg mx-auto leading-relaxed"
         >
           Gidev Innovations is a lean team of developers, designers, and
           builders on a mission to connect African businesses to the internet,
           to AI, and to what is actually possible when technology is done right.
-        </motion.p>
+        </p>
 
-        <motion.div variants={subtitleVariant} className="gidev-stage mt-16">
-          <div className="overflow-hidden rounded-2xl aspect-[21/9] min-h-[280px] md:min-h-[55vh]">
-            <img
-              src={imagery.africanProfessional.src}
-              alt={imagery.africanProfessional.alt}
+        <div className="gidev-stage mt-16">
+          <div className="overflow-hidden rounded-2xl aspect-[4/3] md:aspect-[21/9]">
+            <ResponsiveImage
+              name={imagery.womanCity.name}
+              alt={imagery.womanCity.alt}
+              sizes="(min-width: 1280px) 1200px, 100vw"
               className="w-full h-full object-cover"
+              priority
             />
           </div>
-        </motion.div>
-      </motion.header>
+        </div>
+      </header>
 
       {/* ══ 2. MISSION & VISION ══════════════════════════════════ */}
       <div className="max-w-[1100px] mx-auto px-8 mt-28">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+        <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
           <div className="border-t-2 border-gray-950 pt-8">
             <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-4">
               Mission
@@ -194,7 +140,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="border-t-2 border-clay-500 pt-8">
+          <div className="border-t-2 border-brand pt-8">
             <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-4">
               Vision
             </p>
@@ -209,20 +155,14 @@ export default function About() {
               technology is built on this continent, for this continent.
             </p>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* ══ 2b. WHERE WE WORK ══════════════════════════════════ */}
-        <motion.div
-          className="mb-24"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+        <Reveal className="mb-24">
           <div
             className="rounded-3xl px-8 md:px-12 py-10 gidev-surface-dots"
             style={{
-              backgroundColor: "var(--color-spring-wood-50)",
+              backgroundColor: "var(--color-brand-light)",
               borderRadius: "28px",
             }}
           >
@@ -248,16 +188,10 @@ export default function About() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* ══ 3. VALUES ══════════════════════════════════════════ */}
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="mb-28"
-        >
+        <Reveal className="mb-28">
           <div className="text-center mb-14">
             <SectionTag text="How We Work" />
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-950">
@@ -268,7 +202,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {values.map((v) => (
               <div key={v.num}>
-                <p className="text-xs font-mono text-clay-600 tracking-widest mb-4">
+                <p className="text-xs font-mono text-brand-dark tracking-widest mb-4">
                   {v.num}
                 </p>
                 <h3 className="text-lg font-bold text-gray-950 mb-3 leading-snug">
@@ -280,59 +214,13 @@ export default function About() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
       </div>
 
-      {/* ══ 4. TEAM – uncomment to re-enable ════════════════════
-      <div className="max-w-[1400px] mx-auto px-8">
-        <motion.div
-          className="pt-28 pb-14 text-center"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          <SectionTag text="Get To Know" />
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-950 mb-4">Our Team</h2>
-          <p className="text-gray-500 text-base max-w-md mx-auto leading-relaxed">
-            Our team is a powerhouse of creativity and precision.
-          </p>
-        </motion.div>
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-        >
-          {team.map((member) => (
-            <motion.div key={member.name} variants={cardVariants}>
-              <div className="overflow-hidden rounded-2xl aspect-[3/4] bg-gray-100">
-                <motion.img
-                  src={member.img}
-                  alt={member.name}
-                  className="w-full h-full object-cover object-top"
-                  whileHover={{ scale: 1.04 }}
-                  transition={{ duration: 1.0, ease }}
-                />
-              </div>
-              <p className="mt-4 text-[15px] font-bold text-gray-900 leading-snug">{member.name}</p>
-              <p className="mt-0.5 text-sm text-gray-500">{member.role}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-      ══════════════════════════════════════════════════════════ */}
 
       {/* ══ 5. SERVICES ══════════════════════════════════════════ */}
-      <main className="gidev-stage pb-28">
-        <motion.div
-          className="pt-4"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+      <section className="gidev-stage pb-28">
+        <Reveal className="pt-4">
           <div className="pb-14 text-center">
             <SectionTag text="Core" />
             <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-950 mb-4">
@@ -350,66 +238,59 @@ export default function About() {
               {serviceList.map((s, i) => {
                 const active = activeService === i;
                 return (
-                  <motion.div
+                  <div
                     key={s.num}
                     onMouseEnter={() => setActiveService(i)}
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.07 }}
-                    className="cursor-pointer"
+                    onFocus={() => setActiveService(i)}
                   >
                     <Link
                       to={`/services/${s.slug}`}
                       className="flex items-center justify-between py-5 transition-colors duration-200"
                       style={{
                         borderBottom: active
-                          ? "2.5px solid #d75f38"
-                          : "1px solid #e5e7eb",
+                          ? "2.5px solid var(--color-brand)"
+                          : "1px solid var(--color-gray-200)",
                       }}
                     >
                       <span
                         className="font-bold tracking-tight transition-colors duration-200"
                         style={{
                           fontSize: "clamp(24px, 4vw, 46px)",
-                          color: active ? "#030712" : "#b0b0b0",
+                          color: active ? "var(--color-ink)" : "var(--color-muted)",
                         }}
                       >
                         {s.label}
                       </span>
                       <span
                         className="font-mono text-sm transition-colors duration-200"
-                        style={{ color: active ? "#6b7280" : "#d1d5db" }}
+                        style={{ color: active ? "var(--color-muted)" : "var(--color-gray-300)" }}
                       >
                         {s.num}
                       </span>
                     </Link>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
 
             <div className="hidden md:block flex-shrink-0 sticky top-24 w-[290px]">
-              <motion.div
-                key={activeService}
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.35, ease }}
+              <div
                 className="rounded-2xl overflow-hidden bg-gray-100"
                 style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
               >
-                <img
-                  src={serviceList[activeService].img}
-                  alt={serviceList[activeService].alt}
-                  className="w-full object-cover"
-                  style={{ height: 220 }}
-                />
-              </motion.div>
+                <div style={{ height: 220 }}>
+                  <ResponsiveImage
+                    name={serviceList[activeService].img}
+                    alt={serviceList[activeService].alt}
+                    sizes="(min-width: 1024px) 400px, 90vw"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
-      </main>
+        </Reveal>
+      </section>
     </div>
   );
 }

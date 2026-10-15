@@ -1,17 +1,17 @@
 import type { MetaArgs } from "react-router";
 import ProjectDetails from "../projects/ProjectDetails";
-import { caseStudyBySlug } from "../projects/projects.data";
+import { projectBySlug } from "../projects/projects.data";
 import { buildMeta } from "../seo/meta";
 import { SITE } from "../data/site";
 
 export const meta = ({ params }: MetaArgs) => {
-  const project = caseStudyBySlug(params.slug ?? "");
+  const project = projectBySlug(params.slug ?? "");
 
   if (!project) {
     return [
       ...buildMeta(`/projects/${params.slug}`, {
         title: `Project not found | ${SITE.name}`,
-        description: "This case study could not be found.",
+        description: "This project could not be found.",
       }),
       { name: "robots", content: "noindex, follow" },
     ];
@@ -20,6 +20,7 @@ export const meta = ({ params }: MetaArgs) => {
   return buildMeta(`/projects/${project.slug}`, {
     title: `${project.title} — ${project.sector} | ${SITE.name}`,
     description: project.summary,
+    type: "article",
   });
 };
 

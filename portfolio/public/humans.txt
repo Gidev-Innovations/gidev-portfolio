@@ -1,0 +1,11 @@
+/* TEAM */
+Founder: Joseph Macharia
+Location: Nairobi, Kenya
+
+/* SITE */
+Built by: Gidev Innovations
+Language: English
+Standards: HTML, CSS, WCAG 2.2 AA
+Components: React, React Router, Tailwind CSS, Vite
+Typeface: Outfit
+Hosting: Cloudflare

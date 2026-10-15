@@ -1,10 +1,25 @@
+import type { ReactNode } from "react"
 import { useParams, Link } from "react-router-dom"
-import { caseStudyBySlug } from "./projects.data"
+import { projectBySlug } from "./projects.data"
+import JsonLd from "../seo/JsonLd"
+import ResponsiveImage from "../components/ResponsiveImage"
+import { breadcrumbSchema } from "../seo/schema"
+
+const labelClass = "text-xs font-mono text-gray-500 tracking-widest uppercase mb-3"
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="border-t border-gray-200 pt-8 mt-12">
+      <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+      {children}
+    </section>
+  )
+}
 
 function ProjectDetails() {
   const { slug } = useParams<{ slug: string }>()
 
-  const project = caseStudyBySlug(slug ?? "")
+  const project = projectBySlug(slug ?? "")
 
   if (!project) {
     return (
@@ -15,13 +30,19 @@ function ProjectDetails() {
   }
 
   return (
-    <section className="pt-24 pb-16 bg-white md:mt-12">
-      <div className="gidev-copy text-center md:text-left">
+    <article className="pt-24 pb-16 bg-white md:mt-12">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Work", path: "/projects" },
+          { name: project.title, path: `/projects/${project.slug}` },
+        ])}
+      />
 
-        {/* Title */}
-        <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">
-          {project.sector}
-        </p>
+      <header className="gidev-copy text-center md:text-left">
+        <span className="inline-block rounded-full border border-brand-border bg-brand-light px-2.5 py-0.5 text-xs font-medium text-brand-dark mb-3">
+          {project.kind}
+        </span>
 
         <h1 className="text-4xl font-bold mb-6">
           {project.title}
@@ -38,7 +59,7 @@ function ProjectDetails() {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-5 py-2.5 rounded-full bg-black text-white text-sm hover:text-cyan-400 transition"
+                className="inline-flex min-h-11 items-center px-5 py-2.5 rounded-full bg-black text-white text-sm hover:bg-brand-dark transition"
               >
                 View live
               </a>
@@ -48,109 +69,122 @@ function ProjectDetails() {
                 href={project.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-5 py-2.5 rounded-full border border-gray-300 text-gray-900 text-sm hover:border-cyan-400 hover:text-cyan-400 transition"
+                className="inline-flex min-h-11 items-center px-5 py-2.5 rounded-full border border-gray-300 text-gray-900 text-sm hover:border-brand-dark hover:text-brand-dark transition"
               >
                 GitHub
               </a>
             )}
           </div>
         )}
+      </header>
 
-      </div>
-
-        {/* Image — breaks out of the copy rail */}
-        <div className="gidev-stage mb-16">
-          <img
-            src={project.image}
-            alt={project.title}
-            loading="lazy"
-            className="w-full aspect-[16/9] object-cover rounded-2xl shadow-lg"
+      <div className="gidev-stage mb-4">
+        <div className="w-full aspect-[16/9] overflow-hidden rounded-2xl shadow-lg bg-brand-light">
+          <ResponsiveImage
+            name={project.image}
+            alt={project.imageAlt}
+            sizes="(min-width: 1600px) 1536px, 100vw"
+            priority
+            className="w-full h-full object-cover"
           />
         </div>
+      </div>
+
+      <div className="gidev-copy">
+        <Section title="Client">
+          <p className="text-gray-900 font-semibold">{project.client}</p>
+          <p className="text-gray-600 leading-relaxed mt-1">{project.clientDescription}</p>
+          <p className="text-gray-500 text-sm mt-2">
+            {project.sector} · {project.year}
+          </p>
+        </Section>
+
+        {project.problem && (
+          <Section title="The problem">
+            <p className="text-gray-600 leading-relaxed">{project.problem}</p>
+          </Section>
+        )}
+
+        <Section title="What we built">
+          <p className="text-gray-600 leading-relaxed">{project.whatWeDid}</p>
+          {project.features.length > 0 && (
+            <ul className="mt-4 list-disc pl-6 space-y-2 text-gray-600 leading-relaxed">
+              {project.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+          )}
+          {project.screenshots.length > 0 && (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {project.screenshots.map((shot) => (
+                <div key={shot.image} className="overflow-hidden rounded-xl shadow-md bg-brand-light">
+                  <ResponsiveImage
+                    name={shot.image}
+                    alt={shot.alt}
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="w-full h-auto"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </Section>
+
+        <Section title="Stack">
+          <ul className="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <li key={tech} className="rounded-full border border-gray-300 px-3 py-1 text-sm text-gray-700">
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        {project.outcome && (
+          <Section title="Result">
+            <p className="text-gray-600 leading-relaxed">{project.outcome}</p>
+          </Section>
+        )}
+
+        {project.quote && (
+          <figure className="mt-12 rounded-2xl border-l-4 border-brand bg-brand-light px-6 py-8 md:px-10">
+            <blockquote className="text-xl md:text-2xl text-gray-900 leading-snug">
+              “{project.quote.text}”
+            </blockquote>
+            <figcaption className={`${labelClass} mt-4 mb-0`}>{project.quote.attribution}</figcaption>
+          </figure>
+        )}
+      </div>
 
       <div className="gidev-stage">
-        {/* Meta strip */}
-        <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pb-12 border-b border-gray-200">
-          <div>
-            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
-              Client
-            </dt>
-            <dd className="text-gray-900 font-semibold">{project.client}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
-              Sector
-            </dt>
-            <dd className="text-gray-900 font-semibold">{project.sector}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
-              Year
-            </dt>
-            <dd className="text-gray-900 font-semibold">{project.year}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-2">
-              Stack
-            </dt>
-            <dd className="text-gray-900 font-semibold">
-              {project.technologies.join(", ")}
-            </dd>
-          </div>
-        </dl>
-
-        {/* Content Grid */}
-        <div className="grid md:grid-cols-2 gap-16">
-
-          {/* Left Column */}
-          <div className="border-t-2 border-gray-950 pt-8">
-            <h2 className="text-2xl font-semibold mb-4">
-              The problem
-            </h2>
-
-            <p className="text-gray-600 leading-relaxed">
-              {project.problem}
-            </p>
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-10">
-
-            <div className="border-t-2 border-teal-400 pt-8">
-              <h2 className="text-2xl font-semibold mb-4">
-                What we did
-              </h2>
-
-              <p className="text-gray-600 leading-relaxed">
-                {project.whatWeDid}
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-semibold mb-4">
-                Outcome
-              </h2>
-
-              <p className="text-gray-600 leading-relaxed">
-                {project.outcome}
-              </p>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Back Button */}
-        <div className="mt-16">
+        <div
+          className="mt-20 rounded-3xl px-8 md:px-14 py-12 text-center"
+          style={{ backgroundColor: "var(--color-brand-light)" }}
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-black mb-3">
+            Want something like this built?
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Tell us what you're working on. You'll get a straight answer on fit, timeline and cost.
+          </p>
           <Link
-            to="/projects"
-            className="inline-block px-6 py-3 rounded-full bg-black text-white hover:text-cyan-400 transition"
+            to="/contact"
+            className="inline-flex min-h-12 items-center rounded-full bg-gray-900 px-7 font-semibold text-white hover:bg-brand-dark transition-colors"
           >
-            ← Back to Projects
+            Get in touch
           </Link>
         </div>
 
+        <div className="mt-12">
+          <Link
+            to="/projects"
+            className="inline-flex min-h-11 items-center px-6 rounded-full border border-gray-300 text-gray-900 hover:border-brand-dark hover:text-brand-dark transition"
+          >
+            ← Back to Work
+          </Link>
+        </div>
       </div>
-    </section>
+    </article>
   )
 }
 

@@ -7,6 +7,9 @@
   "assets": {
     "directory": "./build/client",
     // Serves the generated 404.html for unknown paths (see scripts/generate-seo-files.mjs).
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Canonicals and the sitemap use /about, not /about/. The default
+    // (auto-trailing-slash) 307-redirects every page to the slash form.
+    "html_handling": "drop-trailing-slash"
   }
 }

@@ -5,28 +5,38 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
+  useLocation,
   useRouteError,
 } from "react-router";
 import type { LinksFunction } from "react-router";
-import { ArrowUpFromDot } from "lucide-react";
+import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
+import { ArrowUp } from "lucide-react";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import { scanReveals } from "./lib/reveal";
 import stylesheet from "./index.css?url";
+import outfitLight from "./assets/fonts/OUTFITLIGHT.woff2?url";
+import outfitSemibold from "./assets/fonts/OUTFITSEMIBOLD.woff2?url";
+import outfitBold from "./assets/fonts/OUTFITBOLD.woff2?url";
 
 export const links: LinksFunction = () => [
+  { rel: "preload", href: outfitLight, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+  { rel: "preload", href: outfitSemibold, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+  { rel: "preload", href: outfitBold, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
   { rel: "stylesheet", href: stylesheet },
-  { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
-  { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
-  { rel: "shortcut icon", href: "/favicon.ico" },
-  { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+  { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+  { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
   { rel: "manifest", href: "/site.webmanifest" },
+  { rel: "author", href: "/humans.txt" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="font-OutfitLight">
+    <html lang="en-KE" className="font-Outfit font-light">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,29 +60,52 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+function BackToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 800);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="relative">
-      <ScrollToTop />
-      <Navbar />
+    <button
+      type="button"
+      aria-label="Scroll back to top"
+      tabIndex={visible ? 0 : -1}
+      className={`fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-ink shadow-lg transition-opacity duration-200 cursor-pointer ${
+        visible ? "opacity-100" : "pointer-events-none opacity-0"
+      }`}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    >
+      <ArrowUp size={20} className="text-brand" aria-hidden="true" />
+    </button>
+  );
+}
 
-      <main id="main">
-        <Outlet />
-      </main>
+export default function App() {
+  const { pathname } = useLocation();
 
-      <Footer />
+  useEffect(() => {
+    scanReveals();
+  }, [pathname]);
 
-      <button
-        type="button"
-        aria-label="Scroll back to top"
-        className="animate-bounce absolute bottom-4 right-4 cursor-pointer"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <div className="h-8 w-8 rounded-full bg-secondary-950 flex items-center justify-center">
-          <ArrowUpFromDot color="#18aeb4" aria-hidden="true" />
-        </div>
-      </button>
-    </div>
+  return (
+    <MotionConfig reducedMotion="user">
+      <div className="relative">
+        <ScrollToTop />
+        <Navbar />
+
+        <main id="main">
+          <Outlet />
+        </main>
+
+        <Footer />
+        <BackToTop />
+      </div>
+    </MotionConfig>
   );
 }
 
@@ -95,7 +128,7 @@ export function ErrorBoundary() {
       <p className="text-gray-500 max-w-md">{message}</p>
       <a
         href="/"
-        className="mt-2 bg-gray-900 text-white rounded-full px-8 py-4 font-semibold hover:bg-gray-700 transition-colors duration-200"
+        className="mt-2 bg-gray-900 text-white rounded-full px-8 py-4 font-semibold hover:bg-brand-dark transition-colors duration-200"
       >
         Back to home
       </a>

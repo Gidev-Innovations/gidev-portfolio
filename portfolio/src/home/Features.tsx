@@ -10,8 +10,7 @@ import {
   Server,
   Shield,
 } from "lucide-react";
-
-const springEntry: Transition = { type: "spring", stiffness: 45, damping: 14 };
+import Reveal from "../components/Reveal";
 
 const features = [
   {
@@ -109,7 +108,7 @@ export default function Features() {
 
       {/* Heading */}
       <h2
-        className="font-black text-black mx-auto mb-3"
+        className="font-bold text-black mx-auto mb-3"
         style={{
           fontSize: "clamp(32px, 4.5vw, 56px)",
           lineHeight: 1.05,
@@ -133,16 +132,14 @@ export default function Features() {
         className="grid grid-cols-1 md:grid-cols-3 gap-4"
       >
         {features.map(({ Icon, title, description, anim, transition }, i) => (
-          <motion.div
+          <Reveal
             key={title}
             className="flex flex-col items-center text-center rounded-2xl px-6 py-8"
             style={{
-              backgroundColor: "var(--color-spring-wood-50)",
-              border: "1px solid var(--color-spring-wood-100)",
+              backgroundColor: "var(--color-brand-light)",
+              border: "1px solid var(--color-brand-border)",
             }}
-            initial={{ y: 60, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ ...springEntry, delay: i * 0.12 }}
+            delay={(i % 3) * 100}
           >
             {/* Icon box */}
             <div
@@ -154,10 +151,10 @@ export default function Features() {
               }}
             >
               <motion.div
-                style={{ display: "flex", color: "#111" }}
+                style={{ display: "flex", color: "var(--color-ink)" }}
                 animate={
                   inView
-                    ? { ...anim, color: ["#111111", "#d75f38", "#111111"] }
+                    ? { ...anim, color: ["var(--color-ink)", "var(--color-brand-dark)", "var(--color-ink)"] }
                     : {}
                 }
                 transition={transition}
@@ -178,7 +175,7 @@ export default function Features() {
             >
               {description}
             </p>
-          </motion.div>
+          </Reveal>
         ))}
       </div>
       </div>

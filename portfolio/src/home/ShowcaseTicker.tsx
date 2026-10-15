@@ -1,113 +1,73 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { showcaseImages } from "../data/imagery";
+import ResponsiveImage from "../components/ResponsiveImage";
 
-// TODO: Replace with real photography or screenshots of shipped Gidev work.
-const carouselImages = showcaseImages;
-
-// TODO: Replace with the names of real Gidev clients who have agreed to be
-// listed publicly. The previous entries were invented template brand names.
-// Leave this list empty rather than filling it with placeholder names — the
-// ticker hides itself when empty so we never imply clients we don't have.
-const companies: string[] = [];
-
+/**
+ * Slow image marquee under the hero. The track holds the set twice so the
+ * loop is seamless; the second copy is aria-hidden and not focusable.
+ * Stops entirely for prefers-reduced-motion and pauses while off screen.
+ */
 export default function ShowcaseTicker() {
+  const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef(0);
-  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    const section = sectionRef.current;
+    if (!track || !section) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const totalWidth = track.scrollWidth / 2;
+    let pos = 0;
+    let raf = 0;
+    let running = false;
 
-    const animate = () => {
-      posRef.current -= 0.5;
-      if (Math.abs(posRef.current) >= totalWidth) {
-        posRef.current = 0;
-      }
-      track.style.transform = `translateX(${posRef.current}px)`;
-      rafRef.current = requestAnimationFrame(animate);
+    const step = () => {
+      pos -= 0.5;
+      if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+      track.style.transform = `translateX(${pos}px)`;
+      raf = requestAnimationFrame(step);
     };
 
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) {
+        running = true;
+        raf = requestAnimationFrame(step);
+      } else if (!entry.isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(raf);
+      }
+    });
+    io.observe(section);
+
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
-    <>
-      <style>{`
-        @keyframes scroll-logos {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .logo-track {
-          display: flex;
-          align-items: center;
-          gap: 64px;
-          width: max-content;
-          animation: scroll-logos 20s linear infinite;
-        }
-        .logo-track:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      {/* Image carousel. overflow-hidden on the section, not just the inner
-          frame: wide cards otherwise expand document scrollWidth on
-          375px viewports. */}
-      <section className="bg-white pt-4 overflow-hidden">
-        <div className="gidev-stage overflow-hidden h-52 md:h-[min(62vh,560px)]">
-          <div
-            ref={trackRef}
-            className="flex h-full"
-            style={{ gap: "16px", width: "max-content" }}
-          >
-            {[...carouselImages, ...carouselImages].map((img, i) => (
+    <section ref={sectionRef} className="bg-white pt-4 overflow-hidden" aria-label="Our work in context">
+      <div className="gidev-stage overflow-hidden h-52 md:h-[min(62vh,560px)]">
+        <div ref={trackRef} className="flex h-full" style={{ gap: "16px", width: "max-content" }}>
+          {[0, 1].map((copy) =>
+            showcaseImages.map((img, i) => (
               <div
-                key={i}
-                className="flex-shrink-0 rounded-2xl overflow-hidden h-full w-[min(680px,calc(100vw-48px))] md:w-[min(72vw,920px)]"
+                key={`${copy}-${img.name}`}
+                aria-hidden={copy === 1 ? true : undefined}
+                className="flex-shrink-0 rounded-2xl overflow-hidden h-full w-[min(680px,calc(100vw-48px))] md:w-[min(72vw,920px)] bg-brand-light"
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  width={920}
-                  height={560}
-                  loading="lazy"
-                  decoding="async"
+                <ResponsiveImage
+                  name={img.name}
+                  alt={copy === 1 ? "" : img.alt}
+                  sizes="(min-width: 768px) min(72vw, 920px), calc(100vw - 48px)"
+                  priority={copy === 0 && i === 0}
                   className="w-full h-full object-cover"
                 />
               </div>
-            ))}
-          </div>
+            )),
+          )}
         </div>
-      </section>
-
-      {/* Logo Ticker */}
-      {companies.length > 0 && (
-        <section className="bg-white py-16 px-8">
-          <p
-            className="text-center text-gray-500 mb-10"
-            style={{ fontSize: "14px" }}
-          >
-            Teams we've built with
-          </p>
-
-          <div className="gidev-stage overflow-hidden">
-            <div className="logo-track">
-              {[...companies, ...companies].map((name, i) => (
-                <span
-                  key={i}
-                  className="flex-shrink-0 text-gray-300 font-bold tracking-tight select-none"
-                  style={{ fontSize: "22px", whiteSpace: "nowrap" }}
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-    </>
+      </div>
+    </section>
   );
 }

@@ -1,12 +1,9 @@
 import { StrictMode, startTransition } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { HydratedRouter } from "react-router/dom";
-import { getLenis } from "./lib/lenis";
 
-// Smooth scrolling is browser-only, so it is started here in the client entry
-// rather than at module scope where pre-rendering would execute it.
-getLenis();
-
+// Lenis is started by ScrollToTop's effect, after hydration: it adds a class
+// to <html>, which would otherwise mismatch the pre-rendered markup.
 startTransition(() => {
   hydrateRoot(
     document,

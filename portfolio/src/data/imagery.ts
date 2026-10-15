@@ -1,114 +1,53 @@
 /**
- * Mood photography used until we have our own shots of shipped work and
- * the studio. Chosen for East African urban and product-work contexts —
- * city, screens, phones, rooms — not textile motifs, wildlife, or
- * "Africa" clip art.
+ * Every photo on the site, by role. Sources live in images-src/ and are
+ * processed into public/img by `npm run images`; licences are recorded in
+ * images-src/CREDITS.md.
  *
- * People images under /public/mood are stock — not the Gidev team. Do not
- * write alt text that claims they are. Replace with real photography before
- * launch.
+ * Rules (see audits/CHANGELOG.md, Phase 2):
+ *   - People are Black African, in realistic contexts. No foreign skylines,
+ *     coffee-chain cups or server racks.
+ *   - Alt text describes what is actually in the frame. Do not claim a photo
+ *     shows Nairobi, a client, or the Gidev team unless it does.
  *
- * Testimonial avatars live in /mood/avatars and must stay out of
- * galleryImages / ShowcaseTicker so faces do not repeat across sections.
- *
- * Service-card photos reuse the unused project stills under
- * src/projects/images/ — higher-res product-in-hand shots than the mood
- * set. Still stock until real shipped-work screenshots replace them.
+ * TODO(human): the stock set is thin. Replace with commissioned photos of
+ * Kenyan businesses and the team (see images-src/CREDITS.md for the brief).
  */
+import type { ImageName } from "./images";
 
-import serviceDashboard from "../projects/images/m3.jpg";
-import serviceRetailTablet from "../projects/images/m2.jpg";
-import serviceMobileApp from "../projects/images/custom.jpg";
+export type Photo = { name: ImageName; alt: string };
 
 export const imagery = {
-  // About hero + occasional human beat in the intro mix.
-  africanProfessional: {
-    src: "/mood/african-woman-portrait.jpg",
-    alt: "Young African woman outdoors at dusk",
+  dashboard: {
+    name: "business-dashboard-laptop",
+    alt: "Business owner's hands on a laptop showing a sales dashboard, with an invoice on a clipboard beside it",
   },
-  nairobiStreet: {
-    src: "/mood/city-skyline.jpg",
-    alt: "Dense city skyline at dusk",
+  shopOwner: {
+    name: "shop-owner-tablet",
+    alt: "Plant shop owner browsing an online product catalogue on a tablet among potted succulents",
   },
-  urbanDusk: {
-    src: "https://images.unsplash.com/photo-1577948000111-9c970dfe3743?w=900&q=80",
-    alt: "African city skyline at dusk",
+  womanCity: {
+    name: "woman-city-dusk",
+    alt: "Young African woman on a city rooftop at dusk",
   },
-  // Kept for About service thumbnails / older refs — not a face.
-  laptopWork: {
-    src: "/mood/laptop-ui.jpg",
-    alt: "Product interface on a laptop",
+  manPortrait: {
+    name: "young-man-portrait",
+    alt: "Smiling young African man in front of a painted mural",
   },
-  smartphone: {
-    src: "/mood/phone-desk.jpg",
-    alt: "Smartphone on a desk",
+  kibanda: {
+    name: "kibandaski",
+    alt: "Kibanda menu board above plates of chapati, samosas, sukuma wiki, mutura and chai",
   },
-  codeOnScreen: {
-    src: "/mood/code-screen.jpg",
-    alt: "Application code on a screen",
+  code: {
+    name: "code-screen",
+    alt: "Website code open in an editor on a laptop screen",
   },
-  collaboration: {
-    src: "/mood/african-man-outdoors.jpg",
-    alt: "Young African man outdoors",
-  },
-  planning: {
-    src: "/mood/design-board.jpg",
-    alt: "Design sketches and colour samples",
-  },
-  checkout: {
-    src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80",
-    alt: "Card payment at a counter",
-  },
-  productUi: {
-    src: "/mood/laptop-ui.jpg",
-    alt: "Product interface on a laptop",
-  },
-  designBoard: {
-    src: "/mood/design-board.jpg",
-    alt: "Design sketches and colour samples",
-  },
-  serverRack: {
-    src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80",
-    alt: "Server infrastructure",
-  },
-  // Service hub + About — product-device stills (not the generic mood set).
-  serviceWebApps: {
-    src: serviceDashboard,
-    alt: "Hands on a laptop showing a business dashboard",
-  },
-  serviceEcommerce: {
-    src: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80",
-    alt: "Clothing displayed in a retail store",
-  },
-  serviceMobile: {
-    src: serviceMobileApp,
-    alt: "Smartphone showing a product app interface",
-  },
-  serviceWebsites: {
-    src: serviceRetailTablet,
-    alt: "Tablet showing a product website in a shop",
-  },
-} as const;
+} as const satisfies Record<string, Photo>;
 
-/** Homepage parallax — mostly product/city, one human beat. */
-export const galleryImages = [
-  imagery.nairobiStreet,
-  imagery.productUi,
-  imagery.codeOnScreen,
-  imagery.africanProfessional,
-  imagery.urbanDusk,
-  imagery.smartphone,
-  imagery.designBoard,
-  imagery.checkout,
-  imagery.serverRack,
-  imagery.collaboration,
-];
-
-/** Top ticker — city / product / one face / code for a varied first impression. */
-export const showcaseImages = [
-  imagery.nairobiStreet,
-  imagery.productUi,
-  imagery.africanProfessional,
-  imagery.codeOnScreen,
-  imagery.smartphone,
+/** Homepage ticker — unique images only, African context first. */
+export const showcaseImages: Photo[] = [
+  imagery.shopOwner,
+  imagery.womanCity,
+  imagery.dashboard,
+  imagery.kibanda,
+  imagery.manPortrait,
 ];

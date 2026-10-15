@@ -1,5 +1,6 @@
 import Homepage from "../home/Homepage";
-import OrganizationSchema from "../seo/OrganizationSchema";
+import JsonLd from "../seo/JsonLd";
+import { businessSchema, websiteSchema } from "../seo/schema";
 import { buildMeta } from "../seo/meta";
 
 export const meta = () => buildMeta("/");
@@ -7,7 +8,7 @@ export const meta = () => buildMeta("/");
 export default function HomeRoute() {
   return (
     <>
-      <OrganizationSchema />
+      <JsonLd data={[businessSchema(), websiteSchema()]} />
       <Homepage />
     </>
   );

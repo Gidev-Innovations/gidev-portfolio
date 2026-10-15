@@ -1,102 +1,91 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import ShowcaseTicker from "./ShowcaseTicker";
 import Process from "./Process";
 import HomeServices from "./HomeServices";
 import Features from "./Features";
-import HomeProjects from "./HomeProjects";
-import Testimonials from "./Testimonials";
+import PaymentsBlock from "./PaymentsBlock";
 import HomeFaq from "./HomeFaq";
 import SectionDivider from "../components/SectionDivider";
-
-import type { Transition } from "framer-motion";
-
-const spring: Transition = { type: "spring", stiffness: 80, damping: 18 };
 
 export default function Homepage() {
   return (
     <div className="text-black">
-      {/* Hero */}
-      <section className="flex flex-col items-center justify-center text-center px-6 bg-white pt-40 pb-16">
-        {/* Slides in from top */}
-        <motion.div
+      {/* Hero — static on purpose: it is the LCP element, so it must paint
+          from the pre-rendered HTML without waiting for JS. */}
+      <section className="flex flex-col items-center justify-center text-center px-6 bg-white pt-32 md:pt-40 pb-16">
+        <div
           className="flex items-center gap-2.5 mb-8 rounded-full px-4 py-1.5"
           style={{
-            backgroundColor: "var(--color-clay-50)",
-            border: "1px solid var(--color-clay-200)",
+            backgroundColor: "var(--color-brand-light)",
+            border: "1px solid var(--color-brand-border)",
           }}
-          initial={{ y: -24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ ...spring, delay: 0 }}
         >
           <span
             className="rounded-full"
             style={{
               width: "7px",
               height: "7px",
-              backgroundColor: "var(--color-clay-500)",
+              backgroundColor: "var(--color-brand)",
             }}
             aria-hidden="true"
           />
-          <span
-            style={{ fontSize: "15px", color: "var(--color-clay-800)" }}
-          >
-            Taking on new partners
+          {/* TODO(human): swap for a concrete line, e.g. "2 project slots open for November". */}
+          <span style={{ fontSize: "15px", color: "var(--color-brand-dark)" }}>
+            Taking on new projects
           </span>
-        </motion.div>
+        </div>
 
-        {/* Expands from inside out */}
-        <motion.h1
-          className="font-black text-black max-w-4xl mx-auto mb-6"
+        <h1
+          className="font-bold text-black max-w-4xl mx-auto mb-6"
           style={{
-            fontSize: "clamp(48px, 7vw, 90px)",
-            lineHeight: 0.95,
-            fontWeight: 900,
+            fontSize: "clamp(40px, 6.5vw, 84px)",
+            lineHeight: 1,
             letterSpacing: "-0.02em",
           }}
-          initial={{ scale: 0.6, opacity: 0, filter: "blur(8px)" }}
-          animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-          transition={{ ...spring, delay: 0.1 }}
         >
-          Building{" "}
-          <span className="bg-linear-to-r from-clay-600 to-ochre-500 bg-clip-text text-transparent">
-            Africa's
-          </span>{" "}
-          Next
-          {/* Hard breaks only once there is room for them; at 375px they
-              fight the natural wrap and strand single words on a line. */}
-          <br className="hidden md:inline" />
-          Generation of Scalable
-          <br className="hidden md:inline" />
-          Digital Products
-        </motion.h1>
+          Web &amp; Mobile App Development Studio in{" "}
+          <span className="text-brand-dark">
+            Nairobi
+          </span>
+        </h1>
 
-        {/* Slides in from bottom */}
-        <motion.p
+        <p
+          className="text-gray-800 max-w-2xl mx-auto mb-3 px-2 font-medium"
+          style={{ fontSize: "20px", lineHeight: 1.4 }}
+        >
+          Building Africa's next generation of scalable digital products.
+        </p>
+        <p
           className="text-gray-500 max-w-xl mx-auto mb-10 px-2"
-          style={{ fontSize: "18px", lineHeight: 1.55 }}
-          initial={{ y: 24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ ...spring, delay: 0.55 }}
+          style={{ fontSize: "17px", lineHeight: 1.55 }}
         >
-          A software studio in Nairobi building web apps, online stores, and
-          mobile products for businesses across Africa.
-        </motion.p>
+          We build web apps, online stores with M-Pesa checkout, and Android
+          and iOS apps for businesses in Kenya and across East Africa.
+        </p>
 
-        {/* Slides in from bottom, slightly delayed */}
-        <motion.div
-          initial={{ y: 24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ ...spring, delay: 0.7 }}
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             to="/contact"
-            className="bg-gray-900 text-white rounded-full px-8 py-4 font-semibold hover:bg-gray-700 transition-colors duration-200"
+            className="inline-flex min-h-12 items-center bg-gray-900 text-white rounded-full px-8 py-3.5 font-semibold hover:bg-brand-dark transition-colors duration-200"
             style={{ fontSize: "16px" }}
           >
-            Book a free 15-min call
+            Book a free call
           </Link>
-        </motion.div>
+          <Link
+            to="/contact#message"
+            className="inline-flex min-h-12 items-center rounded-full px-8 py-3.5 font-semibold text-gray-900 border border-gray-300 hover:border-brand-dark hover:text-brand-dark transition-colors duration-200"
+            style={{ fontSize: "16px" }}
+          >
+            Send us a message
+          </Link>
+        </div>
+
+        {/* TODO(human): add one line of real proof (years in business,
+            projects shipped, typical reply time) once the numbers are confirmed. */}
+        <p className="mt-6 text-gray-500" style={{ fontSize: "14px" }}>
+          Based in Nairobi · Mobile money &amp; card payments built in · Fixed
+          scope and price before we start
+        </p>
       </section>
 
       <ShowcaseTicker />
@@ -104,9 +93,8 @@ export default function Homepage() {
       <HomeServices />
       <SectionDivider />
       <Features />
-      <HomeProjects />
-      <SectionDivider variant="clay" />
-      <Testimonials />
+      <PaymentsBlock />
+      <SectionDivider />
       <HomeFaq />
     </div>
   );

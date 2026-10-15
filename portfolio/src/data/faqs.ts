@@ -29,12 +29,22 @@ export const faqs: Faq[] = [
   {
     question: "Can Gidev support ongoing development needs for my business?",
     answer:
-      "Absolutely. Many of our clients retain us after launch for feature development, bug fixes, performance optimization, and scaling. We become a natural extension of your team.",
+      "Yes. After launch we can stay on for feature development, bug fixes, performance optimization, and scaling, working as an extension of your team for as long as you need us.",
   },
   {
     question: "What technologies does Gidev specialize in?",
     answer:
       "Our core stack is React, TypeScript, Node.js, and modern cloud infrastructure. We also work with React Native for mobile, and tailor our tech choices to what best serves your product goals.",
+  },
+  {
+    question: "Can you integrate M-Pesa and other mobile money payments?",
+    answer:
+      "Yes. We build M-Pesa checkout on Safaricom's Daraja API (STK Push, Paybill and Till), plus card payments through providers such as Paystack, Flutterwave or Pesapal, and we handle the confirmation callbacks so payments match orders automatically.",
+  },
+  {
+    question: "Do you only work with businesses in Nairobi?",
+    answer:
+      "No. We are based in Nairobi and happy to meet in person there, but most of the work happens remotely, so we work with businesses across Kenya, East Africa and further afield.",
   },
   {
     question: "Do you work with early-stage startups or only established businesses?",

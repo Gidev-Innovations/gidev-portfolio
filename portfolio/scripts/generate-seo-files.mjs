@@ -46,7 +46,7 @@ async function findPrerenderedRoutes(dir, base = "") {
 
 /**
  * Priority/changefreq for pages not in the static route table — the
- * data-driven detail pages. Service pages rank above case studies and posts
+ * data-driven detail pages. Service pages rank above project pages and posts
  * because they carry the commercial search intent.
  */
 function defaultsFor(path) {
@@ -56,9 +56,25 @@ function defaultsFor(path) {
   return { priority: "0.5", changefreq: "monthly" };
 }
 
-function buildSitemap(siteUrl, routes, meta) {
-  const today = new Date().toISOString().split("T")[0];
+/**
+ * Real modification dates only. Google ignores lastmod once it proves
+ * unreliable, so a build date stamped on every URL is worse than none.
+ * Posts use the dateModified from their own BlogPosting JSON-LD; the blog
+ * index uses its newest post. Other pages omit lastmod.
+ */
+async function findLastmods(routes) {
+  const lastmods = new Map();
+  for (const path of routes) {
+    const html = await readFile(join(clientDir, ...path.split("/").filter(Boolean), "index.html"), "utf8");
+    const date = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})/)?.[1];
+    if (date) lastmods.set(path, date);
+  }
+  const posts = [...lastmods].filter(([path]) => path.startsWith("/blog/")).map(([, date]) => date);
+  if (posts.length) lastmods.set("/blog", posts.sort().at(-1));
+  return lastmods;
+}
 
+function buildSitemap(siteUrl, routes, meta, lastmods) {
   const entries = routes
     .sort((a, b) => a.localeCompare(b))
     .map((path) => {
@@ -68,7 +84,7 @@ function buildSitemap(siteUrl, routes, meta) {
       return [
         "  <url>",
         `    <loc>${loc}</loc>`,
-        `    <lastmod>${today}</lastmod>`,
+        ...(lastmods.has(path) ? [`    <lastmod>${lastmods.get(path)}</lastmod>`] : []),
         `    <changefreq>${changefreq}</changefreq>`,
         `    <priority>${priority}</priority>`,
         "  </url>",
@@ -107,7 +123,7 @@ async function main() {
     // 404 pages must never appear in a sitemap.
     .filter((path) => path !== "/404" && !path.endsWith("/404"));
 
-  await writeFile(join(clientDir, "sitemap.xml"), buildSitemap(siteUrl, discovered, meta), "utf8");
+  await writeFile(join(clientDir, "sitemap.xml"), buildSitemap(siteUrl, discovered, meta, await findLastmods(discovered)), "utf8");
   await writeFile(join(clientDir, "robots.txt"), buildRobots(siteUrl), "utf8");
 
   // Cloudflare Pages serves a root 404.html with a real 404 status for any

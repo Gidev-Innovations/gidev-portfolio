@@ -1,239 +1,218 @@
-import { useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { motion, type Variants } from "framer-motion";
+import { useParams, Link } from "react-router-dom";
 import { blogPosts } from "./blogData";
 import type { BlogContent } from "./blogData";
-
-const ease = [0.16, 1, 0.3, 1] as const;
-
-// ── ANIMATION VARIANTS ────────────────────────────────────────────────────────
-
-const heroContainerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.22,
-      delayChildren: 0.05,
-    },
-  },
-};
-
-const heroItemVariant: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1.2, ease },
-  },
-};
-
-// Title is the lead car — travels furthest, takes longest
-const heroTitleVariant: Variants = {
-  hidden: { opacity: 0, y: 52 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1.6, ease },
-  },
-};
-
-// ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
-function ScrollReveal({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 1.1, ease: [0.25, 0.1, 0.0, 1.0] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-// ── CONTENT RENDERER ─────────────────────────────────────────────────────────
+import { coverWebp, postIsoDate, readingMinutes, serviceForPost } from "./blogMeta";
+import JsonLd from "../seo/JsonLd";
+import { articleSchema, breadcrumbSchema } from "../seo/schema";
+import NotFound from "../not-found/NotFound";
 
 function renderContent(block: BlogContent, idx: number) {
   if (block.type === "paragraph") {
     return (
-      <ScrollReveal key={idx}>
-        <p className="text-gray-600 leading-[1.95] text-xl">{block.text}</p>
-      </ScrollReveal>
+      <p key={idx} className="text-gray-600 leading-[1.9] text-lg md:text-xl">
+        {block.text}
+      </p>
     );
   }
 
   if (block.type === "heading") {
     return (
-      <ScrollReveal key={idx}>
-        <h2 className="text-gray-950 font-bold text-3xl mt-14 mb-3 tracking-tight">
-          {block.text}
-        </h2>
-      </ScrollReveal>
+      <h2 key={idx} className="text-gray-950 font-bold text-2xl md:text-3xl mt-14 mb-3 tracking-tight">
+        {block.text}
+      </h2>
     );
   }
 
   if (block.type === "list") {
     const Tag = block.ordered ? "ol" : "ul";
     return (
-      <ScrollReveal key={idx}>
-        <Tag
-          className={`text-xl text-gray-600 leading-[1.95] space-y-4 pl-6 ${
-            block.ordered ? "list-decimal" : "list-disc"
-          }`}
-        >
-          {block.items.map((item, j) => {
-            const colonIdx = item.indexOf(":");
-            const hasBold = colonIdx !== -1;
-            return (
-              <li key={j}>
-                {hasBold ? (
-                  <>
-                    <span className="font-semibold text-gray-900">
-                      {item.slice(0, colonIdx + 1)}
-                    </span>
-                    {item.slice(colonIdx + 1)}
-                  </>
-                ) : (
-                  item
-                )}
-              </li>
-            );
-          })}
-        </Tag>
-      </ScrollReveal>
+      <Tag
+        key={idx}
+        className={`text-lg md:text-xl text-gray-600 leading-[1.9] space-y-4 pl-6 ${
+          block.ordered ? "list-decimal" : "list-disc"
+        }`}
+      >
+        {block.items.map((item, j) => {
+          const colonIdx = item.indexOf(":");
+          const hasBold = colonIdx !== -1;
+          return (
+            <li key={j}>
+              {hasBold ? (
+                <>
+                  <span className="font-semibold text-gray-900">
+                    {item.slice(0, colonIdx + 1)}
+                  </span>
+                  {item.slice(colonIdx + 1)}
+                </>
+              ) : (
+                item
+              )}
+            </li>
+          );
+        })}
+      </Tag>
     );
   }
 
   return null;
 }
 
-// ── PAGE COMPONENT ────────────────────────────────────────────────────────────
-
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const post = blogPosts.find((p) => p.slug === slug);
 
-  useEffect(() => {
-    if (!post) {
-      navigate("/blog");
-      return;
-    }
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [post, navigate]);
+  if (!post) return <NotFound />;
 
-  if (!post) return null;
-
-  const relatedPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
+  const service = serviceForPost(post);
+  const relatedPosts = [
+    ...blogPosts.filter((p) => p.slug !== post.slug && p.category === post.category),
+    ...blogPosts.filter((p) => p.slug !== post.slug && p.category !== post.category),
+  ].slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-white mt-36">
-      {/* ── HERO SECTION ────────────────────────────────────────────────────────
-          Stage rail is the source of truth for alignment. Title stays in a
-          copy-width max so the image can go wider than the article.
-      ────────────────────────────────────────────────────────────────────────── */}
+    <article className="min-h-screen bg-white mt-24 md:mt-36">
+      <JsonLd
+        data={[
+          articleSchema({ ...post, isoDate: postIsoDate(post) }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
 
-      <motion.div
-        className="gidev-stage"
-        variants={heroContainerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        {/* Category + date */}
-        <motion.div
-          variants={heroItemVariant}
-          className="flex items-center gap-3 text-sm text-gray-500 tracking-widest uppercase mt-8 mb-5"
-        >
+      <header className="gidev-stage">
+        <nav aria-label="Breadcrumb" className="mt-8 mb-3 text-sm text-gray-500">
+          <Link to="/blog" className="inline-flex min-h-11 items-center hover:text-brand-dark transition-colors">
+            ← All articles
+          </Link>
+        </nav>
+
+        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 tracking-widest uppercase mb-5">
           <span className="text-gray-800 font-semibold">{post.category}</span>
-          <span>—</span>
-          <span>{post.date}</span>
-        </motion.div>
+          <span aria-hidden="true">—</span>
+          <time dateTime={postIsoDate(post)}>{post.date}</time>
+          <span aria-hidden="true">·</span>
+          <span>{readingMinutes(post)} min read</span>
+        </div>
 
-        {/* Title — lead car, biggest element */}
-        <motion.h1
-          variants={heroTitleVariant}
-          className="text-heading-4 font-semibold text-gray-950 leading-[1.08] tracking-tight max-w-4xl"
-        >
+        <h1 className="text-[28px] sm:text-[34px] md:text-heading-4 font-semibold text-gray-950 leading-[1.08] tracking-tight max-w-4xl">
           {post.title}
-        </motion.h1>
+        </h1>
 
-        {/* Hero image — full width of the stage rail */}
-        <motion.div
-          variants={heroItemVariant}
-          className="mt-10 rounded-2xl overflow-hidden bg-gray-100 aspect-[16/9]"
-        >
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
+        <div className="mt-10 rounded-2xl overflow-hidden bg-brand-dark aspect-[1200/630] max-w-5xl">
+          <picture>
+            <source type="image/webp" srcSet={coverWebp(post)} />
+            <img
+              src={post.image}
+              alt=""
+              width={1200}
+              height={630}
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
+          </picture>
+        </div>
 
-        {/* Author sits just below the image, aligned left with it */}
-        <motion.p
-          variants={heroItemVariant}
-          className="mt-4 text-base text-gray-500 tracking-wide"
-        >
-          By {post.author}
-        </motion.p>
-      </motion.div>
+        <p className="mt-4 text-base text-gray-500 tracking-wide">
+          By{" "}
+          <Link to="/about" className="inline-flex min-h-11 items-center text-gray-800 underline underline-offset-4">
+            {post.author}
+          </Link>
+        </p>
+      </header>
 
-      {/* ── BODY CONTENT ──────────────────────────────────────────────────────
-          Copy rail — narrower than the image intentionally so long reading
-          lines stay comfortable.
-      ────────────────────────────────────────────────────────────────────────── */}
-      <div className="gidev-copy mt-16 space-y-7 pb-24">
+      <div className="gidev-copy mt-16 space-y-7 pb-16">
         {post.content.map((block, idx) => renderContent(block, idx))}
       </div>
 
-      {/* ── MORE POSTS ────────────────────────────────────────────────────────
-          Same stage rail as the hero so related cards match the image width.
-      ────────────────────────────────────────────────────────────────────────── */}
-      <motion.div
-        className="gidev-stage pb-32 pt-12 border-t border-gray-100"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 1.2, ease, delay: 0.1 }}
-      >
-        <p className="text-sm uppercase tracking-widest text-gray-500 mb-10">
+      <aside className="gidev-copy pb-24 space-y-6">
+        {service && (
+          <div
+            className="rounded-2xl p-6 md:p-8"
+            style={{
+              backgroundColor: "var(--color-brand-light)",
+              border: "1px solid var(--color-brand-border)",
+            }}
+          >
+            <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">
+              Working on this?
+            </p>
+            <p className="text-gray-800 text-lg leading-relaxed mb-5">
+              We build {service.name.toLowerCase()} for businesses in Kenya and
+              across East Africa.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to={`/services/${service.slug}`}
+                className="inline-flex min-h-11 items-center rounded-full border border-gray-300 px-5 font-semibold text-gray-900 hover:border-brand-dark hover:text-brand-dark transition-colors"
+              >
+                About our {service.name.toLowerCase()} work
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex min-h-11 items-center rounded-full bg-gray-900 px-5 font-semibold text-white hover:bg-brand-dark transition-colors"
+              >
+                Talk to us
+              </Link>
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-start gap-4 border-t border-gray-100 pt-6">
+          <img
+            src="/favicon.svg"
+            alt=""
+            width={48}
+            height={48}
+            className="h-12 w-12 flex-shrink-0 rounded-full border border-brand-border bg-white"
+          />
+          <div>
+            <p className="font-semibold text-gray-900">{post.author}</p>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              A software studio in Nairobi building web apps, e-commerce and
+              mobile products for African businesses.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <section className="gidev-stage pb-32 pt-12 border-t border-gray-100">
+        <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-10">
           More posts
-        </p>
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          {relatedPosts.map((related, i) => (
-            <motion.div
-              key={related.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 1.0, ease, delay: i * 0.12 }}
-            >
-              <Link to={`/blog/${related.slug}`} className="group block">
-                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100">
-                  <motion.img
+          {relatedPosts.map((related) => (
+            <Link key={related.id} to={`/blog/${related.slug}`} className="group block">
+              <div className="aspect-[1200/630] overflow-hidden rounded-2xl bg-brand-dark">
+                <picture>
+                  <source type="image/webp" srcSet={coverWebp(related)} />
+                  <img
                     src={related.image}
-                    alt={related.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 1.0, ease }}
+                    alt=""
+                    width={1200}
+                    height={630}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
-                </div>
-                <div className="mt-4 flex items-center gap-2 text-sm text-gray-500 tracking-wide">
-                  <span className="text-gray-700 font-medium">
-                    {related.category}
-                  </span>
-                  <span>—</span>
-                  <span>{related.date}</span>
-                </div>
-                <h3 className="mt-2 text-lg font-bold text-gray-900 leading-snug group-hover:text-black transition-colors duration-300">
-                  {related.title}
-                </h3>
-              </Link>
-            </motion.div>
+                </picture>
+              </div>
+              <div className="mt-4 flex items-center gap-2 text-sm text-gray-500 tracking-wide">
+                <span className="text-gray-700 font-medium">{related.category}</span>
+                <span aria-hidden="true">—</span>
+                <span>{related.date}</span>
+              </div>
+              <h3 className="mt-2 text-lg font-bold text-gray-900 leading-snug group-hover:text-brand-dark transition-colors duration-300">
+                {related.title}
+              </h3>
+            </Link>
           ))}
         </div>
-      </motion.div>
-    </div>
+      </section>
+    </article>
   );
 }

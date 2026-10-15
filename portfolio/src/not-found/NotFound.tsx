@@ -49,7 +49,7 @@ function BouncyDigit({ children }: { children: ReactNode }) {
       onClick={handleClick}
       whileHover={{ scale: 1.12, y: -10, transition: spring }}
       whileTap={{ scale: 0.88, transition: spring }}
-      className="text-[10rem] sm:text-[14rem] font-black leading-none text-[#2EC4C7] tracking-tighter select-none cursor-pointer inline-block"
+      className="text-[10rem] sm:text-[14rem] font-bold leading-none text-brand-dark tracking-tighter select-none cursor-pointer inline-block"
       style={{ willChange: "transform" }}
     >
       {children}
@@ -59,10 +59,10 @@ function BouncyDigit({ children }: { children: ReactNode }) {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#f0f0e8] flex flex-col items-center justify-center px-6 text-center overflow-hidden">
+    <div className="min-h-screen bg-brand-light flex flex-col items-center justify-center px-6 pt-24 pb-16 md:pt-40 text-center overflow-hidden">
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="flex flex-col items-center"
       >
@@ -79,7 +79,7 @@ export default function NotFound() {
         {/* Tap hint */}
         <motion.p
           variants={itemVariants}
-          className="text-[10px] uppercase tracking-widest text-[#2EC4C7]/75 font-bold mb-7"
+          className="text-[10px] uppercase tracking-widest text-brand-dark font-bold mb-7"
         >
           tap the numbers
         </motion.p>
@@ -87,13 +87,13 @@ export default function NotFound() {
         {/* Divider */}
         <motion.div
           variants={itemVariants}
-          className="w-12 h-px bg-[#2EC4C7] opacity-40 mb-8"
+          className="w-12 h-px bg-brand opacity-40 mb-8"
         />
 
         {/* Heading */}
         <motion.h1
           variants={itemVariants}
-          className="text-3xl sm:text-4xl font-extrabold text-[#0A1F2E] tracking-tight mb-3"
+          className="text-3xl sm:text-4xl font-bold text-ink tracking-tight mb-3"
         >
           Page not found
         </motion.h1>
@@ -101,9 +101,10 @@ export default function NotFound() {
         {/* Subtext */}
         <motion.p
           variants={itemVariants}
-          className="text-sm sm:text-base text-[#9a9a8e] max-w-xs leading-relaxed mb-10"
+          className="text-sm sm:text-base text-gray-600 max-w-xs leading-relaxed mb-10"
         >
-          This page doesn&apos;t exist or has been moved. Head back home.
+          This page doesn&apos;t exist or has been moved. Head back home, or
+          tell us what you were looking for.
         </motion.p>
 
         {/* CTA Button */}
@@ -112,7 +113,7 @@ export default function NotFound() {
           variants={itemVariants}
           whileHover={{ scale: 1.05, transition: spring }}
           whileTap={{ scale: 0.95, transition: spring }}
-          className="inline-flex items-center gap-3 bg-[#0A1F2E] text-white text-sm font-medium px-7 py-3.5 rounded-full"
+          className="inline-flex items-center gap-3 bg-ink text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-brand-dark transition-colors"
         >
           Go back home
           <motion.svg
@@ -128,6 +129,13 @@ export default function NotFound() {
           >
             <path d="M7 17L17 7M17 7H7M17 7v10" />
           </motion.svg>
+        </motion.a>
+        <motion.a
+          href="/contact"
+          variants={itemVariants}
+          className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-ink underline underline-offset-4"
+        >
+          Contact us
         </motion.a>
       </motion.div>
     </div>

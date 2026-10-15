@@ -1,0 +1,79 @@
+{
+  "business-dashboard-laptop": {
+    "width": 4627,
+    "height": 3201,
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "code-screen": {
+    "width": 1200,
+    "height": 800,
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "kibandaski": {
+    "width": 1402,
+    "height": 1122,
+    "widths": [
+      480,
+      768,
+      1200,
+      1402
+    ]
+  },
+  "r-flex": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "shop-owner-tablet": {
+    "width": 6568,
+    "height": 4791,
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "sticky-day": {
+    "width": 1466,
+    "height": 973,
+    "widths": [
+      480,
+      768,
+      1200,
+      1466
+    ]
+  },
+  "woman-city-dusk": {
+    "width": 1200,
+    "height": 1804,
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "young-man-portrait": {
+    "width": 1200,
+    "height": 800,
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  }
+}

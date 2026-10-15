@@ -1,0 +1,5 @@
+# Found a security issue on gidevtech.com? Please tell us through the contact form.
+Contact: https://gidevtech.com/contact
+Expires: 2027-10-15T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://gidevtech.com/.well-known/security.txt

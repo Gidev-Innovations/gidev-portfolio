@@ -1,9 +1,10 @@
-import { imagery } from "../data/imagery";
 
 export interface BlogPost {
   id: number;
   slug: string;
   title: string;
+  /** Shorter <title> when `title` is over 60 characters. */
+  seoTitle?: string;
   date: string;
   author: string;
   category: string;
@@ -28,10 +29,11 @@ export const blogPosts: BlogPost[] = [
     id: 1,
     slug: "custom-web-apps-vs-instagram-shops-african-smes-2026",
     title: "Custom Web Apps vs Instagram Shops: What African SMEs Need in 2026",
+    seoTitle: "Custom Web Apps vs Instagram Shops for African SMEs (2026)",
     date: "12 August, 2026",
-    author: "Joseph Macharia",
+    author: "Gidev Innovations team",
     category: "Product",
-    image: imagery.productUi.src,
+    image: "/og/custom-web-apps-vs-instagram-shops-african-smes-2026.png",
     excerpt:
       "Selling on Instagram still works — until inventory, invoices, and repeat customers outgrow DMs. Here is when a real web app starts to pay for itself.",
     content: [
@@ -58,7 +60,7 @@ export const blogPosts: BlogPost[] = [
       { type: "heading", text: "A practical middle path" },
       {
         type: "paragraph",
-        text: "Many Gidev clients keep Instagram for marketing and move checkout, inventory, and admin into a focused web app. The brand stays loud where people hang out; the operations live somewhere reliable. That split is usually cheaper — and saner — than trying to automate everything in chat.",
+        text: "You don't have to choose one or the other. Keep Instagram for marketing, and move checkout, inventory, and admin into a focused web app. The brand stays loud where people hang out; the operations live somewhere reliable. That split is usually cheaper — and saner — than trying to automate everything in chat.",
       },
     ],
   },
@@ -67,9 +69,9 @@ export const blogPosts: BlogPost[] = [
     slug: "designing-checkout-for-mpesa-and-mobile-money-2026",
     title: "Designing Checkout for M-Pesa and Mobile Money in 2026",
     date: "28 July, 2026",
-    author: "Joseph Macharia",
+    author: "Gidev Innovations team",
     category: "E-commerce",
-    image: imagery.checkout.src,
+    image: "/og/designing-checkout-for-mpesa-and-mobile-money-2026.png",
     excerpt:
       "Card-first checkout copy from US templates still ships on African stores. Here is how we design payment flows for the wallets people actually use.",
     content: [
@@ -105,9 +107,9 @@ export const blogPosts: BlogPost[] = [
     slug: "practical-ai-for-kenyan-businesses-in-2026",
     title: "Practical AI for Kenyan Businesses in 2026",
     date: "9 June, 2026",
-    author: "Joseph Macharia",
+    author: "Gidev Innovations team",
     category: "AI",
-    image: imagery.codeOnScreen.src,
+    image: "/og/practical-ai-for-kenyan-businesses-in-2026.png",
     excerpt:
       "Skip the hype deck. Here are AI uses that actually fit small and mid-size teams in Kenya — and what still needs a human in the loop.",
     content: [
@@ -143,9 +145,9 @@ export const blogPosts: BlogPost[] = [
     slug: "business-website-or-web-application-how-to-choose",
     title: "Business Website or Web Application: How to Choose",
     date: "21 May, 2026",
-    author: "Joseph Macharia",
+    author: "Gidev Innovations team",
     category: "Strategy",
-    image: imagery.designBoard.src,
+    image: "/og/business-website-or-web-application-how-to-choose.png",
     excerpt:
       "Founders often ask for “a website” when they need software. A quick decision guide before you write the brief.",
     content: [
@@ -187,9 +189,9 @@ export const blogPosts: BlogPost[] = [
     slug: "mobile-apps-for-mid-range-android-east-africa-2026",
     title: "Mobile Apps for Mid-Range Android in East Africa, 2026",
     date: "4 April, 2026",
-    author: "Joseph Macharia",
+    author: "Gidev Innovations team",
     category: "Mobile",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=80",
+    image: "/og/mobile-apps-for-mid-range-android-east-africa-2026.png",
     excerpt:
       "Most field teams are not on flagship phones. Here is how we design and ship apps that stay usable on the devices people actually carry.",
     content: [
@@ -225,9 +227,9 @@ export const blogPosts: BlogPost[] = [
     slug: "questions-to-ask-a-software-studio-before-you-sign",
     title: "Questions to Ask a Software Studio Before You Sign",
     date: "18 March, 2026",
-    author: "Joseph Macharia",
+    author: "Gidev Innovations team",
     category: "Founders",
-    image: imagery.serverRack.src,
+    image: "/og/questions-to-ask-a-software-studio-before-you-sign.png",
     excerpt:
       "A short checklist for African founders hiring a build partner — so scope, ownership, and handoff are clear before money moves.",
     content: [
@@ -269,9 +271,9 @@ export const blogPosts: BlogPost[] = [
     slug: "startup-studio-thinking-for-african-founders-2026",
     title: "Startup Studio Thinking for African Founders in 2026",
     date: "5 February, 2026",
-    author: "Joseph Macharia",
+    author: "Gidev Innovations team",
     category: "Founders",
-    image: imagery.urbanDusk.src,
+    image: "/og/startup-studio-thinking-for-african-founders-2026.png",
     excerpt:
       "Not every idea needs a full product team on day one. How we help founders validate, ship a thin first version, and decide what to build next.",
     content: [

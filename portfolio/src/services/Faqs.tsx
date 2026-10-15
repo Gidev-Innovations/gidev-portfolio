@@ -1,35 +1,24 @@
 import FaqsItem from "./FaqsItem.tsx";
-import { motion } from "framer-motion";
-import { divParentVariants, divChildHeaderVariants } from "./Services.tsx";
-import { faqs, type Faq } from "../data/faqs";
+import Reveal from "../components/Reveal";
+import { faqs as defaultFaqs, type Faq } from "../data/faqs";
 
-const Faqs = () => {
+const Faqs = ({ items = defaultFaqs, title = "Essential FAQs Answered for You" }: { items?: Faq[]; title?: string }) => {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="show"
-      variants={divParentVariants}
-      className="w-full space-y-8 px-0 sm:px-2"
-    >
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        variants={divChildHeaderVariants}
-        className="w-full max-w-xl mx-auto px-2"
-      >
+    <section className="w-full space-y-8 px-0 sm:px-2">
+      <Reveal className="w-full max-w-xl mx-auto px-2">
         <div className="flex flex-col gap-2 items-center justify-center">
           <p>FAQ</p>
-          <p className="text-2xl sm:text-3xl lg:text-5xl text-center leading-none">
-            Essential FAQs Answered for You
-          </p>
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl text-center leading-none">
+            {title}
+          </h2>
           <span className="text-stone-900 text-center text-sm sm:text-base">
             Everything you need to know before we start building together.
           </span>
         </div>
-      </motion.div>
+      </Reveal>
 
       <div className="flex flex-col gap-3 w-full">
-        {faqs.map((faq: Faq) => (
+        {items.map((faq) => (
           <FaqsItem
             key={faq.question}
             question={faq.question}
@@ -37,7 +26,7 @@ const Faqs = () => {
           />
         ))}
       </div>
-    </motion.div>
+    </section>
   );
 };
 

@@ -10,7 +10,10 @@ export default defineConfig({
     // support and adds the build-time pre-rendering step.
     reactRouter(),
   ],
-
+    server: {
+      // Rebuilding while `npm run dev` runs locks these files on Windows and crashes the watcher.
+      watch: { ignored: ['**/build/**', '**/test-results/**', '**/audits/**'] },
+    },
     resolve: {
       alias: {
           '@': fileURLToPath(new URL('./src', import.meta.url))

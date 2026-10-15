@@ -14,9 +14,14 @@ export const meta = ({ params }: MetaArgs) => {
     });
   }
 
+  const title = post.seoTitle ?? post.title;
+  const branded = `${title} | ${SITE.name}`;
+
   return buildMeta(`/blog/${post.slug}`, {
-    title: `${post.title} | ${SITE.name}`,
+    title: branded.length <= 60 ? branded : title,
     description: post.excerpt,
+    image: post.image,
+    type: "article",
   });
 };
 

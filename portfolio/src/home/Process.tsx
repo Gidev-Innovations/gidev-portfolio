@@ -3,8 +3,7 @@ import type { Transition } from "framer-motion";
 import { useRef } from "react";
 import { Settings, Lightbulb, Code2, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const springEntry: Transition = { type: "spring", stiffness: 70, damping: 16 };
+import Reveal from "../components/Reveal";
 
 export default function Process() {
   const ref = useRef(null);
@@ -16,8 +15,8 @@ export default function Process() {
         className="mx-auto rounded-3xl px-6 md:px-14 py-16 md:py-20 text-center gidev-surface-dots"
         style={{
           maxWidth: "900px",
-          backgroundColor: "var(--color-spring-wood-50)",
-          border: " var(--color-spring-wood-200)",
+          backgroundColor: "var(--color-brand-light)",
+          border: " var(--color-brand-border)",
           borderRadius: "28px",
         }}
       >
@@ -29,7 +28,7 @@ export default function Process() {
 
         {/* Heading */}
         <h2
-          className="font-black text-black mb-3"
+          className="font-bold text-black mb-3"
           style={{
             fontSize: "clamp(28px, 3.5vw, 48px)",
             lineHeight: 1.1,
@@ -50,23 +49,18 @@ export default function Process() {
         {/* Steps */}
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {/* Discovery */}
-          <motion.div
-            className="flex flex-col items-center text-center"
-            initial={{ y: 24, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ ...springEntry, delay: 0 }}
-          >
+          <Reveal className="flex flex-col items-center text-center" delay={0}>
             <div
               className="flex items-center justify-center rounded-2xl mb-6 bg-white shadow-sm"
               style={{ width: "68px", height: "68px" }}
             >
               <motion.div
-                style={{ display: "flex", color: "#111" }}
+                style={{ display: "flex", color: "var(--color-ink)" }}
                 animate={
                   inView
                     ? {
                         rotate: [0, -15, 15, -10, 10, 0],
-                        color: ["#111111", "#d75f38", "#111111"],
+                        color: ["var(--color-ink)", "var(--color-brand-dark)", "var(--color-ink)"],
                       }
                     : {}
                 }
@@ -92,30 +86,25 @@ export default function Process() {
               className="text-gray-500"
               style={{ fontSize: "14px", lineHeight: 1.6 }}
             >
-              We start with a free 15-minute call to understand the problem,
+              We start with a free 30-minute call to understand the problem,
               then write down the scope, timeline, and price before any code
               exists. Most projects kick off within a week.
             </p>
-          </motion.div>
+          </Reveal>
 
           {/* Agile */}
-          <motion.div
-            className="flex flex-col items-center text-center"
-            initial={{ y: 24, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ ...springEntry, delay: 0.15 }}
-          >
+          <Reveal className="flex flex-col items-center text-center" delay={150}>
             <div
               className="flex items-center justify-center rounded-2xl mb-6 bg-white shadow-sm"
               style={{ width: "68px", height: "68px" }}
             >
               <motion.div
-                style={{ display: "flex", color: "#111" }}
+                style={{ display: "flex", color: "var(--color-ink)" }}
                 animate={
                   inView
                     ? {
                         y: [0, -5, 0, -3, 0],
-                        color: ["#111111", "#d75f38", "#111111"],
+                        color: ["var(--color-ink)", "var(--color-brand-dark)", "var(--color-ink)"],
                       }
                     : {}
                 }
@@ -145,27 +134,22 @@ export default function Process() {
               there are no surprises at the end. Typical MVPs land in four to
               eight weeks depending on scope.
             </p>
-          </motion.div>
+          </Reveal>
 
           {/* Launch */}
-          <motion.div
-            className="flex flex-col items-center text-center"
-            initial={{ y: 24, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ ...springEntry, delay: 0.3 }}
-          >
+          <Reveal className="flex flex-col items-center text-center" delay={300}>
             <div
               className="flex items-center justify-center rounded-2xl mb-6 bg-white shadow-sm"
               style={{ width: "68px", height: "68px" }}
             >
               <motion.div
-                style={{ display: "flex", color: "#111" }}
+                style={{ display: "flex", color: "var(--color-ink)" }}
                 animate={
                   inView
                     ? {
                         y: [0, -10, -2, -8, 0],
                         rotate: [0, 8, -4, 6, 0],
-                        color: ["#111111", "#d75f38", "#111111"],
+                        color: ["var(--color-ink)", "var(--color-brand-dark)", "var(--color-ink)"],
                       }
                     : {}
                 }
@@ -195,21 +179,17 @@ export default function Process() {
               are satisfied. Many clients keep us on retainer afterwards for
               new features and maintenance.
             </p>
-          </motion.div>
+          </Reveal>
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ ...springEntry, delay: 0.55 }}
-        >
+        <Reveal delay={450}>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full pl-6 pr-2 py-2 font-semibold hover:bg-gray-700 transition-colors duration-200"
+            className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full pl-6 pr-2 py-2 font-semibold hover:bg-brand-dark transition-colors duration-200"
             style={{ fontSize: "15px" }}
           >
-            Book a free 15-min call
+            Book a free call
             <span className="flex items-center justify-center bg-white text-gray-900 rounded-full w-8 h-8">
               <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
                 <path
@@ -222,7 +202,7 @@ export default function Process() {
               </svg>
             </span>
           </Link>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
