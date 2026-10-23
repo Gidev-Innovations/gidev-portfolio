@@ -22,8 +22,10 @@ the site can't make.
       prefers the name/address/phone to match everywhere).
 - [ ] **Website**: `https://gidevtech.com/` (with UTM if you want to separate
       GBP traffic: `?utm_source=google&utm_medium=organic&utm_campaign=gbp`).
-- [ ] **Services**: add the four services with the same names as the site:
-      Web Applications, E-commerce, Mobile Apps, Business Websites.
+- [ ] **Services**: add the eight services with the same names as
+      `src/data/services.ts`: Web Applications, E-commerce Platforms, Mobile
+      Apps, Business Websites & Systems, SEO, Website Maintenance & Support,
+      Branding & Graphic Design, and Digital Marketing.
 - [ ] **Photos**: real ones only: team at work, screens of shipped projects,
       logo (`public/icon-512.png` from the logo kit).
 - [ ] **Description**: reuse the home meta description; no keyword stuffing.

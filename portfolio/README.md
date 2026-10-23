@@ -20,7 +20,8 @@ as static assets (`wrangler.jsonc`).
 
 ## Where things live
 
-- Content: `src/data/` (site, services, FAQs, images), `src/blog/blogData.ts`, `src/projects/projects.data.ts`.
+- Content: `src/data/` (site, the shared IT and digital services catalog, FAQs, images), `src/blog/blogData.ts`, `src/projects/projects.data.ts`.
+- Services: add or update entries in `src/data/services.ts`. That catalog drives service cards, navigation, contact options, detail pages, structured data and prerendered service URLs. Keep an old path in a service's `aliases` when changing its canonical slug.
 - SEO helpers: `src/seo/`.
 - Brand assets: `src/assets/gidev-logo-kit/` (see its README).
 - Audit record: `audits/` (start with `audits/CHANGELOG.md`) and `seo/`.

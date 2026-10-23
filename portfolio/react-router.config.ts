@@ -1,7 +1,6 @@
 import type { Config } from "@react-router/dev/config";
 import { siteRoutes } from "./src/data/site";
 import { blogPosts } from "./src/blog/blogData";
-import { projects } from "./src/projects/projects.data";
 import { services } from "./src/data/services";
 
 export default {
@@ -27,8 +26,9 @@ export default {
   // route table that generates the sitemap, so the two cannot drift apart.
   prerender: [
     ...siteRoutes.map((r) => r.path),
-    ...services.map((s) => `/services/${s.slug}`),
+    ...services.flatMap((service) =>
+      [service.slug, ...(service.aliases ?? [])].map((slug) => `/services/${slug}`),
+    ),
     ...blogPosts.map((p) => `/blog/${p.slug}`),
-    ...projects.map((p) => `/projects/${p.slug}`),
   ],
 } satisfies Config;
