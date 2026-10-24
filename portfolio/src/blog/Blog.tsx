@@ -11,15 +11,14 @@ export default function Blog() {
     <div className="min-h-screen bg-white mt-4 md:mt-12">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }])} />
       <PageHero
-        eyebrow="Blog"
-        title="Software & digital business blog"
+        eyebrow="Insights"
+        title="Practical ideas for growing with technology."
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Blog" }]}
         intro={
           <>
             <p>
-              Practical ideas for building software and digital experiences:
-              improving e-commerce, creating useful AI, building apps for the
-              people who use them and choosing the right digital partner.
+              Guides and lessons on websites, apps, e-commerce, AI, SEO and
+              digital growth, written for business owners.
             </p>
             <p className="mt-3 text-base text-gray-600">
               Written by the team at Gidev Innovations. If a post raises a
