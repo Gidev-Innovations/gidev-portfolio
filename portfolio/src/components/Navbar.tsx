@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from "react";
+import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import {
   motion,
   useMotionValue,
@@ -7,14 +7,12 @@ import {
   useReducedMotion,
   useScroll,
   useSpring,
-  useTransform,
 } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, Mail, Phone } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import logo from "../assets/gidev-logo-kit/gidev-logo.svg";
 import wordmark from "../assets/gidev-logo-kit/gidev-wordmark.svg";
 import { serviceGroups, services } from "../data/services";
-import { BUSINESS } from "../data/site";
 
 const links = [
   { label: "Home", to: "/" },
@@ -22,9 +20,6 @@ const links = [
   { label: "Blog", to: "/blog" },
   { label: "Contact", to: "/contact" },
 ];
-
-// Utility bar height in px (h-11). The fixed nav slides up to cover it as the page scrolls.
-const UTILITY_BAR_HEIGHT = 44;
 
 const linkBase =
   "relative inline-flex min-h-11 items-center px-2 text-[var(--text-medium-16)] font-normal tracking-wide transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-2 after:h-px after:origin-left after:bg-current after:transition-transform after:duration-300 after:ease-out motion-reduce:after:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-dark";
@@ -40,57 +35,6 @@ const mobileItem = {
   hidden: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
 };
-
-function UtilityBar() {
-  const mailHref = BUSINESS.email ? `mailto:${BUSINESS.email}` : null;
-  const telHref = BUSINESS.phone ? `tel:${BUSINESS.phone.replace(/[^+\d]/g, "")}` : null;
-  const whatsappHref = BUSINESS.whatsappNumber
-    ? `https://wa.me/${BUSINESS.whatsappNumber.replace(/\D/g, "")}`
-    : null;
-  const itemClass =
-    "inline-flex min-h-11 items-center gap-2 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
-
-  return (
-    <div className="hidden h-11 border-b border-white/10 bg-ink text-xs text-gray-300 lg:block">
-      <div className="mx-auto flex h-full w-full items-center justify-between gap-6 px-8">
-        <ul className="flex items-center gap-6">
-          {mailHref && (
-            <li>
-              <a href={mailHref} className={itemClass}>
-                <Mail size={14} aria-hidden="true" />
-                {BUSINESS.email}
-              </a>
-            </li>
-          )}
-          {whatsappHref && (
-            <li>
-              <a href={whatsappHref} className={itemClass} rel="noopener noreferrer" target="_blank">
-                WhatsApp
-              </a>
-            </li>
-          )}
-          {telHref && (
-            <li>
-              <a href={telHref} className={itemClass}>
-                <Phone size={14} aria-hidden="true" />
-                {BUSINESS.phone}
-              </a>
-            </li>
-          )}
-        </ul>
-        {BUSINESS.acceptingProjects && (
-          <p className="inline-flex items-center gap-2">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-brand opacity-70 motion-safe:animate-ping" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
-            </span>
-            Taking on new projects
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
 
 function BookCallButton() {
   const reduceMotion = useReducedMotion();
@@ -209,8 +153,6 @@ export default function Navbar() {
   const lastScroll = useRef(0);
 
   const { scrollY } = useScroll();
-  // Lets the fixed nav sit under the in-flow utility bar at the top, then slide up as it scrolls away.
-  const barOffset = useTransform(scrollY, (value) => `${Math.max(0, UTILITY_BAR_HEIGHT - value)}px`);
 
   useMotionValueEvent(scrollY, "change", (value) => {
     const previous = lastScroll.current;
@@ -299,11 +241,8 @@ export default function Navbar() {
 
   return (
     <>
-      <UtilityBar />
-
       <motion.header
-        style={{ "--bar-offset": barOffset } as CSSProperties}
-        className="site-header fixed inset-x-0 top-0 z-50 lg:translate-y-[var(--bar-offset)]"
+        className="site-header pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4"
         onFocus={() => setFocusWithin(true)}
         onBlur={(event) => {
           if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setFocusWithin(false);
@@ -311,17 +250,17 @@ export default function Navbar() {
       >
         <motion.nav
           aria-label="Main"
-          animate={{ y: hidden ? "-100%" : "0%" }}
+          animate={{ y: hidden ? "-160%" : "0%" }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className={`border-b transition-[background-color,box-shadow,border-color] duration-300 ${
+          className={`pointer-events-auto mx-auto max-w-7xl rounded-full border transition-[background-color,box-shadow,border-color] duration-300 ${
             solid
-              ? "border-gray-200/80 bg-white/90 shadow-[0_8px_30px_rgba(20,20,19,0.06)] backdrop-blur-xl"
-              : "border-transparent bg-white/80 backdrop-blur-md"
+              ? "border-gray-200/80 bg-white/90 shadow-[0_12px_40px_rgba(20,20,19,0.12)] backdrop-blur-xl"
+              : "border-gray-200/60 bg-white/80 shadow-[0_8px_30px_rgba(20,20,19,0.06)] backdrop-blur-md"
           } ${menuOpen ? "!bg-white" : ""}`}
         >
           <div
             className={`relative flex w-full items-center overflow-visible px-5 transition-[height] duration-300 sm:px-8 h-16 ${
-              scrolled ? "md:h-20" : "md:h-24"
+              scrolled ? "md:h-16" : "md:h-20"
             }`}
           >
             <Link viewTransition to="/" className="z-10 flex min-h-11 flex-shrink-0 items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-dark">
@@ -333,7 +272,7 @@ export default function Navbar() {
                   alt="Gidev Innovations"
                   width={92}
                   height={40}
-                  className={`h-10 w-auto transition-[height] duration-300 ${scrolled ? "md:h-14" : "md:h-16"}`}
+                  className={`h-10 w-auto transition-[height] duration-300 ${scrolled ? "md:h-11" : "md:h-14"}`}
                 />
               </picture>
             </Link>
@@ -486,7 +425,7 @@ export default function Navbar() {
           onClick={(event) => {
             if ((event.target as HTMLElement).closest("a")) setMenuOpen(false);
           }}
-          className="fixed inset-0 z-40 overflow-y-auto bg-white pt-16 lg:hidden"
+          className="fixed inset-0 z-40 overflow-y-auto bg-white pt-24 lg:hidden"
         >
           <motion.ul
             variants={mobileList}
