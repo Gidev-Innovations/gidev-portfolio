@@ -4,39 +4,42 @@ import { coverWebp, readingMinutes } from "./blogMeta";
 import Reveal from "../components/Reveal";
 import JsonLd from "../seo/JsonLd";
 import { breadcrumbSchema } from "../seo/schema";
+import PageHero from "../components/PageHero";
 
 export default function Blog() {
   return (
     <div className="min-h-screen bg-white mt-4 md:mt-12">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }])} />
-      <header className="pt-20 pb-16 text-center px-6">
-        <h1 className="text-heading-4 md:text-heading-2 font-medium tracking-tight text-gray-950 mb-4">
-          Software &amp; digital business blog
-        </h1>
-
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-          Practical writing for Kenyan and East African businesses on building
-          software: taking M-Pesa payments online, moving beyond Instagram
-          selling, building apps for the phones people actually use, and how
-          to choose and work with a software studio.
-        </p>
-        <p className="text-gray-500 text-base max-w-2xl mx-auto leading-relaxed mt-3">
-          Written by the team at Gidev Innovations in Nairobi. If a post raises
-          a question about your own project,{" "}
-          <Link to="/contact" className="text-brand-dark underline underline-offset-4">
-            send us a message
-          </Link>
-          .
-        </p>
-      </header>
+      <PageHero
+        eyebrow="Blog"
+        title="Software & digital business blog"
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Blog" }]}
+        intro={
+          <>
+            <p>
+              Practical ideas for building software and digital experiences:
+              improving e-commerce, creating useful AI, building apps for the
+              people who use them and choosing the right digital partner.
+            </p>
+            <p className="mt-3 text-base text-gray-600">
+              Written by the team at Gidev Innovations. If a post raises a
+              question about your own project,{" "}
+              <Link viewTransition to="/contact" className="text-brand-dark underline underline-offset-4">
+                send us a message
+              </Link>
+              .
+            </p>
+          </>
+        }
+      />
 
       <section className="gidev-stage pb-28" aria-label="Articles">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
           {blogPosts.map((post, i) => (
             <Reveal as="article" key={post.id} delay={(i % 2) * 100}>
-              <Link to={`/blog/${post.slug}`} className="group block">
+              <Link viewTransition to={`/blog/${post.slug}`} className="group block">
                 <div className="overflow-hidden rounded-2xl aspect-[1200/630] bg-brand-dark">
-                  <picture>
+                  <picture className="block w-full">
                     <source type="image/webp" srcSet={coverWebp(post)} />
                     <img
                       src={post.image}

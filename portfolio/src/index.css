@@ -89,7 +89,7 @@
  *   brand-light  #eef9fa  section and card backgrounds, pills. Slightly paler
  *                         than #e6f6f7 so gray-500 helper text on it is 4.5:1.
  *   brand-border #bae7e8  30% brand on white: borders/dividers on brand-light.
- *   ink          #111111  near-black: dark buttons and hard-coded dark text.
+ *   ink          #141413  near-black: dark buttons and hard-coded dark text.
  *   muted        #6a7282  grey helper text (Tailwind gray-500).
  *   surface      #ffffff
  *
@@ -101,9 +101,371 @@
   --color-brand-dark: #0e7a7f;
   --color-brand-light: #eef9fa;
   --color-brand-border: #bae7e8;
-  --color-ink: #111111;
+  --color-ink: #141413;
+  --color-black: #141413;
   --color-muted: #6a7282;
   --color-surface: #ffffff;
+  --color-canvas: #f7f9f8;
+}
+
+/*
+ * Hero.
+ *
+ * Everything here is CSS-only so it plays on first paint (no hydration wait) and
+ * the words are real text in the HTML. Motion is transform/opacity, except the
+ * one-shot gradient sweep on the highlighted phrase. Reduced motion shows the
+ * final state immediately.
+ */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes hero-word {
+  from {
+    transform: translateY(112%);
+  }
+}
+
+@keyframes hero-card {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+}
+
+@keyframes hero-sweep {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+@keyframes hero-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(240%);
+  }
+}
+
+@keyframes aurora-a {
+  to {
+    transform: translate3d(12vw, 8vh, 0) scale(1.15);
+  }
+}
+
+@keyframes aurora-b {
+  to {
+    transform: translate3d(-10vw, 10vh, 0) scale(0.9);
+  }
+}
+
+@keyframes aurora-c {
+  to {
+    transform: translate3d(6vw, -8vh, 0) scale(1.2);
+  }
+}
+
+.hero-in {
+  animation: hero-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-card-in {
+  animation: hero-card 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Word mask: the outer box clips, the inner word slides up. Padding keeps descenders from being cut. */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.split-word-inner {
+  display: inline-block;
+  animation: hero-word 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(60ms + var(--i, 0) * 55ms);
+}
+
+.split-highlight {
+  color: var(--color-brand-dark);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .split-highlight {
+    background-image: linear-gradient(100deg, #0e7a7f 0%, #139aa0 40%, #0e7a7f 75%);
+    background-size: 220% 100%;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation:
+      hero-word 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
+      hero-sweep 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.9s both;
+    animation-delay: calc(60ms + var(--i, 0) * 55ms), 0.9s;
+  }
+}
+
+.hero-cue {
+  animation: hero-cue 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.hero-aurora {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.hero-aurora-a {
+  top: -22%;
+  right: -10%;
+  width: min(70vw, 56rem);
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(24, 174, 180, 0.34), transparent);
+  animation: aurora-a 26s ease-in-out infinite alternate;
+}
+
+.hero-aurora-b {
+  bottom: -35%;
+  left: -15%;
+  width: min(80vw, 60rem);
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(14, 122, 127, 0.2), transparent);
+  animation: aurora-b 32s ease-in-out infinite alternate;
+}
+
+.hero-aurora-c {
+  top: 10%;
+  left: 30%;
+  width: min(50vw, 36rem);
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(186, 231, 232, 0.7), transparent);
+  animation: aurora-c 22s ease-in-out infinite alternate;
+}
+
+.mouse-spotlight {
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(148, 163, 184, 0.28), transparent);
+}
+
+.mouse-cursor {
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.35);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+.hero-grain {
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.08  0 0 0 0 0.07  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-in,
+  .hero-card-in,
+  .split-word-inner,
+  .split-highlight,
+  .hero-aurora,
+  .hero-cue {
+    animation: none !important;
+  }
+
+  .mouse-spotlight {
+    display: none;
+  }
+
+  .mouse-cursor {
+    display: none;
+  }
+}
+
+/* Save-data visitors skip the continuous background motion. */
+@media (prefers-reduced-data: reduce) {
+  .hero-aurora {
+    animation: none;
+  }
+}
+
+/*
+ * Pointer spotlight / border glow (src/lib/spotlight.ts sets --mx and --my).
+ * Hover-capable devices only; the glow sits behind the content.
+ */
+.spot {
+  position: relative;
+  isolation: isolate;
+}
+
+.spot::before,
+.spot-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spot::before {
+  z-index: -1;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(24, 174, 180, 0.13), transparent 65%);
+}
+
+.spot-border::after {
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(24, 174, 180, 0.95), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .spot:hover::before,
+  .spot-border:hover::after {
+    opacity: 1;
+  }
+}
+
+/* Technologies marquee: pure CSS, pauses on hover/focus, static (wrapped) under reduced motion. */
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  padding-inline: 0.375rem;
+  animation: marquee-scroll 50s linear infinite;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  flex: none;
+  white-space: nowrap;
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: 9999px;
+  background: #fff;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+    animation: none;
+    padding-inline: 1.5rem;
+    max-width: 1600px;
+    margin-inline: auto;
+  }
+
+  .marquee-copy {
+    display: none;
+  }
+}
+
+/* Payment flow mock phone. */
+@keyframes stk-dot {
+  from {
+    opacity: 0.2;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes stk-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.stk-screen {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stk-screen[data-active="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.stk-dot {
+  opacity: 0.2;
+  transform: scale(0.6);
+}
+
+.stk-screen[data-active="true"] .stk-dot {
+  animation: stk-dot 0.3s ease-out forwards;
+  animation-delay: calc(350ms + var(--d, 0) * 380ms);
+}
+
+.stk-check {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+}
+
+.stk-screen[data-active="true"] .stk-check {
+  animation: stk-check 0.5s ease-out 0.25s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stk-screen {
+    transition: none;
+    transform: none;
+  }
+
+  .stk-dot,
+  .stk-screen[data-active="true"] .stk-dot {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .stk-check,
+  .stk-screen[data-active="true"] .stk-check {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
 
 /* The fixed navbar is 64px (mobile) / 128px (md+); keep anchor targets clear. */
@@ -113,7 +475,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    scroll-padding-top: 9rem;
+    scroll-padding-top: 7rem;
   }
 }
 
@@ -211,5 +573,48 @@ html.reveal-ready [data-reveal]:not(.is-revealed) {
 @media (min-width: 768px) {
   .gidev-stage {
     padding-inline: 2rem;
+  }
+}
+
+/*
+ * Route transitions. React Router starts a view transition for links marked
+ * `viewTransition`; the page cross-fades while the header stays put. Browsers
+ * without the API navigate normally. Skipped entirely under reduced motion.
+ */
+.site-header {
+  view-transition-name: site-header;
+}
+
+::view-transition-old(root) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 240ms cubic-bezier(0, 0, 0.2, 1) 60ms both vt-fade-in;
+}
+
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

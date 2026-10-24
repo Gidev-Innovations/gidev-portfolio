@@ -1,5 +1,6 @@
 import { BUSINESS, SITE, absoluteUrl } from "../data/site";
 import type { Faq } from "../data/faqs";
+import { services, type Service } from "../data/services";
 
 /**
  * JSON-LD builders. Every node that refers to the business uses the same
@@ -18,23 +19,23 @@ export function businessSchema() {
     logo: "https://gidevtech.com/icon-512.png",
     image: `${SITE.url}${SITE.ogImage}`,
     description:
-      "Software development studio in Nairobi, Kenya building web applications, e-commerce platforms with M-Pesa, Android and iOS apps, and business websites.",
+      "Digital studio building software, e-commerce, practical AI solutions, brand experiences and digital growth for businesses worldwide.",
     founder: { "@type": "Person", name: BUSINESS.founder },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: BUSINESS.locality,
-      addressRegion: BUSINESS.region,
-      addressCountry: BUSINESS.country,
+    areaServed: BUSINESS.areaServed,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Digital, creative and AI services",
+      itemListElement: services.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          serviceType: service.title,
+          description: service.metaDescription,
+          url: absoluteUrl(`/services/${service.slug}`),
+        },
+      })),
     },
-    areaServed: BUSINESS.areaServed.map((name) => ({ "@type": "Place", name })),
-    knowsAbout: [
-      "Web application development",
-      "E-commerce development",
-      "M-Pesa integration",
-      "Mobile app development",
-      "React Native",
-      "UI/UX design",
-    ],
     ...(BUSINESS.sameAs.length > 0 && { sameAs: BUSINESS.sameAs }),
     // TODO(human): add telephone, email, openingHoursSpecification, geo and
     // priceRange once they are published on the site. Do not add them here first.
@@ -48,7 +49,7 @@ export function websiteSchema() {
     "@id": `${SITE.url}/#website`,
     url: absoluteUrl("/"),
     name: SITE.name,
-    inLanguage: "en-KE",
+    inLanguage: "en",
     publisher: { "@id": ORG_ID },
   };
 }
@@ -78,20 +79,16 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
-export function serviceSchema(service: {
-  name: string;
-  slug: string;
-  metaDescription: string;
-}) {
+export function serviceSchema(service: Service) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: service.name,
-    serviceType: service.name,
+    name: service.title,
+    serviceType: service.title,
     description: service.metaDescription,
     url: absoluteUrl(`/services/${service.slug}`),
     provider: { "@id": ORG_ID },
-    areaServed: BUSINESS.areaServed.map((name) => ({ "@type": "Place", name })),
+    areaServed: BUSINESS.areaServed,
   };
 }
 
@@ -111,7 +108,7 @@ export function articleSchema(post: {
     image,
     datePublished: post.isoDate,
     dateModified: post.isoDate,
-    inLanguage: "en-KE",
+    inLanguage: "en",
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
     author: {
       "@type": "Organization",

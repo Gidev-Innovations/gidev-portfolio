@@ -146,7 +146,7 @@ for (const route of ROUTES) {
           expect(smallFields, "form fields under 16px").toEqual([]);
         }
 
-        const footerContact = page.locator('footer a[href^="/contact"]').first();
+        const footerContact = page.locator('footer nav[aria-label="Company"] a[href="/contact"]').first();
         await footerContact.scrollIntoViewIfNeeded();
         await page.waitForTimeout(300);
         const covered = await footerContact.evaluate((link) => {
@@ -187,7 +187,7 @@ test.describe("short laptop screens: nothing starts under the fixed navbar", () 
         await page.setViewportSize({ width, height });
         await page.goto(route, { waitUntil: "networkidle" });
         const hidden = await page.evaluate(() => {
-          const navBottom = document.querySelector("nav.fixed")!.getBoundingClientRect().bottom;
+          const navBottom = document.querySelector("nav[aria-label=Main]")!.getBoundingClientRect().bottom;
           return [...document.querySelectorAll("#main *")]
             .filter((el) => {
               const hasText = [...el.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && n.textContent!.trim());

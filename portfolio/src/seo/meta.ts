@@ -30,7 +30,7 @@ export function buildMeta(
     { title },
     { name: "description", content: description },
     { tagName: "link", rel: "canonical", href: url },
-    { tagName: "link", rel: "alternate", hrefLang: "en-KE", href: url },
+    { tagName: "link", rel: "alternate", hrefLang: "en", href: url },
     { tagName: "link", rel: "alternate", hrefLang: "x-default", href: url },
 
     { property: "og:type", content: overrides?.type ?? "website" },

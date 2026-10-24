@@ -167,7 +167,7 @@ function ProjectDetails() {
           <p className="text-gray-600 mb-6">
             Tell us what you're working on. You'll get a straight answer on fit, timeline and cost.
           </p>
-          <Link
+          <Link viewTransition
             to="/contact"
             className="inline-flex min-h-12 items-center rounded-full bg-gray-900 px-7 font-semibold text-white hover:bg-brand-dark transition-colors"
           >
@@ -176,7 +176,7 @@ function ProjectDetails() {
         </div>
 
         <div className="mt-12">
-          <Link
+          <Link viewTransition
             to="/projects"
             className="inline-flex min-h-11 items-center px-6 rounded-full border border-gray-300 text-gray-900 hover:border-brand-dark hover:text-brand-dark transition"
           >

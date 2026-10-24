@@ -11,7 +11,8 @@ page and checks the properties Google requires for each type, plus title
 (≤ 60 chars), meta description (≤ 155), canonical, and a single `<h1>`.
 It exits non-zero on any failure, so it can run in CI.
 
-**Result: 21 / 21 pages pass.**
+**Previously validated:** 21 / 21 pages passed before the services catalog
+expanded. Re-run the command above after building to validate all current routes.
 
 ## Types per page
 
@@ -19,7 +20,7 @@ It exits non-zero on any failure, so it can run in CI.
 | --- | --- |
 | `/` | ProfessionalService, WebSite, FAQPage |
 | `/services` | BreadcrumbList |
-| `/services/{web-apps, ecommerce, mobile-apps, business-websites}` | Service, BreadcrumbList, FAQPage |
+| `/services/*` | Service, BreadcrumbList, FAQPage |
 | `/projects` | BreadcrumbList |
 | `/projects/{r-flex, kibandaski-finder, sticky-day}` | BreadcrumbList |
 | `/blog` | BreadcrumbList |

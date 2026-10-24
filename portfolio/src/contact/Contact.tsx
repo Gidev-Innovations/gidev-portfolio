@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { BUSINESS } from "../data/site";
 import { track } from "../lib/track";
 import ContactForm from "./ContactForm";
+import PageHero from "../components/PageHero";
 
 const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
@@ -85,18 +86,20 @@ function CalendlyEmbed() {
 
 export default function Contact() {
   return (
-    <div className="bg-white px-6 mt-22 md:mt-34 pb-12">
-      <header className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-        <h1 className="text-heading-5 md:text-heading-2 font-medium text-black mb-4 leading-tight">
-          Tell us what you're building
-        </h1>
-        <p className="text-gray-600 text-lg leading-relaxed">
-          {/* TODO(human): state a reply time here once you can commit to one. */}
-          Send a short message and we'll get back to you, or book
-          a free {BUSINESS.callLength} call. Either way you'll get a straight
-          answer on fit, timeline and cost, with no obligation.
-        </p>
-      </header>
+    <div className="bg-white px-6 mt-4 md:mt-12 pb-12">
+      <PageHero
+        eyebrow="Contact"
+        title="Tell us what your business needs"
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Contact" }]}
+        intro={
+          <>
+            {/* TODO(human): state a reply time here once you can commit to one. */}
+            Tell us what you are looking for and we'll get back to you, or book
+            a free {BUSINESS.callLength} call. Either way you'll get a straight
+            answer on fit, timeline and cost, with no obligation.
+          </>
+        }
+      />
 
       <section
         id="message"
@@ -108,17 +111,14 @@ export default function Contact() {
             Send a message
           </h2>
           <p className="mt-4 text-gray-600 leading-relaxed">
-            A few lines is enough. Tell us what it should do, who it's for and
-            any deadline, and we'll come back with questions or a rough plan.
+            A few lines is enough. Tell us what you need help with, who it is
+            for and any timing that matters, and we'll come back with questions
+            or a useful next step.
           </p>
           <dl className="mt-8 space-y-4 text-gray-700">
             <div>
-              <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase">Based in</dt>
-              <dd>{BUSINESS.locality}, {BUSINESS.countryName}</dd>
-            </div>
-            <div>
               <dt className="text-xs font-mono text-gray-500 tracking-widest uppercase">Working with</dt>
-              <dd>Businesses across Kenya, East Africa and remotely worldwide</dd>
+              <dd>Businesses and teams worldwide through remote collaboration</dd>
             </div>
           </dl>
         </div>
@@ -136,8 +136,8 @@ export default function Contact() {
           </h2>
           <p className="mt-4 text-gray-600 leading-relaxed">
             Thirty minutes is enough to work out whether we're the right fit,
-            roughly what your project involves, and what it would cost. Add a
-            note about the project when you book and we'll read it before the
+            what kind of support you need and what a sensible next step could be.
+            Add a note about your goals when you book and we'll read it before the
             call.
           </p>
         </div>

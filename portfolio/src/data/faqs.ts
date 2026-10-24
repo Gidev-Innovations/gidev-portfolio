@@ -3,52 +3,55 @@ export type Faq = {
   answer: string;
 };
 
-// Single source of truth for FAQs, shared by the homepage and the Services
-// page. Previously these two pages carried separate lists, and the Services
-// one still held the original template's placeholder copy.
-//
-// TODO: Confirm the specifics below still match how Gidev actually operates —
-// particularly the 4–8 week MVP window and the three pricing models, since
-// these set client expectations.
 export const faqs: Faq[] = [
   {
-    question: "How fast can Gidev deliver a complete product?",
+    question: "What does Gidev Innovations help businesses with?",
     answer:
-      "Most projects are scoped and kicked off within a week. Depending on complexity, we typically deliver MVPs in 4–8 weeks. We work in tight sprints and keep you updated throughout so there are no surprises.",
-  },
-  {
-    question: "Do you offer revisions after the project is delivered?",
-    answer:
-      "Yes. Every engagement includes a revision period post-delivery. We don't consider the work done until you're fully satisfied. For ongoing clients we offer retainer arrangements that include continuous iteration.",
-  },
-  {
-    question: "What factors influence Gidev's pricing?",
-    answer:
-      "Pricing is based on project scope, timeline, and the technologies involved. We offer three models: fixed project-based pricing, monthly retainers, and long-term partnership structures. We'll recommend the right fit after our discovery call.",
-  },
-  {
-    question: "Can Gidev support ongoing development needs for my business?",
-    answer:
-      "Yes. After launch we can stay on for feature development, bug fixes, performance optimization, and scaling, working as an extension of your team for as long as you need us.",
+      "We build web applications, e-commerce platforms, mobile apps, websites and practical AI solutions, alongside SEO, brand design, digital marketing and ongoing support.",
   },
   {
     question: "What technologies does Gidev specialize in?",
     answer:
-      "Our core stack is React, TypeScript, Node.js, and modern cloud infrastructure. We also work with React Native for mobile, and tailor our tech choices to what best serves your product goals.",
+      "The right tools depend on the service and the brief. For software projects we discuss the platforms, integrations and maintenance needs first, then recommend an approach that fits the product rather than forcing every project into one stack.",
   },
   {
-    question: "Can you integrate M-Pesa and other mobile money payments?",
+    question: "Do you work with clients worldwide?",
     answer:
-      "Yes. We build M-Pesa checkout on Safaricom's Daraja API (STK Push, Paybill and Till), plus card payments through providers such as Paystack, Flutterwave or Pesapal, and we handle the confirmation callbacks so payments match orders automatically.",
+      "Yes. We collaborate remotely with businesses and teams worldwide, using clear communication, agreed review points and a practical handover.",
   },
   {
-    question: "Do you only work with businesses in Nairobi?",
+    question: "Can you help us decide whether AI is right for our business?",
     answer:
-      "No. We are based in Nairobi and happy to meet in person there, but most of the work happens remotely, so we work with businesses across Kenya, East Africa and further afield.",
+      "Yes. We start with the work you want to improve, assess the potential value and risks, and recommend a focused first step—or a simpler solution if AI is not the right fit.",
   },
   {
-    question: "Do you work with early-stage startups or only established businesses?",
+    question: "How do your engagements work?",
     answer:
-      "Both. We love working with founders at the idea stage to build their first product, and equally enjoy helping established businesses modernize or scale their existing systems.",
+      "We clarify the goals, responsibilities and deliverables before recommending a fixed project, monthly retainer or partnership arrangement. The proposed scope and commercial terms are agreed before work begins.",
+  },
+  {
+    question: "Can you connect payment providers to an e-commerce project?",
+    answer:
+      "Yes. We can scope supported payment providers as part of your e-commerce checkout and confirm the setup against your store platform and business needs.",
+  },
+  {
+    question: "What SEO support do you provide?",
+    answer:
+      "SEO work can cover technical and on-page reviews, search-intent priorities and useful content recommendations. Search rankings are not guaranteed; priorities and progress are discussed using the information available for your site.",
+  },
+  {
+    question: "Can you maintain a website you did not build?",
+    answer:
+      "We can first review the platform, access and current state of an existing website. If the setup is supportable, we agree the maintenance tasks, request process and responsibilities before ongoing work begins.",
+  },
+  {
+    question: "Can you help with branding and graphic design?",
+    answer:
+      "Yes. Work can include visual direction, identity elements and practical design assets. We agree the formats and deliverables in the project scope so the files suit the channels where you plan to use them.",
+  },
+  {
+    question: "What does digital marketing include?",
+    answer:
+      "Our digital marketing service focuses on social media and email. Depending on the brief, work can include channel planning, campaign themes, content direction and reviewing available performance signals.",
   },
 ];

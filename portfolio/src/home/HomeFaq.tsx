@@ -1,44 +1,32 @@
-import { Settings } from "lucide-react";
+import Eyebrow from "../components/Eyebrow";
+import Reveal from "../components/Reveal";
 import { faqs } from "../data/faqs";
-import FaqsItem from "../services/FaqsItem";
 import FaqSchema from "../seo/FaqSchema";
+import FaqsItem from "../services/FaqsItem";
 
 export default function HomeFaq() {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-20 md:py-28" aria-labelledby="home-faq-heading">
       <FaqSchema faqs={faqs} />
-      <div className="mx-auto px-6 sm:px-8 text-center" style={{ maxWidth: "760px" }}>
-      {/* Label */}
-      <div className="flex items-center justify-center gap-2 text-gray-500 mb-3">
-        <Settings size={13} strokeWidth={1.5} />
-        <span style={{ fontSize: "13px" }}>FAQ</span>
-      </div>
+      <div className="mx-auto max-w-3xl px-6 sm:px-8">
+        <Reveal className="mb-12 text-center md:mb-14">
+          <Eyebrow>FAQ</Eyebrow>
+          <h2
+            id="home-faq-heading"
+            className="mx-auto mb-4 max-w-xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-ink sm:text-5xl"
+          >
+            Essential FAQs answered for you
+          </h2>
+          <p className="mx-auto max-w-md text-base leading-relaxed text-gray-600">
+            Clear answers about software, growth and ongoing digital support.
+          </p>
+        </Reveal>
 
-      {/* Heading */}
-      <h2
-        className="font-bold text-black mx-auto mb-3"
-        style={{
-          fontSize: "clamp(32px, 5vw, 62px)",
-          lineHeight: 1.05,
-          letterSpacing: "-0.02em",
-          maxWidth: "560px",
-        }}
-      >
-        Essential FAQs Answered for You
-      </h2>
-
-      <p
-        className="text-gray-500 mx-auto mb-14"
-        style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "360px" }}
-      >
-        Everything you need to know before we start building together.
-      </p>
-
-      <div className="flex flex-col gap-3">
-        {faqs.map((faq) => (
-          <FaqsItem key={faq.question} question={faq.question} answer={faq.answer} />
-        ))}
-      </div>
+        <div className="flex flex-col gap-3">
+          {faqs.map((faq) => (
+            <FaqsItem key={faq.question} question={faq.question} answer={faq.answer} />
+          ))}
+        </div>
       </div>
     </section>
   );

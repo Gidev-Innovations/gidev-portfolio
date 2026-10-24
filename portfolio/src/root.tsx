@@ -15,6 +15,7 @@ import { ArrowUp } from "lucide-react";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import GlobalCursorEffect from "./components/GlobalCursorEffect";
 import ScrollToTop from "./components/ScrollToTop";
 import { scanReveals } from "./lib/reveal";
 import stylesheet from "./index.css?url";
@@ -36,7 +37,7 @@ export const links: LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-KE" className="font-Outfit font-light">
+    <html lang="en" className="font-Outfit font-light">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function BackToTop() {
+function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -73,12 +74,17 @@ function BackToTop() {
   return (
     <button
       type="button"
-      aria-label="Scroll back to top"
+      aria-label="Scroll to top"
       tabIndex={visible ? 0 : -1}
       className={`fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-ink shadow-lg transition-opacity duration-200 cursor-pointer ${
         visible ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={() =>
+        window.scrollTo({
+          top: 0,
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        })
+      }
     >
       <ArrowUp size={20} className="text-brand" aria-hidden="true" />
     </button>
@@ -95,7 +101,9 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="relative">
+        <GlobalCursorEffect />
         <ScrollToTop />
+        <ScrollToTopButton />
         <Navbar />
 
         <main id="main">
@@ -103,7 +111,6 @@ export default function App() {
         </main>
 
         <Footer />
-        <BackToTop />
       </div>
     </MotionConfig>
   );

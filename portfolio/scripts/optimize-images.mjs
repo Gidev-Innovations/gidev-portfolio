@@ -70,7 +70,7 @@ function wrap(text, maxChars) {
 }
 
 /** Mirrors the brand tokens in src/index.css (SVG rendering can't read CSS variables). */
-const BRAND = { base: "#18aeb4", dark: "#0e7a7f", ink: "#111111", muted: "#6a7282" };
+const BRAND = { base: "#18aeb4", dark: "#0e7a7f", ink: "#141413", muted: "#6a7282" };
 const kitDir = join(root, "src", "assets", "gidev-logo-kit");
 
 /** White card: the kit's primary logo and wordmark have ink letters. */
@@ -86,7 +86,7 @@ function cardSvg({ eyebrow, title }) {
   <rect x="0" y="0" width="1200" height="12" fill="${BRAND.base}"/>
   <text x="80" y="250" fill="${BRAND.dark}" font-family="Outfit, Segoe UI, Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="3">${escapeXml(eyebrow.toUpperCase())}</text>
   <text fill="${BRAND.ink}" font-family="Outfit, Segoe UI, Arial, sans-serif" font-size="${size}" font-weight="800">${text}</text>
-  <text x="1120" y="575" text-anchor="end" fill="${BRAND.muted}" font-family="Outfit, Segoe UI, Arial, sans-serif" font-size="26">gidevtech.com · Nairobi, Kenya</text>
+  <text x="1120" y="575" text-anchor="end" fill="${BRAND.muted}" font-family="Outfit, Segoe UI, Arial, sans-serif" font-size="26">gidevtech.com · Digital studio worldwide</text>
 </svg>`;
 }
 
@@ -103,8 +103,8 @@ async function renderCards() {
   await mkdir(ogDir, { recursive: true });
 
   const home = await renderCard({
-    eyebrow: "Software studio · Nairobi",
-    title: "Web & Mobile App Development in Kenya",
+    eyebrow: "Digital studio · Software · Design · AI",
+    title: "Digital products and AI for ambitious businesses",
     logoFile: "gidev-logo.svg",
     logoWidth: 260,
   });

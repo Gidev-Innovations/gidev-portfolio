@@ -1,341 +1,182 @@
 import { Link } from "react-router-dom";
-import { Check, Settings } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import type { Service } from "../data/services";
-import { services, deliveryProcess } from "../data/services";
-import { BUSINESS } from "../data/site";
-import { blogPosts } from "../blog/blogData";
-import { projects } from "../projects/projects.data";
+import { services } from "../data/services";
 import Reveal from "../components/Reveal";
+import PageHero from "../components/PageHero";
 import ResponsiveImage from "../components/ResponsiveImage";
 import Faqs from "./Faqs";
 import JsonLd from "../seo/JsonLd";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "../seo/schema";
 
-const eyebrow = "text-xs font-mono text-gray-500 tracking-widest uppercase";
+const eyebrow = "text-xs font-semibold tracking-[0.18em] uppercase text-brand-dark";
+const heading = "font-semibold tracking-tight text-gray-950";
 
 export default function ServiceDetail({ service }: { service: Service }) {
-  const others = services.filter((s) => s.slug !== service.slug);
-  const posts = service.relatedPosts
-    .map((slug) => blogPosts.find((p) => p.slug === slug))
-    .filter((p) => p !== undefined);
-  const work = service.relatedProjects
-    .map((slug) => projects.find((p) => p.slug === slug))
-    .filter((p) => p !== undefined);
+  const relatedServices = service.relatedServiceIds
+    .map((id) => services.find((item) => item.id === id))
+    .filter((item): item is Service => item !== undefined);
 
   return (
-    <div className="bg-white min-h-screen mt-10 md:mt-14">
+    <div className="min-h-screen bg-white pt-10 md:pt-14">
       <JsonLd
         data={[
           serviceSchema(service),
           breadcrumbSchema([
             { name: "Home", path: "/" },
             { name: "Services", path: "/services" },
-            { name: service.name, path: `/services/${service.slug}` },
+            { name: service.title, path: `/services/${service.slug}` },
           ]),
           faqSchema(service.faqs),
         ]}
       />
 
-      {/* Hero */}
-      <header className="px-6 pt-20 pb-14 text-center">
-        <nav aria-label="Breadcrumb" className="mb-4">
-          <ol className="flex items-center justify-center gap-2 text-gray-500" style={{ fontSize: "13px" }}>
-            <li>
-              <Link to="/" className="inline-flex min-h-11 min-w-11 items-center justify-center hover:text-brand-dark transition-colors">Home</Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li>
-              <Link to="/services" className="inline-flex min-h-11 items-center gap-1.5 hover:text-brand-dark transition-colors">
-                <Settings size={13} strokeWidth={1.5} aria-hidden="true" />
-                Services
-              </Link>
-            </li>
-          </ol>
-        </nav>
-
-        <h1
-          className="font-bold text-black mx-auto mb-5"
-          style={{
-            fontSize: "clamp(32px, 5vw, 62px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.02em",
-            maxWidth: "860px",
-          }}
-        >
-          {service.h1}
-        </h1>
-
-        <div
-          className="gidev-band mx-auto mb-6"
-          style={{ height: "10px", width: "96px" }}
-          aria-hidden="true"
-        />
-
-        <p
-          className="text-gray-500 mx-auto mb-8"
-          style={{ fontSize: "17px", lineHeight: 1.65, maxWidth: "580px" }}
-        >
-          {service.summary}
-        </p>
-
-        <Link
+      <PageHero
+        eyebrow={service.group}
+        title={service.h1}
+        breadcrumb={[
+          { label: "Home", to: "/" },
+          { label: "Services", to: "/services" },
+          { label: service.title },
+        ]}
+        intro={service.shortDescription}
+      >
+        <Link viewTransition
           to="/contact"
-          className="inline-flex min-h-12 items-center bg-gray-900 text-white rounded-full px-7 py-3 font-semibold hover:bg-brand-dark transition-colors duration-200"
-          style={{ fontSize: "15px" }}
+          className="inline-flex min-h-12 items-center rounded-full bg-ink px-7 py-3 font-semibold text-white transition-colors hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-dark"
         >
-          Book a free 30-minute call
+          Talk to us about this service
         </Link>
-      </header>
+      </PageHero>
 
-      <div className="max-w-[1100px] mx-auto px-6 md:px-8 pb-24">
-        <figure className="mb-16 overflow-hidden rounded-3xl aspect-[16/8] bg-brand-light">
+      <div className="mx-auto max-w-[1100px] px-6 pb-24 md:px-8">
+        <figure className="mb-16 aspect-[16/8] overflow-hidden rounded-3xl bg-brand-light">
           <ResponsiveImage
             name={service.image.name}
             alt={service.image.alt}
             sizes="(min-width: 1100px) 1036px, calc(100vw - 48px)"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
         </figure>
 
-        {/* Intro */}
-        <Reveal className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-12 md:gap-16">
-          <div className="border-t-2 border-gray-950 pt-8 space-y-5">
-            <h2 className={eyebrow}>What this is</h2>
-            {service.intro.map((para) => (
-              <p key={para.slice(0, 32)} className="text-gray-700 text-[17px] leading-relaxed">
-                {para}
+        <section aria-labelledby="service-intro-heading" className="mb-20 max-w-3xl">
+          <h2 id="service-intro-heading" className={`${eyebrow} mb-5`}>A considered approach</h2>
+          <div className="space-y-5">
+            {service.longDescription.split("\n\n").map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="text-lg leading-relaxed text-gray-700">
+                {paragraph}
               </p>
-            ))}
-          </div>
-          <aside className="border-t-2 border-brand pt-8">
-            <h2 className={`${eyebrow} mb-4`}>Best for</h2>
-            <p className="text-gray-600 text-base leading-relaxed">{service.bestFor}</p>
-            <h2 className={`${eyebrow} mt-10 mb-4`}>Typical timeline</h2>
-            <p className="text-gray-600 text-base leading-relaxed">{service.timeline}</p>
-          </aside>
-        </Reveal>
-
-        {/* Problems */}
-        <section className="mt-24">
-          <h2
-            className="font-bold text-black mb-10"
-            style={{ fontSize: "clamp(26px, 3.4vw, 42px)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
-          >
-            Problems we solve
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {service.problems.map((problem, i) => (
-              <Reveal
-                key={problem.title}
-                delay={(i % 2) * 100}
-                className="rounded-2xl p-6 md:p-8"
-                style={{
-                  backgroundColor: "var(--color-brand-light)",
-                  border: "1px solid var(--color-brand-border)",
-                }}
-              >
-                <h3 className="font-bold text-black mb-3" style={{ fontSize: "18px" }}>
-                  {problem.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontSize: "15px" }}>
-                  {problem.body}
-                </p>
-              </Reveal>
             ))}
           </div>
         </section>
 
-        {/* Included + stack */}
-        <Reveal className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-          <div className="border-t-2 border-brand pt-8">
-            <h2 className={`${eyebrow} mb-6`}>What's included</h2>
-            <ul className="flex flex-col gap-4">
-              {service.includes.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span
-                    className="flex-shrink-0 flex items-center justify-center rounded-full mt-0.5"
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      backgroundColor: "var(--color-brand-border)",
-                    }}
-                  >
+        <section aria-labelledby="service-included-heading" className="mb-20">
+          <Reveal className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+            <div className="border-t-2 border-brand pt-7">
+              <p className={`${eyebrow} mb-4`}>{service.group}</p>
+              <h2 id="service-included-heading" className={`${heading} text-3xl md:text-4xl`}>
+                What’s included
+              </h2>
+              <p className="mt-4 leading-relaxed text-gray-600">{service.bestFor}</p>
+            </div>
+            <ul className="space-y-4 border-t-2 border-gray-950 pt-7">
+              {service.includedItems.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-gray-700">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-light">
                     <Check size={12} strokeWidth={2.4} className="text-brand-dark" aria-hidden="true" />
                   </span>
-                  <span className="text-gray-600 text-[15px] leading-relaxed">{item}</span>
+                  <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="border-t-2 border-gray-950 pt-8">
-            <h2 className={`${eyebrow} mb-6`}>Tech we typically use</h2>
-            <ul className="flex flex-wrap gap-2">
-              {service.stack.map((tech) => (
-                <li
-                  key={tech}
-                  className="rounded-full px-4 py-2 text-[14px] text-gray-700 bg-brand-light border border-brand-border"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <h2 className={`${eyebrow} mb-4`}>Indicative pricing</h2>
-              <p className="text-gray-700 leading-relaxed">
-                Projects typically start from{" "}
-                <strong className="text-black font-semibold">{service.pricing.fromKes}</strong>.
-                Every quote follows a free {BUSINESS.callLength} scoping call.
-              </p>
-              {service.pricing.note && (
-                <p className="text-gray-600 text-sm mt-2 leading-relaxed">{service.pricing.note}</p>
-              )}
-            </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </section>
 
-        {/* Process */}
-        <section className="mt-24">
-          <h2
-            className="font-bold text-black mb-10"
-            style={{ fontSize: "clamp(26px, 3.4vw, 42px)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
-          >
-            How a project runs
-          </h2>
-          <ol className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {deliveryProcess.map((step, i) => (
-              <Reveal as="li" key={step.title} delay={i * 80} className="border-t-2 border-gray-200 pt-5">
-                <p className="text-xs font-mono text-gray-500 mb-2">{String(i + 1).padStart(2, "0")}</p>
-                <h3 className="font-bold text-black mb-2" style={{ fontSize: "16px" }}>{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontSize: "14.5px" }}>{step.body}</p>
+        <section aria-labelledby="service-process-heading" className="mb-20">
+          <Reveal className="mb-8 max-w-2xl">
+            <p className={`${eyebrow} mb-4`}>A clear sequence</p>
+            <h2 id="service-process-heading" className={`${heading} text-3xl md:text-4xl`}>
+              How we work on {service.title.toLowerCase()}
+            </h2>
+          </Reveal>
+          <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {service.processSteps.map((step, index) => (
+              <Reveal
+                as="li"
+                key={step.title}
+                delay={index * 70}
+                className="border-t-2 border-gray-200 pt-5"
+              >
+                <p className="mb-3 text-xs font-mono tracking-widest text-brand-dark">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mb-2 text-lg font-semibold text-gray-950">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-600">{step.body}</p>
               </Reveal>
             ))}
           </ol>
         </section>
 
-        {/* Related work */}
-        {work.length > 0 && (
-          <section className="mt-24">
-            <h2 className={`${eyebrow} mb-6`}>Related work</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {work.map((project) => (
-                <Link
-                  key={project.slug}
-                  to={`/projects/${project.slug}`}
-                  className="group flex gap-4 items-center rounded-2xl p-4 border border-brand-border hover:bg-brand-light transition-colors"
+        <section aria-labelledby="service-deliverables-heading" className="mb-20">
+          <Reveal className="rounded-3xl border border-brand-border bg-brand-light p-7 md:p-10">
+            <p className={`${eyebrow} mb-4`}>Clear outcomes</p>
+            <h2 id="service-deliverables-heading" className={`${heading} mb-7 text-3xl md:text-4xl`}>
+              Deliverables
+            </h2>
+            <ul className="grid gap-4 md:grid-cols-3">
+              {service.deliverables.map((item) => (
+                <li key={item} className="rounded-2xl bg-white p-5 leading-relaxed text-gray-700">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+
+        {relatedServices.length > 0 && (
+          <nav aria-label="Related services" className="mb-20">
+            <p className={`${eyebrow} mb-5`}>Related services</p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedServices.map((related) => (
+                <Link viewTransition
+                  key={related.id}
+                  to={`/services/${related.slug}`}
+                  className="group rounded-2xl border border-gray-200 p-5 transition-colors hover:border-brand-border hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-dark"
                 >
-                  <span className="block w-28 h-20 flex-shrink-0 overflow-hidden rounded-xl">
-                    <ResponsiveImage
-                      name={project.image}
-                      alt=""
-                      sizes="112px"
-                      className="w-full h-full object-cover"
-                    />
-                  </span>
-                  <span>
-                    <span className="block font-bold text-black transition-colors group-hover:text-brand-dark">{project.title}</span>
-                    <span className="block text-gray-500 text-sm">{project.kind}</span>
+                  <h3 className="font-semibold text-gray-950 group-hover:text-brand-dark">{related.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{related.shortDescription}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark">
+                    Explore service <ArrowUpRight size={15} aria-hidden="true" />
                   </span>
                 </Link>
               ))}
             </div>
-          </section>
+          </nav>
         )}
 
-        {/* FAQ */}
-        <div className="mt-24">
-          <Faqs items={service.faqs} title={`${service.name}: common questions`} />
+        <div className="mb-20">
+          <Faqs items={service.faqs} title={`${service.title}: common questions`} />
         </div>
 
-        {/* Related reading */}
-        {posts.length > 0 && (
-          <section className="mt-24">
-            <h2 className={`${eyebrow} mb-6`}>Further reading</h2>
-            <ul className="flex flex-col divide-y divide-brand-border border-y border-brand-border">
-              {posts.map((post) => (
-                <li key={post.slug}>
-                  <Link
-                    to={`/blog/${post.slug}`}
-                    className="flex min-h-14 items-center justify-between gap-4 py-3 text-gray-800 hover:text-brand-dark transition-colors"
-                  >
-                    <span className="font-medium">{post.title}</span>
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {/* CTA */}
-        <Reveal
-          className="mt-24 rounded-3xl px-8 md:px-14 py-16 text-center"
-          style={{
-            backgroundColor: "var(--color-brand-light)",
-            borderRadius: "28px",
-          }}
-        >
-          <h2
-            className="font-bold text-black mx-auto mb-3"
-            style={{
-              fontSize: "clamp(26px, 3.4vw, 44px)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              maxWidth: "520px",
-            }}
-          >
-            Tell us what you're building
+        <Reveal className="rounded-3xl bg-brand-light px-8 py-14 text-center md:px-14">
+          <p className={`${eyebrow} mb-4`}>Next step</p>
+          <h2 className={`${heading} mx-auto mb-3 max-w-xl text-3xl md:text-4xl`}>
+            Tell us what you need
           </h2>
-          <p
-            className="text-gray-500 mx-auto mb-8"
-            style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "420px" }}
-          >
-            Send a short message or book a free 30-minute call. You'll get a
-            straight answer on fit, timeline and cost.
+          <p className="mx-auto mb-8 max-w-xl leading-relaxed text-gray-600">
+            Share what you want to achieve. We’ll discuss the right scope and whether a fixed project,
+            monthly retainer or partnership is the best fit.
           </p>
-          <Link
+          <Link viewTransition
             to="/contact"
-            className="inline-flex min-h-12 items-center gap-3 bg-gray-900 text-white rounded-full pl-6 pr-2 py-2 font-semibold hover:bg-brand-dark transition-colors duration-200"
-            style={{ fontSize: "15px" }}
+            className="inline-flex min-h-12 items-center gap-3 rounded-full bg-ink py-2 pl-6 pr-2 font-semibold text-white transition-colors hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-dark"
           >
-            Get in touch
-            <span className="flex items-center justify-center bg-white text-gray-900 rounded-full w-8 h-8">
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path
-                  d="M2 12L12 2M12 2H5M12 2V9"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            Start a conversation
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-ink">
+              <ArrowUpRight size={15} aria-hidden="true" />
             </span>
           </Link>
         </Reveal>
-
-        {/* Other services */}
-        <nav className="mt-24" aria-label="Other services">
-          <h2 className={`${eyebrow} mb-6 text-center`}>Other services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {others.map((other) => (
-              <Link
-                key={other.slug}
-                to={`/services/${other.slug}`}
-                className="group rounded-2xl p-6 transition-colors duration-200 hover:bg-white"
-                style={{
-                  backgroundColor: "var(--color-brand-light)",
-                  border: "1px solid var(--color-brand-border)",
-                }}
-              >
-                <h3 className="font-bold text-black mb-2 transition-colors group-hover:text-brand-dark" style={{ fontSize: "16px" }}>
-                  {other.name}
-                </h3>
-                <p className="text-gray-500" style={{ fontSize: "13.5px", lineHeight: 1.7 }}>
-                  {other.summary}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </nav>
       </div>
     </div>
   );

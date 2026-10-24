@@ -2,9 +2,9 @@
  * Writes sitemap.xml and robots.txt into the built client output.
  *
  * Runs after `react-router build` so it can enumerate exactly what was
- * pre-rendered: it walks the build output for index.html files rather than
- * trusting a hand-maintained list. That way the sitemap can never advertise a
- * URL that has no corresponding HTML file.
+ * pre-rendered: it walks the build output for index.html files and includes
+ * only pages whose canonical points to that exact URL. Service aliases remain
+ * available without creating duplicate sitemap entries.
  */
 import { readdir, readFile, writeFile, stat, copyFile } from "node:fs/promises";
 import { join, relative, sep } from "node:path";
@@ -42,6 +42,17 @@ async function findPrerenderedRoutes(dir, base = "") {
   }
 
   return found;
+}
+
+async function findCanonicalRoutes(siteUrl, routes) {
+  const canonicalRoutes = [];
+  for (const path of routes) {
+    const html = await readFile(join(clientDir, ...path.split("/").filter(Boolean), "index.html"), "utf8");
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+    const expected = path === "/" ? `${siteUrl}/` : `${siteUrl}${path}`;
+    if (canonical === expected) canonicalRoutes.push(path);
+  }
+  return canonicalRoutes;
 }
 
 /**
@@ -119,9 +130,10 @@ async function main() {
 
   const { url: siteUrl, routes: meta } = await loadSiteConfig();
 
-  const discovered = (await findPrerenderedRoutes(clientDir))
+  const prerendered = (await findPrerenderedRoutes(clientDir))
     // 404 pages must never appear in a sitemap.
     .filter((path) => path !== "/404" && !path.endsWith("/404"));
+  const discovered = await findCanonicalRoutes(siteUrl, prerendered);
 
   await writeFile(join(clientDir, "sitemap.xml"), buildSitemap(siteUrl, discovered, meta, await findLastmods(discovered)), "utf8");
   await writeFile(join(clientDir, "robots.txt"), buildRobots(siteUrl), "utf8");

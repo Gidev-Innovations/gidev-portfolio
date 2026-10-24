@@ -4,22 +4,18 @@ import ProjectCard from "./ProjectCard"
 import Reveal from "../components/Reveal"
 import JsonLd from "../seo/JsonLd"
 import { breadcrumbSchema } from "../seo/schema"
+import PageHero from "../components/PageHero";
 
 function Projects() {
   return (
     <section className="min-h-screen pb-20 bg-white mt-4 md:mt-12">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Work", path: "/projects" }])} />
-      <header className="pt-20 pb-16 text-center px-6">
-        <h1 className="text-heading-4 md:text-heading-2 font-medium tracking-tight text-gray-950 mb-4">
-          Work
-        </h1>
-
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-          Client work and our own studio products, written up honestly: who
-          it was for, the problem, what we built, and where it stands today.
-          Studio projects are labelled as such.
-        </p>
-      </header>
+      <PageHero
+        eyebrow="Selected work"
+        title="Work we can stand behind"
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Work" }]}
+        intro="Client work and our own studio products, written up honestly: who it was for, the problem, what we built, and where it stands today. Studio projects are labelled as such."
+      />
 
       <div className="gidev-stage">
         <div className="grid md:grid-cols-2 gap-10 text-left">
@@ -32,7 +28,7 @@ function Projects() {
 
         <div className="mt-20 text-center">
           <p className="text-gray-600 mb-5">Have something similar in mind?</p>
-          <Link
+          <Link viewTransition
             to="/contact"
             className="inline-flex min-h-12 items-center rounded-full bg-gray-900 px-7 font-semibold text-white hover:bg-brand-dark transition-colors"
           >

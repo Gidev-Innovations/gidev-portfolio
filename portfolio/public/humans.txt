@@ -1,6 +1,6 @@
 /* TEAM */
 Founder: Joseph Macharia
-Location: Nairobi, Kenya
+Collaboration: Remote, worldwide
 
 /* SITE */
 Built by: Gidev Innovations
