@@ -1,4 +1,3 @@
-import { Plus } from "lucide-react";
 import { useId, useState } from "react";
 
 /**
@@ -17,11 +16,9 @@ const FaqsItem = ({
 
   return (
     <div
-      className="w-full max-w-3xl mx-auto rounded-2xl text-left overflow-hidden"
-      style={{
-        backgroundColor: "var(--color-brand-light)",
-        border: "1px solid var(--color-brand-border)",
-      }}
+      className={`mx-auto w-full max-w-3xl overflow-hidden rounded-2xl border text-left transition-colors duration-300 ${
+        isOpen ? "border-brand-dark/40 bg-white shadow-[0_12px_32px_rgba(20,20,19,0.06)]" : "border-brand-border bg-brand-light"
+      }`}
     >
       <h3>
         <button
@@ -29,35 +26,33 @@ const FaqsItem = ({
           aria-expanded={isOpen}
           aria-controls={`${id}-answer`}
           onClick={() => setIsOpen((open) => !open)}
-          className="flex w-full min-h-14 items-center justify-between gap-4 px-5 sm:px-7 py-4 text-left cursor-pointer"
+          className="flex w-full min-h-14 items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-dark sm:px-7"
         >
           <span
-            className="text-black min-w-0 flex-1"
-            style={{ fontSize: "15px", fontWeight: 500, lineHeight: 1.4 }}
+            className="min-w-0 flex-1 text-base font-medium leading-snug text-ink"
           >
             {question}
           </span>
-          <Plus
-            size={20}
-            strokeWidth={1.8}
-            aria-hidden="true"
-            className={`flex-shrink-0 text-gray-500 transition-transform duration-200 ${
-              isOpen ? "rotate-45" : ""
-            }`}
-          />
+          <span className="relative h-5 w-5 flex-shrink-0 text-brand-dark" aria-hidden="true">
+            <span className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 rounded bg-current" />
+            <span
+              className={`absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 rounded bg-current transition-transform duration-300 ease-out motion-reduce:transition-none ${
+                isOpen ? "rotate-90" : ""
+              }`}
+            />
+          </span>
         </button>
       </h3>
 
       <div
         id={`${id}-answer`}
-        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+        className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
         <div className="overflow-hidden" inert={!isOpen}>
           <p
-            className="text-gray-500 px-5 sm:px-7 pb-6"
-            style={{ fontSize: "14px", lineHeight: 1.8 }}
+            className="px-5 pb-6 text-sm leading-relaxed text-gray-700 sm:px-7 md:text-base"
           >
             {answer}
           </p>

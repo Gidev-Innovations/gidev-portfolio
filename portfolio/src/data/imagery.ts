@@ -4,13 +4,12 @@
  * images-src/CREDITS.md.
  *
  * Rules (see audits/CHANGELOG.md, Phase 2):
- *   - People are Black African, in realistic contexts. No foreign skylines,
- *     coffee-chain cups or server racks.
+ *   - Use people and settings that feel authentic. Avoid generic tech clichés.
  *   - Alt text describes what is actually in the frame. Do not claim a photo
- *     shows Nairobi, a client, or the Gidev team unless it does.
+ *     shows a client or the Gidev team unless it does.
  *
  * TODO(human): the stock set is thin. Replace with commissioned photos of
- * Kenyan businesses and the team (see images-src/CREDITS.md for the brief).
+ * real businesses and the team (see images-src/CREDITS.md for the brief).
  */
 import type { ImageName } from "./images";
 
@@ -27,11 +26,11 @@ export const imagery = {
   },
   womanCity: {
     name: "woman-city-dusk",
-    alt: "Young African woman on a city rooftop at dusk",
+    alt: "Young woman on a city rooftop at dusk",
   },
   manPortrait: {
     name: "young-man-portrait",
-    alt: "Smiling young African man in front of a painted mural",
+    alt: "Smiling young man in front of a painted mural",
   },
   kibanda: {
     name: "kibandaski",
@@ -43,7 +42,7 @@ export const imagery = {
   },
 } as const satisfies Record<string, Photo>;
 
-/** Homepage ticker — unique images only, African context first. */
+/** Homepage ticker — unique images only. */
 export const showcaseImages: Photo[] = [
   imagery.shopOwner,
   imagery.womanCity,

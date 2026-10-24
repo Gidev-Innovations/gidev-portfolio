@@ -1,8 +1,9 @@
 import Faqs from './Faqs'
+import PageHero from "../components/PageHero";
 import {ArrowUpRight} from "lucide-react";
 import Reveal from "../components/Reveal";
 import {Link} from "react-router-dom";
-import {services, studioOfferings, capabilities} from "../data/services";
+import {serviceGroups, services, capabilities, type Service} from "../data/services";
 import {imagery} from "../data/imagery";
 import ResponsiveImage from "../components/ResponsiveImage";
 import JsonLd from "../seo/JsonLd";
@@ -11,24 +12,57 @@ import {breadcrumbSchema} from "../seo/schema";
 const sectionHeading = "text-heading-5 md:text-heading-3 font-medium tracking-tight text-gray-950 leading-tight";
 const sectionIntro = "text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto";
 
+function ServiceGrid({ items }: { items: Service[] }) {
+    return (
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            {items.map((service, index) => (
+                <Reveal key={service.slug} delay={(index % 2) * 90}>
+                    <Link viewTransition
+                        to={`/services/${service.slug}`}
+                        className="group block h-full overflow-hidden rounded-3xl border border-gray-200 bg-white p-3 transition-all duration-300 hover:-translate-y-1 hover:border-brand-border hover:shadow-[0_20px_60px_rgba(17,17,17,0.08)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-dark"
+                    >
+                        <div className="overflow-hidden rounded-[1.25rem] aspect-[16/9] bg-brand-light">
+                            <ResponsiveImage
+                                name={service.image.name}
+                                alt={service.image.alt}
+                                sizes="(min-width: 1152px) 540px, (min-width: 768px) 45vw, 90vw"
+                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] motion-reduce:transform-none"
+                            />
+                        </div>
+                        <div className="flex min-h-36 items-start justify-between gap-6 px-4 py-5 lg:px-5">
+                            <div>
+                                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-dark">
+                                    {service.group}
+                                </p>
+                                <h3 className="text-xl font-semibold tracking-tight text-gray-950 transition-colors group-hover:text-brand-dark sm:text-2xl">
+                                    {service.title}
+                                </h3>
+                                <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-600 sm:text-base">
+                                    {service.shortDescription}
+                                </p>
+                            </div>
+                            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 text-gray-900 transition-all duration-300 group-hover:border-brand-dark group-hover:bg-brand-dark group-hover:text-white">
+                                <ArrowUpRight size={18} strokeWidth={1.8} aria-hidden="true" />
+                            </span>
+                        </div>
+                    </Link>
+                </Reveal>
+            ))}
+        </div>
+    )
+}
+
 const Services = () => {
     return (
         <div className="min-h-screen bg-white mt-4 md:mt-12 pb-8">
             <JsonLd data={breadcrumbSchema([{name: "Home", path: "/"}, {name: "Services", path: "/services"}])} />
 
-            <header className="pt-20 pb-12 text-center px-6">
-                <Reveal>
-                    <h1 className="text-[30px] sm:text-4xl md:text-heading-2 font-medium tracking-tight text-gray-950 leading-tight max-w-4xl mx-auto mb-4">
-                        Software Development Services in <span className="text-brand-dark">Nairobi</span>, Kenya
-                    </h1>
-                    <p className={sectionIntro}>
-                        Powering digital transformation across Africa: web
-                        applications, e-commerce with M-Pesa checkout, Android and
-                        iOS apps, and business websites, built and maintained by a
-                        studio in Nairobi.
-                    </p>
-                </Reveal>
-            </header>
+            <PageHero
+                eyebrow="Services"
+                title="Digital, creative and AI services"
+                breadcrumb={[{label: "Home", to: "/"}, {label: "Services"}]}
+                intro="One connected team for digital products, brand experiences and practical growth. Explore software, AI, design, marketing and ongoing support, all shaped around your goals."
+            />
 
             <div className="gidev-stage space-y-24 md:space-y-32">
                 {/* TODO(human): replace with photos of real Gidev work and clients. */}
@@ -51,44 +85,29 @@ const Services = () => {
 
                 <section className="max-w-6xl mx-auto">
                     <Reveal className="text-center mb-10 md:mb-12 space-y-4">
-                        <h2 className={sectionHeading}>What we build</h2>
+                        <h2 className={sectionHeading}>{serviceGroups[0]}</h2>
                         <p className={sectionIntro}>
-                            We design and develop powerful digital solutions that help businesses operate smarter and scale faster.
+                            From custom applications and online stores to mobile
+                            products, websites and AI-powered workflows, we build
+                            useful digital foundations for your business.
                         </p>
                     </Reveal>
 
-                    {/*services — sourced from src/data/services.ts, each card links to its own page*/}
-                    <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                        {services.map((service) => (
-                            <Reveal key={service.slug}>
-                                <Link
-                                    to={`/services/${service.slug}`}
-                                    className="group block h-full bg-brand-light rounded-2xl p-6 lg:p-8 space-y-5 transition-colors duration-200 hover:bg-white hover:ring-1 hover:ring-brand-border">
-                                    <div className="overflow-hidden rounded-xl aspect-[16/10]">
-                                        <ResponsiveImage
-                                            name={service.image.name}
-                                            alt={service.image.alt}
-                                            sizes="(min-width: 1152px) 540px, (min-width: 768px) 45vw, 90vw"
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <h3 className="text-2xl font-semibold tracking-tight transition-colors group-hover:text-brand-dark">{service.name}</h3>
-                                        <p className="text-gray-600 leading-relaxed">{service.summary}</p>
-                                    </div>
-                                    <span className="flex items-center gap-1 text-[15px] text-brand-dark font-medium">
-                                        Explore this service
-                                        <ArrowUpRight size={16} strokeWidth={2} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"/>
-                                    </span>
-                                </Link>
-                            </Reveal>
-                        ))}
-                    </div>
+                    <ServiceGrid items={services.filter((service) => service.group === serviceGroups[0])} />
 
-                    {/*capabilities included across every engagement*/}
+                    <Reveal className="mb-10 mt-24 space-y-4 text-center md:mb-12">
+                        <h2 className={sectionHeading}>{serviceGroups[1]}</h2>
+                        <p className={sectionIntro}>
+                            Grow your visibility, strengthen your brand and keep
+                            your digital presence working well with practical
+                            support tailored to your goals.
+                        </p>
+                    </Reveal>
+                    <ServiceGrid items={services.filter((service) => service.group === serviceGroups[1])} />
+
                     <div className="mt-12 md:mt-16">
                         <p className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-5 text-center">
-                            Included across every engagement
+                            How we work
                         </p>
                         <ul className="flex flex-wrap justify-center gap-3">
                             {capabilities.map((capability) => (
@@ -99,29 +118,6 @@ const Services = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
-                </section>
-
-                <section className="max-w-6xl mx-auto">
-                    <Reveal className="text-center mb-10 md:mb-12 space-y-4">
-                        <h2 className={sectionHeading}>Startup Studio &amp; Product Development</h2>
-                        <p className={sectionIntro}>
-                            We don't just build for clients, we build with founders. As a
-                            startup studio, Gidev Innovations partners with innovators to
-                            turn bold ideas into scalable digital products.
-                        </p>
-                    </Reveal>
-                    <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                        {studioOfferings.map((offering, index) => (
-                            <Reveal
-                                key={offering.name} className="bg-brand-light rounded-2xl p-6 lg:p-8 space-y-3">
-                                <p className="text-xs font-mono text-gray-500 tracking-widest">
-                                    {String(index + 1).padStart(2, "0")}
-                                </p>
-                                <h3 className="text-2xl font-semibold tracking-tight">{offering.name}</h3>
-                                <p className="text-gray-600 leading-relaxed">{offering.summary}</p>
-                            </Reveal>
-                        ))}
                     </div>
                 </section>
 

@@ -28,8 +28,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     slug: "custom-web-apps-vs-instagram-shops-african-smes-2026",
-    title: "Custom Web Apps vs Instagram Shops: What African SMEs Need in 2026",
-    seoTitle: "Custom Web Apps vs Instagram Shops for African SMEs (2026)",
+    title: "Custom Web Apps vs Social Commerce: What Growing Businesses Need",
+    seoTitle: "Custom Web Apps vs Social Commerce",
     date: "12 August, 2026",
     author: "Gidev Innovations team",
     category: "Product",
@@ -39,7 +39,7 @@ export const blogPosts: BlogPost[] = [
     content: [
       {
         type: "paragraph",
-        text: "Across Nairobi, Accra, and Lagos, a huge share of retail still runs on Instagram posts, WhatsApp catalogues, and manual payment confirmation. That stack is fine for early sales. In 2026 it starts to crack the moment you hire a second person, stock more SKUs, or need clean records for tax and lenders.",
+        text: "Many growing retailers start with social posts, messaging apps and manual payment confirmation. That approach can work for early sales, but begins to strain as orders, products and the team grow.",
       },
       { type: "heading", text: "What Instagram is still good for" },
       {
@@ -54,7 +54,7 @@ export const blogPosts: BlogPost[] = [
           "Orders arrive faster than you can confirm them by hand",
           "You need stock levels, invoices, or delivery status in one place",
           "Customers expect saved carts, order history, or loyalty",
-          "You want M-Pesa, cards, and bank transfers without spreadsheet reconciliation",
+          "You want to connect payment methods without spreadsheet reconciliation",
         ],
       },
       { type: "heading", text: "A practical middle path" },
@@ -67,22 +67,22 @@ export const blogPosts: BlogPost[] = [
   {
     id: 2,
     slug: "designing-checkout-for-mpesa-and-mobile-money-2026",
-    title: "Designing Checkout for M-Pesa and Mobile Money in 2026",
+    title: "Designing Checkout for Mobile Wallets & Online Payments",
     date: "28 July, 2026",
     author: "Gidev Innovations team",
     category: "E-commerce",
     image: "/og/designing-checkout-for-mpesa-and-mobile-money-2026.png",
     excerpt:
-      "Card-first checkout copy from US templates still ships on African stores. Here is how we design payment flows for the wallets people actually use.",
+      "A clear payment flow gives customers familiar options and confidence at checkout. Here is how to design one around the methods your audience uses.",
     content: [
       {
         type: "paragraph",
-        text: "If your storefront’s primary CTA assumes a credit card, you are designing for a minority of East African shoppers. M-Pesa, MoMo, and similar wallets are not “alternative methods” here — they are the default. Checkout UX has to reflect that.",
+        text: "If your storefront assumes every customer pays by card, you may be overlooking the methods your audience prefers. Mobile wallets, bank transfers and cards can all be primary choices depending on the customer and market. Checkout UX should reflect that.",
       },
       { type: "heading", text: "Lead with the wallet people already trust" },
       {
         type: "paragraph",
-        text: "Put mobile money first in the payment list. Use local labels (“Pay with M-Pesa”) instead of generic “Mobile money.” Show the phone number format you expect and what happens after the STK push — waiting, success, failed, and how to retry without losing the cart.",
+        text: "Present payment options in the order that makes sense for your customers. Use clear labels, explain what happens next, and provide helpful waiting, success and error states so customers can retry without losing their cart.",
       },
       { type: "heading", text: "Reduce abandoned carts with clear states" },
       {
@@ -92,7 +92,7 @@ export const blogPosts: BlogPost[] = [
           "Tell the shopper when to check their phone for the prompt",
           "Keep the order in a pending state long enough for slow networks",
           "Confirm with an SMS or in-app receipt they can forward to finance",
-          "Offer a fallback (paybill / till) when the push fails",
+          "Offer a clear alternative if the first payment attempt fails",
         ],
       },
       { type: "heading", text: "Build for ops, not just the happy path" },
@@ -105,13 +105,13 @@ export const blogPosts: BlogPost[] = [
   {
     id: 3,
     slug: "practical-ai-for-kenyan-businesses-in-2026",
-    title: "Practical AI for Kenyan Businesses in 2026",
+    title: "Practical AI for Growing Businesses in 2026",
     date: "9 June, 2026",
     author: "Gidev Innovations team",
     category: "AI",
     image: "/og/practical-ai-for-kenyan-businesses-in-2026.png",
     excerpt:
-      "Skip the hype deck. Here are AI uses that actually fit small and mid-size teams in Kenya — and what still needs a human in the loop.",
+      "Skip the hype deck. Explore practical AI uses for growing teams—and the decisions that still need a human in the loop.",
     content: [
       {
         type: "paragraph",
@@ -187,7 +187,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 5,
     slug: "mobile-apps-for-mid-range-android-east-africa-2026",
-    title: "Mobile Apps for Mid-Range Android in East Africa, 2026",
+    title: "Mobile Apps for Mid-Range Android Devices in 2026",
     date: "4 April, 2026",
     author: "Gidev Innovations team",
     category: "Mobile",
@@ -231,7 +231,7 @@ export const blogPosts: BlogPost[] = [
     category: "Founders",
     image: "/og/questions-to-ask-a-software-studio-before-you-sign.png",
     excerpt:
-      "A short checklist for African founders hiring a build partner — so scope, ownership, and handoff are clear before money moves.",
+      "A short checklist for founders hiring a build partner, so scope, ownership and handoff are clear before work begins.",
     content: [
       {
         type: "paragraph",
@@ -262,14 +262,14 @@ export const blogPosts: BlogPost[] = [
       { type: "heading", text: "Why we publish this" },
       {
         type: "paragraph",
-        text: "Gidev Innovations is based in Nairobi and builds web apps, e-commerce, mobile products, and business systems for teams that need clarity more than jargon. If these questions feel useful, bring them to our next call — we expect to answer every one.",
+        text: "Gidev Innovations builds web apps, e-commerce, mobile products and business systems for teams that need clarity more than jargon. If these questions feel useful, bring them to our next call — we expect to answer every one.",
       },
     ],
   },
   {
     id: 7,
     slug: "startup-studio-thinking-for-african-founders-2026",
-    title: "Startup Studio Thinking for African Founders in 2026",
+    title: "Startup Studio Thinking for Founders in 2026",
     date: "5 February, 2026",
     author: "Gidev Innovations team",
     category: "Founders",

@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import { Settings2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, Instagram, Linkedin, Twitter, type LucideIcon } from "lucide-react";
 import { BUSINESS, SITE } from "../data/site";
-import { services } from "../data/services";
+import { serviceGroups, services } from "../data/services";
+import ClosingCta from "./ClosingCta";
+import Reveal from "./Reveal";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
 const COMPANY_LINKS = [
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy policy", href: "/privacy" },
@@ -21,99 +21,59 @@ const SOCIAL_LABELS: Record<string, string> = {
   "instagram.com": "Instagram",
 };
 
-const slideUp = { rest: { y: 0 }, hover: { y: "-100%" } };
-const slideIn = { rest: { y: "100%" }, hover: { y: 0 } };
-const slideTrans = { duration: 0.3, ease: "easeInOut" as const };
+const SOCIAL_ICONS: Record<string, LucideIcon> = {
+  "github.com": Github,
+  "linkedin.com": Linkedin,
+  "x.com": Twitter,
+  "instagram.com": Instagram,
+};
+
+const socialHost = (url: string) => new URL(url).hostname.replace("www.", "");
 
 const linkClass =
-  "inline-flex min-h-11 min-w-11 items-center text-regular-16 text-brand-dark underline-offset-4 decoration-brand-dark decoration-2 hover:underline focus-visible:underline";
-const headingClass = "text-lg font-semibold text-gray-950 mb-2";
+  "inline-flex min-h-11 min-w-11 items-center text-regular-16 text-white/75 underline-offset-4 decoration-brand decoration-2 transition-colors hover:text-white hover:underline focus-visible:text-white focus-visible:underline";
+const headingClass = "text-lg font-semibold text-white mb-2";
 
 const Footer = () => {
   return (
-    <footer className="mt-12 px-6 pb-8">
-      {/* CTA Card */}
-      {/*
-        Logo teal with ink text (7:1). White text on #18aeb4 is only 2.7:1.
-      */}
-      <div className="bg-brand rounded-3xl px-6 sm:px-10 md:px-16 py-12 md:py-16 flex flex-col items-center justify-center text-center gap-4 mb-12">
-        <div className="flex items-center gap-2 text-ink">
-          <Settings2 size={15} strokeWidth={1.5} aria-hidden="true" />
-          <span className="text-regular-16">Taking on new projects</span>
-        </div>
+    <footer className="mt-12 overflow-hidden bg-ink px-6 pb-8 pt-8 text-white md:px-10 md:pt-10">
+      <ClosingCta />
 
-        <h2 className="text-ink text-heading-5 md:text-heading-4 font-semibold max-w-5xl">
-          Got something you need built?
-        </h2>
-
-        <p className="text-ink text-regular-18 md:text-regular-20">
-          Send us a message or book a free {BUSINESS.callLength} call.
-        </p>
-
-        <motion.div
-          initial="rest"
-          whileHover="hover"
-          className="relative overflow-hidden rounded-full mt-2 h-[58px] w-[200px]"
-        >
-          <Link
-            to="/contact"
-            className="bg-ink text-white px-8 rounded-full text-heading-6 font-medium block w-full h-full"
-          >
-            <motion.span
-              variants={slideUp}
-              transition={slideTrans}
-              className="absolute inset-0 flex items-center justify-center text-white"
-            >
-              Contact us
-            </motion.span>
-            <motion.span
-              aria-hidden="true"
-              variants={slideIn}
-              transition={slideTrans}
-              className="absolute inset-0 flex items-center justify-center text-brand"
-            >
-              Contact us
-            </motion.span>
-          </Link>
-        </motion.div>
-      </div>
-
-      {/* Link columns + business details (NAP must match Google Business Profile) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10">
+      {/* Link columns and company details */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 pb-10">
         <div>
-          <p className="text-lg font-semibold text-gray-950 mb-3">{SITE.name}</p>
-          <p className="text-gray-600 leading-relaxed mb-4">
-            Software development studio building web apps, e-commerce and
-            mobile apps for businesses in Kenya and across Africa.
+          <p className="text-lg font-semibold text-white mb-3">{SITE.name}</p>
+          <p className="text-white/75 leading-relaxed mb-4">
+            Digital products, brand experiences and practical AI solutions for
+            ambitious businesses worldwide.
           </p>
-          <address className="not-italic text-gray-600 leading-relaxed">
-            {BUSINESS.locality}, {BUSINESS.countryName}
-          </address>
-          {BUSINESS.hours && <p className="text-gray-600 mt-1">{BUSINESS.hours}</p>}
-          <p className="text-gray-500 mt-3 text-sm">
-            Serving {BUSINESS.areaServed.slice(0, 3).join(", ")} and remote clients.
+          {BUSINESS.hours && <p className="text-white/75 mt-1">{BUSINESS.hours}</p>}
+          <p className="text-white/55 mt-3 text-sm">
+            Working remotely with teams worldwide.
           </p>
         </div>
 
-        <nav aria-label="Services">
-          <p className={headingClass}>Services</p>
-          <ul>
-            {services.map((s) => (
-              <li key={s.slug}>
-                <Link to={`/services/${s.slug}`} className={linkClass}>
-                  {s.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {serviceGroups.map((group) => (
+          <nav key={group} aria-label={`${group} services`}>
+            <p className={headingClass}>{group}</p>
+            <ul>
+              {services.filter((service) => service.group === group).map((service) => (
+                <li key={service.id}>
+                  <Link viewTransition to={`/services/${service.slug}`} className={linkClass}>
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
 
         <nav aria-label="Company">
           <p className={headingClass}>Company</p>
           <ul>
             {COMPANY_LINKS.map((link) => (
               <li key={link.href}>
-                <Link to={link.href} className={linkClass}>
+                <Link viewTransition to={link.href} className={linkClass}>
                   {link.label}
                 </Link>
               </li>
@@ -125,29 +85,51 @@ const Footer = () => {
           <p className={headingClass}>Get in touch</p>
           <ul>
             <li>
-              <Link to="/contact#message" className={linkClass}>
+              <Link viewTransition to="/contact#message" className={linkClass}>
                 Send a message
               </Link>
             </li>
             <li>
-              <Link to="/contact#book" className={linkClass}>
+              <Link viewTransition to="/contact#book" className={linkClass}>
                 Book a free {BUSINESS.callLength} call
               </Link>
             </li>
-            {BUSINESS.sameAs.map((url) => (
-              <li key={url}>
-                <a href={url} target="_blank" rel="noopener noreferrer me" className={linkClass}>
-                  {SOCIAL_LABELS[new URL(url).hostname.replace("www.", "")] ?? url}
-                </a>
-              </li>
-            ))}
           </ul>
+          {BUSINESS.sameAs.length > 0 && (
+            <ul className="mt-3 flex gap-2" aria-label="Social media">
+              {BUSINESS.sameAs.map((url) => {
+                const host = socialHost(url);
+                const Icon = SOCIAL_ICONS[host];
+                return (
+                  <li key={url}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer me"
+                      aria-label={`${SOCIAL_LABELS[host] ?? host} (opens in a new tab)`}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-brand hover:text-brand focus-visible:border-brand focus-visible:text-brand"
+                    >
+                      {Icon ? <Icon size={18} aria-hidden="true" /> : <span aria-hidden="true">{host[0]}</span>}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
       </div>
 
-      {/* Bottom bar — right padding keeps the fixed back-to-top button clear of it. */}
-      <div className="border-t border-gray-300 pt-6 pr-16 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4">
-        <p className="text-regular-16 text-gray-500">
+      <Reveal className="select-none overflow-hidden" aria-hidden="true">
+        <p
+          aria-hidden="true"
+          className="bg-gradient-to-b from-white/25 to-white/0 bg-clip-text text-center text-[27vw] font-semibold leading-[0.8] tracking-[-0.06em] text-transparent md:text-[21vw]"
+        >
+          Gidev
+        </p>
+      </Reveal>
+
+      <div className="flex flex-col items-center justify-between gap-4 border-t border-white/15 pt-6 sm:flex-row sm:items-center">
+        <p className="text-regular-16 text-white/55">
           &copy; {CURRENT_YEAR} {SITE.name}. All rights reserved.
         </p>
       </div>

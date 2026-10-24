@@ -84,7 +84,7 @@ export default function BlogPost() {
 
       <header className="gidev-stage">
         <nav aria-label="Breadcrumb" className="mt-8 mb-3 text-sm text-gray-500">
-          <Link to="/blog" className="inline-flex min-h-11 items-center hover:text-brand-dark transition-colors">
+          <Link viewTransition to="/blog" className="inline-flex min-h-11 items-center hover:text-brand-dark transition-colors">
             ← All articles
           </Link>
         </nav>
@@ -102,7 +102,7 @@ export default function BlogPost() {
         </h1>
 
         <div className="mt-10 rounded-2xl overflow-hidden bg-brand-dark aspect-[1200/630] max-w-5xl">
-          <picture>
+          <picture className="block w-full">
             <source type="image/webp" srcSet={coverWebp(post)} />
             <img
               src={post.image}
@@ -118,7 +118,7 @@ export default function BlogPost() {
 
         <p className="mt-4 text-base text-gray-500 tracking-wide">
           By{" "}
-          <Link to="/about" className="inline-flex min-h-11 items-center text-gray-800 underline underline-offset-4">
+          <Link viewTransition to="/about" className="inline-flex min-h-11 items-center text-gray-800 underline underline-offset-4">
             {post.author}
           </Link>
         </p>
@@ -141,17 +141,17 @@ export default function BlogPost() {
               Working on this?
             </p>
             <p className="text-gray-800 text-lg leading-relaxed mb-5">
-              We build {service.name.toLowerCase()} for businesses in Kenya and
-              across East Africa.
+              We build {service.title.toLowerCase()} for ambitious businesses
+              and teams worldwide.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link
+              <Link viewTransition
                 to={`/services/${service.slug}`}
                 className="inline-flex min-h-11 items-center rounded-full border border-gray-300 px-5 font-semibold text-gray-900 hover:border-brand-dark hover:text-brand-dark transition-colors"
               >
-                About our {service.name.toLowerCase()} work
+                About our {service.title.toLowerCase()} work
               </Link>
-              <Link
+              <Link viewTransition
                 to="/contact"
                 className="inline-flex min-h-11 items-center rounded-full bg-gray-900 px-5 font-semibold text-white hover:bg-brand-dark transition-colors"
               >
@@ -172,8 +172,8 @@ export default function BlogPost() {
           <div>
             <p className="font-semibold text-gray-900">{post.author}</p>
             <p className="text-gray-500 text-sm leading-relaxed">
-              A software studio in Nairobi building web apps, e-commerce and
-              mobile products for African businesses.
+              A digital studio building software, AI-enabled workflows and
+              thoughtful experiences that help businesses grow.
             </p>
           </div>
         </div>
@@ -186,9 +186,9 @@ export default function BlogPost() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {relatedPosts.map((related) => (
-            <Link key={related.id} to={`/blog/${related.slug}`} className="group block">
+            <Link viewTransition key={related.id} to={`/blog/${related.slug}`} className="group block">
               <div className="aspect-[1200/630] overflow-hidden rounded-2xl bg-brand-dark">
-                <picture>
+                <picture className="block w-full">
                   <source type="image/webp" srcSet={coverWebp(related)} />
                   <img
                     src={related.image}

@@ -53,7 +53,7 @@ function ProjectCard({ project }: ProjectCardProps) {
   }
 
   return (
-    <Link to={`/projects/${project.slug}`} className="block group">
+    <Link viewTransition to={`/projects/${project.slug}`} className="block group">
       {body}
     </Link>
   )

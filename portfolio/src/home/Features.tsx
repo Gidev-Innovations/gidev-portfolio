@@ -1,183 +1,99 @@
-import { motion, useInView } from "framer-motion";
-import type { Transition } from "framer-motion";
-import { useRef } from "react";
-import {
-  Settings,
-  Layers,
-  Zap,
-  Palette,
-  Tag,
-  Server,
-  Shield,
-} from "lucide-react";
+import { Layers, MessageCircle, Palette, Search, Shield, Target } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import Eyebrow from "../components/Eyebrow";
 import Reveal from "../components/Reveal";
+import { trackPointer } from "../lib/spotlight";
 
-const features = [
+type Feature = { Icon: LucideIcon; title: string; description: string; span: string; large?: boolean };
+
+/** Spans are for the 6-column grid at lg and above; below that the cards stack in 1–2 columns. */
+const features: Feature[] = [
   {
-    Icon: Layers,
-    title: "Scope Agreed Upfront",
-    description:
-      "Timeline and price written down before work starts, so the number at the end is the number you agreed.",
-    anim: { y: [0, -4, 0] },
-    transition: {
-      duration: 1.2,
-      repeat: Infinity,
-      repeatDelay: 2.5,
-      delay: 0.6,
-    } as Transition,
+    Icon: Target,
+    title: "Scope agreed upfront",
+    description: "We agree the brief, deliverables and priorities before work begins, so everyone knows what “done” means.",
+    span: "lg:col-span-4",
+    large: true,
   },
   {
-    Icon: Zap,
-    title: "Built for Real Networks",
-    description:
-      "Tested on mid-range phones and slow connections, not just fast office wifi.",
-    anim: { rotate: [0, -10, 10, -5, 0] },
-    transition: {
-      duration: 0.6,
-      repeat: Infinity,
-      repeatDelay: 2.8,
-      delay: 0.75,
-    } as Transition,
+    Icon: MessageCircle,
+    title: "Work you can follow",
+    description: "Regular check-ins and clear handovers keep the work understandable at every stage.",
+    span: "lg:col-span-2",
   },
   {
     Icon: Palette,
-    title: "Local Payment Rails",
-    description:
-      "Mobile money and card payments integrated for how customers here actually pay.",
-    anim: { scale: [1, 1.18, 1] },
-    transition: {
-      duration: 0.9,
-      repeat: Infinity,
-      repeatDelay: 2.2,
-      delay: 0.9,
-    } as Transition,
+    title: "Made to fit your brand",
+    description: "Creative work should feel recognisably yours and work across the places customers meet you.",
+    span: "lg:col-span-2",
   },
   {
-    Icon: Tag,
-    title: "Three Ways to Engage",
+    Icon: Layers,
+    title: "Built with the bigger picture",
     description:
-      "Fixed project pricing, a monthly retainer, or a partnership with shared upside.",
-    anim: { x: [0, -4, 4, -2, 0] },
-    transition: {
-      duration: 0.7,
-      repeat: Infinity,
-      repeatDelay: 3,
-      delay: 0.6,
-    } as Transition,
+      "Software, brand, visibility and marketing can be considered together, not as disconnected tasks.",
+    span: "lg:col-span-4",
+    large: true,
   },
   {
-    Icon: Server,
-    title: "Found in Search",
-    description:
-      "Pre-rendered pages with real content, so search engines can actually read your site.",
-    anim: { y: [0, -5, 0] },
-    transition: {
-      duration: 1,
-      repeat: Infinity,
-      repeatDelay: 2.4,
-      delay: 0.75,
-    } as Transition,
+    Icon: Search,
+    title: "Decisions with intent",
+    description: "We connect digital work to clear goals and review useful signals as the work progresses.",
+    span: "lg:col-span-3",
   },
   {
     Icon: Shield,
-    title: "We Stay After Launch",
-    description:
-      "A revision period until you're satisfied, then a retainer if you want us to keep going.",
-    anim: { scale: [1, 1.12, 1] },
-    transition: {
-      duration: 1,
-      repeat: Infinity,
-      repeatDelay: 2.6,
-      delay: 0.9,
-    } as Transition,
+    title: "Support beyond launch",
+    description: "Website maintenance and continued digital support are available when your business needs them.",
+    span: "lg:col-span-3",
   },
 ];
 
 export default function Features() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section className="bg-white py-16">
-      <div className="mx-auto px-8 text-center" style={{ maxWidth: "820px" }}>
-      {/* Label */}
-      <div className="flex items-center justify-center gap-2 text-gray-500 mb-3">
-        <Settings size={13} strokeWidth={1.5} />
-        <span style={{ fontSize: "13px" }}>Features</span>
-      </div>
-
-      {/* Heading */}
-      <h2
-        className="font-bold text-black mx-auto mb-3"
-        style={{
-          fontSize: "clamp(32px, 4.5vw, 56px)",
-          lineHeight: 1.05,
-          letterSpacing: "-0.02em",
-          maxWidth: "500px",
-        }}
-      >
-        What Working With Us Is Like
-      </h2>
-
-      <p
-        className="text-gray-500 mx-auto mb-12"
-        style={{ fontSize: "14px", lineHeight: 1.7, maxWidth: "400px" }}
-      >
-        The practical things that tend to matter once a project is underway.
-      </p>
-
-      {/* Grid */}
-      <div
-        ref={ref}
-        className="grid grid-cols-1 md:grid-cols-3 gap-4"
-      >
-        {features.map(({ Icon, title, description, anim, transition }, i) => (
-          <Reveal
-            key={title}
-            className="flex flex-col items-center text-center rounded-2xl px-6 py-8"
-            style={{
-              backgroundColor: "var(--color-brand-light)",
-              border: "1px solid var(--color-brand-border)",
-            }}
-            delay={(i % 3) * 100}
+    <section className="bg-white py-20 md:py-28" aria-labelledby="features-heading">
+      <div className="gidev-stage">
+        <Reveal className="mb-10 max-w-2xl md:mb-14">
+          <Eyebrow>Our approach</Eyebrow>
+          <h2
+            id="features-heading"
+            className="mb-4 text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-ink sm:text-5xl md:text-6xl"
           >
-            {/* Icon box */}
-            <div
-              className="flex items-center justify-center rounded-xl mb-5 bg-white"
-              style={{
-                width: "64px",
-                height: "64px",
-                boxShadow: "0 2px 10px rgba(0,0,0,0.06)",
-              }}
-            >
-              <motion.div
-                style={{ display: "flex", color: "var(--color-ink)" }}
-                animate={
-                  inView
-                    ? { ...anim, color: ["var(--color-ink)", "var(--color-brand-dark)", "var(--color-ink)"] }
-                    : {}
-                }
-                transition={transition}
-              >
-                <Icon size={28} strokeWidth={1.4} />
-              </motion.div>
-            </div>
+            The details matter.
+          </h2>
+          <p className="text-base leading-relaxed text-gray-600 md:text-lg">
+            Good work comes from clear thinking, considered execution and a team that stays connected.
+          </p>
+        </Reveal>
 
-            <h3
-              className="font-bold text-black mb-2"
-              style={{ fontSize: "16px", lineHeight: 1.3 }}
-            >
-              {title}
-            </h3>
-            <p
-              className="text-gray-500"
-              style={{ fontSize: "13.5px", lineHeight: 1.75 }}
-            >
-              {description}
-            </p>
-          </Reveal>
-        ))}
-      </div>
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          {features.map(({ Icon, title, description, span, large }, index) => (
+            <Reveal as="li" key={title} delay={(index % 3) * 90} className={`${span} ${large ? "sm:col-span-2" : ""}`}>
+              <article
+                onPointerMove={trackPointer}
+                className={`spot spot-border group flex h-full flex-col justify-between rounded-3xl border border-brand-border bg-brand-light p-6 sm:p-8 ${
+                  large ? "min-h-64 lg:min-h-72" : "min-h-56"
+                }`}
+              >
+                <span
+                  className={`flex items-center justify-center rounded-2xl bg-white text-ink shadow-[0_2px_10px_rgba(20,20,19,0.06)] transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:text-brand-dark motion-reduce:transform-none ${
+                    large ? "h-16 w-16" : "h-12 w-12"
+                  }`}
+                >
+                  <Icon size={large ? 30 : 24} strokeWidth={1.5} aria-hidden="true" />
+                </span>
+                <div className="mt-10">
+                  <h3 className={`mb-2 font-semibold tracking-tight text-ink ${large ? "text-2xl md:text-3xl" : "text-xl"}`}>
+                    {title}
+                  </h3>
+                  <p className={`max-w-lg leading-relaxed text-gray-700 ${large ? "text-base md:text-lg" : "text-sm md:text-base"}`}>
+                    {description}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </ul>
       </div>
     </section>
   );

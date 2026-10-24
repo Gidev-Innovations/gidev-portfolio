@@ -28,6 +28,10 @@ export type Project = {
   year: string;
   image: ImageName;
   imageAlt: string;
+  /** Show on the homepage "Selected work" teasers. */
+  featured: boolean;
+  /** Service ids (see src/data/services.ts) this project demonstrates. */
+  serviceIds: string[];
   /** One-line hook used on cards and as the meta description. */
   summary: string;
   /**
@@ -51,6 +55,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "r-flex",
+    featured: true,
+    serviceIds: ["ecommerce"],
     title: "R-Flex",
     kind: "Client project",
     // TODO(human): confirm R-Flex has agreed to be named as a client, and how
@@ -87,6 +93,8 @@ export const projects: Project[] = [
   },
   {
     slug: "kibandaski-finder",
+    featured: true,
+    serviceIds: ["web-apps"],
     title: "Kibandaski Finder",
     kind: "Open-source studio project",
     client: "Gidev Innovations (community open-source)",
@@ -96,7 +104,7 @@ export const projects: Project[] = [
     image: "kibandaski",
     imageAlt: "Kibanda dishes — chapati, sukuma wiki, beans, mandazi and chai — under a kibanda menu board",
     summary:
-      "An open-source directory for discovering fixed kibandas and mobile street-food vendors in Kenya — with map browse, prices, hours, and honest reviews.",
+      "An open-source directory for discovering fixed kibandas and mobile street-food vendors, with map browse, prices, hours and honest reviews.",
     whyWeBuiltIt:
       "Local food vendors are hard to find unless you already know where to walk, and no free shared directory covered them.",
     problem:
@@ -121,6 +129,8 @@ export const projects: Project[] = [
   },
   {
     slug: "sticky-day",
+    featured: true,
+    serviceIds: ["web-apps"],
     title: "Sticky Day",
     kind: "Studio project",
     client: "Gidev Innovations (own product, open source)",
@@ -159,4 +169,8 @@ export const projects: Project[] = [
 
 export function projectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+export function featuredProjects(): Project[] {
+  return projects.filter((p) => p.featured);
 }

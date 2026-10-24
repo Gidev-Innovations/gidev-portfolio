@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { SITE } from "../data/site";
 
-// TODO(human): have this reviewed against the Kenya Data Protection Act 2019
-// before relying on it, and update it whenever analytics or new tools are added.
+// TODO(human): have this reviewed for applicable privacy requirements and
+// update it whenever analytics or new tools are added.
 const LAST_UPDATED = "15 October 2026";
 
 export default function Privacy() {
@@ -54,10 +54,10 @@ export default function Privacy() {
 
       <h2 className="text-2xl font-semibold text-gray-950 pt-4">Your rights</h2>
       <p>
-        Under the Kenya Data Protection Act, 2019 you can ask to see, correct
-        or delete the personal information we hold about you, or object to how
-        we use it. To make a request,{" "}
-        <Link to="/contact#message" className="text-brand-dark underline underline-offset-4">
+        Depending on applicable privacy laws, you may be able to request access
+        to, correction or deletion of personal information we hold about you,
+        or object to how we use it. To make a request,{" "}
+        <Link viewTransition to="/contact#message" className="text-brand-dark underline underline-offset-4">
           send us a message
         </Link>
         .
