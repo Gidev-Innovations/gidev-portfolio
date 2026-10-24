@@ -2,7 +2,6 @@ import { useState } from "react";
 import Reveal from "../components/Reveal";
 import { Link } from "react-router-dom";
 import { services } from "../data/services";
-import { imagery } from "../data/imagery";
 import ResponsiveImage from "../components/ResponsiveImage";
 import Eyebrow from "../components/Eyebrow";
 import PageHero from "../components/PageHero";
@@ -23,6 +22,12 @@ const secondaryBtn =
 /* ─── data ───────────────────────────────────────────────── */
 
 type Service = (typeof services)[number];
+
+/** Hero image for the About page. */
+const aboutHeroImage = {
+  src: "https://res.cloudinary.com/djj0zq6qj/image/upload/v1792852833/geralt-team-2894828_1920_dcewqy.jpg",
+  alt: "The Gidev Innovations team at work",
+};
 
 /** Matches the Build / Grow & Support grouping used in the main menu. */
 const buildSlugs = [
@@ -159,12 +164,15 @@ export default function About() {
 
         <div className="gidev-stage mt-16">
           <div className="overflow-hidden rounded-2xl aspect-[4/3] md:aspect-[21/9]">
-            <ResponsiveImage
-              name={imagery.womanCity.name}
-              alt={imagery.womanCity.alt}
-              sizes="(min-width: 1280px) 1200px, 100vw"
-              className="w-full h-full object-cover"
-              priority
+            <img
+              src={aboutHeroImage.src}
+              alt={aboutHeroImage.alt}
+              width={1470}
+              height={980}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="h-full w-full object-cover object-center"
             />
           </div>
         </div>
