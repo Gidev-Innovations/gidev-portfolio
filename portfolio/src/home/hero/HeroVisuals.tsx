@@ -10,10 +10,10 @@ const buildSlugs = ["web-apps", "ecommerce", "mobile-apps", "business-websites",
 const growSlugs = ["seo", "maintenance", "branding", "digital-marketing"];
 
 const faces: { photo: Photo; caption: string }[] = [
-  { photo: imagery.dashboard, caption: "Web Applications" },
-  { photo: imagery.shopOwner, caption: "E-Commerce" },
-  { photo: { name: "sticky-day", alt: "Sticky Day productivity app with colorful notes on a whiteboard" }, caption: "Mobile Apps" },
-  { photo: imagery.kibanda, caption: "Branding" },
+  { photo: imagery.serviceAi, caption: "AI & Automation" },
+  { photo: imagery.serviceEcommerce, caption: "E-Commerce" },
+  { photo: imagery.serviceMobileApps, caption: "Mobile Apps" },
+  { photo: imagery.serviceBranding, caption: "Branding" },
 ];
 
 type HeroVisualsProps = { heroRef: RefObject<HTMLElement | null>; entrance: "pending" | "first" | "repeat" };

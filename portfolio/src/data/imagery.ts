@@ -8,45 +8,47 @@
  *   - Alt text describes what is actually in the frame. Do not claim a photo
  *     shows a client or the Gidev team unless it does.
  *
- * TODO(human): the stock set is thin. Replace with commissioned photos of
- * real businesses and the team (see images-src/CREDITS.md for the brief).
  */
 import type { ImageName } from "./images";
 
 export type Photo = { name: ImageName; alt: string };
 
 export const imagery = {
-  dashboard: {
-    name: "business-dashboard-laptop",
-    alt: "Business owner's hands on a laptop showing a sales dashboard, with an invoice on a clipboard beside it",
+  /* Service photos (Cloudinary). TODO(human): check each alt text against the actual photo. */
+  serviceWebApps: {
+    name: "service-web-apps",
+    alt: "Custom web applications: dashboards, portals and internal business tools",
   },
-  shopOwner: {
-    name: "shop-owner-tablet",
-    alt: "Plant shop owner browsing an online product catalogue on a tablet among potted succulents",
+  serviceAi: {
+    name: "service-ai-automation",
+    alt: "AI and automation: technology working behind the scenes of a business",
   },
-  womanCity: {
-    name: "woman-city-dusk",
-    alt: "Young woman on a city rooftop at dusk",
+  serviceBusinessWebsites: {
+    name: "service-business-websites",
+    alt: "Business website and systems design and development",
   },
-  manPortrait: {
-    name: "young-man-portrait",
-    alt: "Smiling young man in front of a painted mural",
+  serviceBranding: {
+    name: "service-branding",
+    alt: "Branding and graphic design work",
   },
-  kibanda: {
-    name: "kibandaski",
-    alt: "Kibanda menu board above plates of chapati, samosas, sukuma wiki, mutura and chai",
+  serviceDigitalMarketing: {
+    name: "service-digital-marketing",
+    alt: "Digital branding and marketing content for social media and email",
   },
-  code: {
-    name: "code-screen",
-    alt: "Website code open in an editor on a laptop screen",
+  serviceEcommerce: {
+    name: "service-ecommerce",
+    alt: "E-commerce platform for selling products online",
+  },
+  serviceMobileApps: {
+    name: "service-mobile-apps",
+    alt: "Mobile app development for Android and iOS",
+  },
+  serviceSeo: {
+    name: "service-seo",
+    alt: "Search engine optimisation to help customers find your business",
+  },
+  serviceMaintenance: {
+    name: "service-maintenance",
+    alt: "Website maintenance and support",
   },
 } as const satisfies Record<string, Photo>;
-
-/** Homepage ticker — unique images only. */
-export const showcaseImages: Photo[] = [
-  imagery.shopOwner,
-  imagery.womanCity,
-  imagery.dashboard,
-  imagery.kibanda,
-  imagery.manPortrait,
-];

@@ -65,20 +65,19 @@ const Services = () => {
             />
 
             <div className="gidev-stage space-y-24 md:space-y-32">
-                {/* TODO(human): replace with photos of real Gidev work and clients. */}
-                <Reveal className="max-w-5xl mx-auto">
+                            <Reveal className="max-w-5xl mx-auto">
                     <div className="grid grid-cols-3 grid-rows-2 gap-3 md:gap-4 aspect-[4/3] sm:aspect-[16/9]">
                         <div className="col-span-1 row-span-2 min-h-0 overflow-hidden rounded-2xl">
-                            <ResponsiveImage name={imagery.manPortrait.name} alt={imagery.manPortrait.alt} sizes="(min-width: 1024px) 340px, 30vw" className="w-full h-full object-cover" />
+                            <ResponsiveImage name={imagery.serviceMobileApps.name} alt={imagery.serviceMobileApps.alt} sizes="(min-width: 1024px) 340px, 30vw" className="w-full h-full object-cover" />
                         </div>
                         <div className="col-span-2 min-h-0 overflow-hidden rounded-2xl">
-                            <ResponsiveImage name={imagery.shopOwner.name} alt={imagery.shopOwner.alt} sizes="(min-width: 1024px) 680px, 60vw" className="w-full h-full object-cover" />
+                            <ResponsiveImage name={imagery.serviceEcommerce.name} alt={imagery.serviceEcommerce.alt} sizes="(min-width: 1024px) 680px, 60vw" className="w-full h-full object-cover" />
                         </div>
                         <div className="min-h-0 overflow-hidden rounded-2xl">
-                            <ResponsiveImage name={imagery.womanCity.name} alt={imagery.womanCity.alt} sizes="(min-width: 1024px) 340px, 30vw" className="w-full h-full object-cover" />
+                            <ResponsiveImage name={imagery.serviceAi.name} alt={imagery.serviceAi.alt} sizes="(min-width: 1024px) 340px, 30vw" className="w-full h-full object-cover" />
                         </div>
                         <div className="min-h-0 overflow-hidden rounded-2xl">
-                            <ResponsiveImage name={imagery.dashboard.name} alt={imagery.dashboard.alt} sizes="(min-width: 1024px) 340px, 30vw" className="w-full h-full object-cover" />
+                            <ResponsiveImage name={imagery.serviceSeo.name} alt={imagery.serviceSeo.alt} sizes="(min-width: 1024px) 340px, 30vw" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </Reveal>

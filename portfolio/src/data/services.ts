@@ -67,7 +67,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Custom Web Application Development",
     summary:
       "Custom web systems that handle real business logic — dashboards, portals, booking, and internal tools.",
-    image: imagery.dashboard,
+        image: imagery.serviceWebApps,
     metaTitle: "Custom Web Application Development | Gidev",
     metaDescription:
       "Custom web applications for growing teams: dashboards, client portals, booking systems and internal tools, designed around your workflows.",
@@ -147,7 +147,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "E-commerce Website Development",
     summary:
       "Online stores with a clear shopping experience, flexible payment options and reliable order management.",
-    image: imagery.shopOwner,
+    image: imagery.serviceEcommerce,
     metaTitle: "E-commerce Website Development | Gidev",
     metaDescription:
       "Mobile-friendly online stores with flexible payments, product management, fulfilment options and a smooth customer checkout.",
@@ -227,7 +227,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Mobile App Development for Android & iOS",
     summary:
       "Android and iOS apps from one codebase, built to work on mid-range devices and patchy connections.",
-    image: imagery.kibanda,
+    image: imagery.serviceMobileApps,
     metaTitle: "Mobile App Development for Android & iOS | Gidev",
     metaDescription:
       "Mobile app development for Android and iOS, with one shared codebase, thoughtful performance and support through release.",
@@ -307,7 +307,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Business Website Design & Development",
     summary:
       "Fast, findable websites — plus the internal systems that automate the work behind them.",
-    image: imagery.code,
+    image: imagery.serviceBusinessWebsites,
     metaTitle: "Business Website Design & Development | Gidev",
     metaDescription:
       "Fast, clear business websites designed to strengthen your online presence and turn the right visits into enquiries.",
@@ -382,7 +382,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Search Engine Optimization",
     summary:
       "Practical search optimisation that helps the right people find your business and take the next step.",
-    image: imagery.dashboard,
+    image: imagery.serviceSeo,
     metaTitle: "Search Engine Optimization Services | Gidev",
     metaDescription:
       "Technical and on-page SEO that helps the right audience find your business through useful content and a stronger search foundation.",
@@ -442,7 +442,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Website Maintenance & Support",
     summary:
       "Keep your website dependable, current and supported with planned updates and a clear route to help.",
-    image: imagery.code,
+    image: imagery.serviceMaintenance,
     metaTitle: "Website Maintenance & Support | Gidev",
     metaDescription:
       "Reliable website maintenance and support, including updates, checks, content changes and practical help for your team.",
@@ -502,7 +502,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Branding & Graphic Design",
     summary:
       "Create a recognisable, consistent identity and useful design assets for your business.",
-    image: imagery.womanCity,
+    image: imagery.serviceBranding,
     metaTitle: "Branding & Graphic Design | Gidev",
     metaDescription:
       "Brand identity and graphic design, from visual direction and core assets to a consistent system for your digital channels.",
@@ -561,7 +561,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Digital Marketing",
     summary:
       "Plan and improve social media and email activity around your audience, message and business goals.",
-    image: imagery.shopOwner,
+    image: imagery.serviceDigitalMarketing,
     metaTitle: "Digital Marketing Services | Gidev",
     metaDescription:
       "Digital marketing support across social media and email, planned around clear audiences, goals and useful measurement.",
@@ -620,7 +620,7 @@ const serviceEntries: ServiceEntry[] = [
     h1: "Practical AI Services & Workflow Automation",
     summary:
       "Apply AI where it makes work simpler, with useful integrations, clear safeguards and people in control.",
-    image: imagery.dashboard,
+    image: imagery.serviceAi,
     metaTitle: "AI Services & Workflow Automation | Gidev",
     metaDescription:
       "Practical AI and workflow automation for growing teams, from useful integrations to custom assistants designed around real work.",
