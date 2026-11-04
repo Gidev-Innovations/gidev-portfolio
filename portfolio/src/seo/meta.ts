@@ -27,7 +27,7 @@ export function buildMeta(
   const image = rawImage.startsWith("http") ? rawImage : `${SITE.url}${rawImage}`;
 
   return [
-    { title },
+    { title: SITE.name },
     { name: "description", content: description },
     { tagName: "link", rel: "canonical", href: url },
     { tagName: "link", rel: "alternate", hrefLang: "en", href: url },

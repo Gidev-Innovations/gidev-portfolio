@@ -378,40 +378,41 @@ const serviceEntries: ServiceEntry[] = [
   {
     slug: "seo",
     group: "Grow & Support",
-    name: "SEO Services",
-    h1: "Search Engine Optimization",
+    name: "SEO & GEO Services",
+    h1: "Search & Generative Engine Optimisation",
     summary:
-      "Practical search optimisation that helps the right people find your business and take the next step.",
+      "SEO and Generative Engine Optimisation (GEO) that help the right people discover your business across search engines and AI-powered answers.",
     image: imagery.serviceSeo,
-    metaTitle: "Search Engine Optimization Services | Gidev",
+    metaTitle: "SEO & GEO Services | Gidev",
     metaDescription:
-      "Technical and on-page SEO that helps the right audience find your business through useful content and a stronger search foundation.",
+      "Technical SEO, useful content and Generative Engine Optimisation (GEO) to strengthen how your business is discovered in search results and AI-generated answers.",
     intro: [
-      "Search visibility is built from small things working together: a site search engines can understand, pages that answer the right questions and useful information for your audience. We help teams improve those foundations without promising overnight rankings.",
-      "We start by understanding what your customers search for and how your site currently performs. From there, we prioritise technical fixes, page improvements and content opportunities that match your business goals.",
+      "Search visibility is built from small things working together: a site search engines can understand, pages that answer the right questions and useful information for your audience. We improve these foundations through SEO and Generative Engine Optimisation (GEO), helping your business become easier to discover in traditional search and AI-powered answers.",
+      "We start by understanding what your customers search for, ask AI tools and need to know, alongside how your site currently performs. From there, we prioritise technical fixes, page improvements and clear, well-structured content that supports discovery across these experiences without promising rankings or AI citations.",
     ],
     bestFor:
-      "Businesses that want more qualified discovery through organic search and a clear plan for improving their website.",
+      "Businesses that want more qualified discovery through organic search and AI-powered answers, with a clear plan for improving their website and content.",
     problems: [
       {
-        title: "Your site is hard to find",
-        body: "We review how pages are indexed, structured and linked, then identify the technical and content issues that may be holding visibility back.",
+        title: "Your business is hard to find in search and AI answers",
+        body: "We review how pages are indexed, structured and linked, then identify technical and content issues that may limit visibility in search results and generative experiences.",
       },
       {
         title: "Search traffic does not lead to enquiries",
         body: "We align page intent, useful information and calls to action so visitors can move from finding your business to understanding what to do next.",
       },
       {
-        title: "You are not sure what to work on first",
-        body: "A prioritised audit separates high-impact improvements from busywork and gives your team a practical order of operations.",
+        title: "Your content is not answering the questions people ask",
+        body: "We identify useful topics and shape clear, accurate content that serves your audience and is easier for search engines and generative tools to interpret.",
       },
     ],
     includes: [
       "Technical and on-page SEO review",
       "Keyword and search-intent mapping",
       "Page structure, metadata and internal-link recommendations",
+      "Generative Engine Optimisation (GEO) and AI-discovery readiness recommendations",
       "Audience and market-specific search guidance",
-      "Content priorities based on your services and audience",
+      "Content priorities shaped around the questions your audience searches and asks",
       "Progress reporting with clear next steps",
     ],
     faqs: [
@@ -424,6 +425,11 @@ const serviceEntries: ServiceEntry[] = [
         question: "Do you work on websites you did not build?",
         answer:
           "Yes. We can review and improve an existing website, and we will explain any platform limitations before recommending changes.",
+      },
+      {
+        question: "What is Generative Engine Optimisation (GEO)?",
+        answer:
+          "GEO is the practice of making your business information clear, useful and well-structured so generative search tools can better understand it and may reference it in AI-generated answers. Inclusion or citations are not guaranteed, just as search rankings are not.",
       },
       {
         question: "How soon will SEO changes make a difference?",
@@ -765,15 +771,15 @@ const serviceDetails: Record<
   },
   seo: {
     deliverables: [
-      "A review of the site's technical and on-page search foundations",
-      "A prioritised set of search-intent and content recommendations",
-      "A progress review based on the data available for the engagement",
+      "A review of the site's technical SEO and generative-search readiness",
+      "Prioritised SEO and GEO recommendations for search intent, content and page structure",
+      "A progress review using available search-performance data and agreed measures",
     ],
     processSteps: [
-      { title: "Review the search baseline", body: "We look at the site, current visibility, audience and the questions your customers search for." },
-      { title: "Set priorities", body: "We separate technical, page and content opportunities into a practical order of work." },
-      { title: "Apply agreed changes", body: "We make the scoped improvements or coordinate with your team to implement them." },
-      { title: "Review the evidence", body: "We assess available search data and use it to shape the next set of recommendations." },
+      { title: "Review search and AI discovery", body: "We look at the site, current visibility, audience and the questions your customers search for or ask generative tools." },
+      { title: "Set SEO and GEO priorities", body: "We separate technical, page and content opportunities into a practical order of work for search engines and AI-powered answers." },
+      { title: "Apply agreed changes", body: "We make the scoped SEO and content improvements or coordinate with your team to implement them." },
+      { title: "Review the evidence", body: "We assess available search-performance data and use it to shape the next set of recommendations; AI-generated citations cannot be guaranteed." },
     ],
     relatedServiceIds: ["business-websites", "ecommerce", "digital-marketing"],
   },
