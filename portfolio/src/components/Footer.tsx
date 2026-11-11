@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Github, Instagram, Linkedin, Twitter, type LucideIcon } from "lucide-react";
+import { Facebook, Github, Instagram, Linkedin, Twitter, type LucideIcon } from "lucide-react";
 import { BUSINESS, SITE } from "../data/site";
 import { serviceGroups, services } from "../data/services";
 import ClosingCta from "./ClosingCta";
@@ -19,6 +19,7 @@ const SOCIAL_LABELS: Record<string, string> = {
   "linkedin.com": "LinkedIn",
   "x.com": "X",
   "instagram.com": "Instagram",
+  "facebook.com": "Facebook",
 };
 
 const SOCIAL_ICONS: Record<string, LucideIcon> = {
@@ -26,6 +27,7 @@ const SOCIAL_ICONS: Record<string, LucideIcon> = {
   "linkedin.com": Linkedin,
   "x.com": Twitter,
   "instagram.com": Instagram,
+  "facebook.com": Facebook,
 };
 
 const socialHost = (url: string) => new URL(url).hostname.replace("www.", "");

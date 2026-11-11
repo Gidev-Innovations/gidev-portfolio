@@ -35,7 +35,11 @@ export const BUSINESS = {
   hours: null as string | null,
   areaServed: ["Worldwide"],
   // Business profile URLs shown in the footer and included in structured data.
-  sameAs: ["https://www.linkedin.com/company/gidev-innovations/"] as string[],
+  sameAs: [
+    "https://www.linkedin.com/company/gidev-innovations/",
+    "https://www.instagram.com/gidev_tech?psln=dWRncnV5aG9qcm9u",
+    "https://www.facebook.com/share/19hCGgAsBm/",
+  ] as string[],
   /**
    * TODO(human): WhatsApp number in international format, e.g. "+254712345678".
    * Shown only as the contact-form fallback when a Web3Forms send fails;
