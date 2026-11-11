@@ -84,6 +84,13 @@ const Footer = () => {
         <div>
           <p className={headingClass}>Get in touch</p>
           <ul>
+            {BUSINESS.email && (
+              <li>
+                <a href={`mailto:${BUSINESS.email}`} className={linkClass}>
+                  {BUSINESS.email}
+                </a>
+              </li>
+            )}
             <li>
               <Link viewTransition to="/contact#message" className={linkClass}>
                 Send a message

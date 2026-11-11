@@ -34,16 +34,15 @@ export const BUSINESS = {
   // TODO(human): set real hours, e.g. "Mon–Fri, 9:00–18:00 EAT". Hidden while null.
   hours: null as string | null,
   areaServed: ["Worldwide"],
-  // TODO(human): add the business's own profile URLs (LinkedIn, X, Instagram). Shown in the footer and schema; hidden while empty.
-  sameAs: [] as string[],
+  // Business profile URLs shown in the footer and included in structured data.
+  sameAs: ["https://www.linkedin.com/company/gidev-innovations/"] as string[],
   /**
    * TODO(human): WhatsApp number in international format, e.g. "+254712345678".
    * Shown only as the contact-form fallback when a Web3Forms send fails;
    * while null, that fallback points to the booking calendar instead.
    */
   whatsappNumber: null as string | null,
-  // TODO(confirm with Gidev): public email and phone for the utility bar. Each is hidden while null.
-  email: null as string | null,
+  email: "gidevinnovations@gmail.com",
   phone: null as string | null,
   // TODO(confirm with Gidev): set false when the studio is not taking new projects. Drives the utility-bar status.
   acceptingProjects: true,
